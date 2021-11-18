@@ -1,0 +1,3 @@
+export const HELLO_WORLD = "HELLO_WORLD";
+export const RECEIVE_HELLO_WORLD = "RECEIVE_HELLO_WORLD";
+export const POST_CONTACT = "POST_CONTACT";
