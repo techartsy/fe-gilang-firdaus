@@ -1,0 +1,14 @@
+@import "../../styles/base";
+
+.container {
+  background-color: black;
+  p {
+    color: white;
+  }
+  .wrapper {
+    background-color: yellow;
+    p {
+      color: red;
+    }
+  }
+}
