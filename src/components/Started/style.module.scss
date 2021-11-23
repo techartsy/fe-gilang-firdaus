@@ -1,1 +1,37 @@
 @import "../../styles/base";
+
+.container {
+  @include body;
+  background-color: $color-black;
+  min-height: 100vh;
+  .wraper {
+    @include directionY;
+    align-items: center;
+    img {
+      width: 100%;
+    }
+  }
+  .toWraper {
+    font-size: 20px;
+    @include directionY;
+    align-items: center;
+    margin-top: -74px;
+    justify-content: center;
+    .to {
+      margin: -20px 0;
+    }
+  }
+  .btn {
+    width: 180px;
+    height: 40px;
+    font-size: 18px;
+    @include content-center;
+    @include directionX;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: $color-gold;
+    color: $color-black;
+    cursor: pointer;
+  }
+}
