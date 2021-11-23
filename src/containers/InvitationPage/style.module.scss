@@ -1,14 +1,168 @@
 @import "../../styles/base";
-
 .container {
-  background-color: black;
-  p {
-    color: white;
-  }
-  .wrapper {
-    background-color: yellow;
-    p {
-      color: red;
+  @include body;
+  background-color: $color-black;
+  .invitationContainer {
+    .header {
+      @include directionY;
+      background-image: url("../../static/images/mainimage.png");
+      height: 100%;
+      width: 100%;
+      top: 0;
+      border: none;
+      object-fit: cover;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: 22px;
+      .headerTitle {
+        float: right;
+        width: 38%;
+        font-size: 90px;
+        margin-right: 10%;
+        margin-bottom: 3%;
+        align-self: flex-end;
+        .titleTop {
+          max-height: 40px;
+          text-align: left;
+        }
+        .titleMid {
+          max-height: 40px;
+          color: $color-white;
+          text-align: center;
+        }
+        .titleBottom {
+          max-height: 40px;
+          text-align: right;
+          margin-right: 13%;
+        }
+      }
+      .countdown {
+        @include directionX;
+        @include content-center;
+        border-top: 1px solid $color-white;
+        border-bottom: 1px solid $color-white;
+        width: 30%;
+        padding-top: 2px;
+        padding-bottom: 5px;
+        justify-content: space-around;
+        color: $color-white;
+        margin-bottom: 3%;
+        .countdownItem {
+          border-radius: 20px;
+          @include apply-at-sm-size {
+            font-size: 9px;
+            width: 42px;
+            heigth: 40px;
+            margin: 10% 0.5rem;
+          }
+
+          .countdownTime {
+            font-size: 35px;
+            text-align: center;
+            @include apply-at-sm-size {
+              padding: 0 0.5rem;
+            }
+          }
+          .countdownInterval {
+            font-size: 26px;
+            @include apply-at-sm-size {
+              margin: 0;
+              padding-bottom: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+    .storySection {
+      border: 1px solid red;
+      @include section-spacing;
+    }
+    .seconStoryContainer {
+      @include section-spacing;
+      @include directionX;
+      font-size: 32px;
+      text-align: center;
+      .imageWrapper {
+        img {
+          height: 100%;
+        }
+      }
+      .storyWrapper {
+        align-self: center;
+        .story {
+          @include content-center;
+          width: 90%;
+        }
+      }
+    }
+    .bridesProfileContainer {
+      padding: 3% 0;
+      background-image: url("../../static/images/batik-bg.png");
+      height: 100%;
+      width: 100%;
+      border: none;
+      object-fit: cover;
+      background-repeat: no-repeat;
+      background-size: cover;
+      .wingWrapper {
+        @include content-center;
+        .image {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+      .profileWrapper {
+        @include directionX;
+        justify-content: space-around;
+        text-align: center;
+        .card {
+          .bridesImage {
+            width: 460px;
+          }
+        }
+      }
+    }
+    .poemSectionContainer {
+      font-size: 28px;
+      .imageSeparator {
+        margin: 22px 0;
+        width: 100%;
+      }
+      .poemContainer {
+        @include directionY;
+        align-items: center;
+        justify-content: center;
+        .bg {
+          img {
+            width: 100%;
+            position: relative;
+          }
+        }
+        .poemWrapper {
+          position: absolute;
+          z-index: 1;
+          padding-left: 20%;
+          p {
+            margin-top: -30px;
+          }
+          .poemTop {
+          }
+          .poemMid {
+            width: 65%;
+            margin-left: 8%;
+            margin-top: 10%;
+            margin-bottom: 10%;
+          }
+          .poemBottom {
+          }
+          .author {
+            margin-top: 6%;
+            text-align: right;
+            width: 75%;
+          }
+        }
+      }
     }
   }
 }
