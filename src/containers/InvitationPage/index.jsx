@@ -270,6 +270,12 @@ const InvitationPage = () => {
     );
   }
 
+  const generateMessageSection = () => {
+    return (
+      <p>Message Section</p>
+    );
+  }
+
   const generateInvitation = () => {
     return (
       <div className={classes.invitationContainer}>
@@ -281,6 +287,7 @@ const InvitationPage = () => {
         {generateBridesProfile()}
         {eventDetail()}
         {generatePoemSection()}
+        {generateMessageSection()}
         <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       </div>
     )
