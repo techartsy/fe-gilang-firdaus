@@ -36,7 +36,7 @@ const InvitationPage = () => {
         Hari: Math.floor(difference / (1000 * 60 * 60 * 24)) ? Math.floor(difference / (1000 * 60 * 60 * 24)) : '00',
         Jam: Math.floor((difference / (1000 * 60 * 60)) % 24) ? Math.floor((difference / (1000 * 60 * 60)) % 24) : '00',
         Menit: Math.floor((difference / 1000 / 60) % 60) !== 0 ? Math.floor((difference / 1000 / 60) % 60) : '00',
-        Detik:  Math.floor((difference / 1000) % 60) !== 0 ? Math.floor((difference / 1000) % 60) : '00'
+        Detik: Math.floor((difference / 1000) % 60) !== 0 ? Math.floor((difference / 1000) % 60) : '00'
       };
     }
     return timeLeft;
@@ -68,7 +68,7 @@ const InvitationPage = () => {
       </div>
     );
   });
-  
+
 
   const openInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
@@ -99,16 +99,16 @@ const InvitationPage = () => {
       <div className={classes.storySection}>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
           </div>
         </div>
         <div className={classes.imageWrapper}>
-          <img src={Ridwan} alt='Brides'/>
+          <img src={Ridwan} alt='Brides' />
         </div>
       </div>
     );
   }
-  
+
   const generateSecondStory = () => {
     return (
       <div className={classes.secondStoryContainer}>
@@ -123,9 +123,9 @@ const InvitationPage = () => {
       </div>
     );
   }
-  
 
-  const secondImage = () => {
+
+  const secondImageSection = () => {
     return (
       <div className={classes.paralaxx}>
         <div className={classes.paralaxxWraper}>
@@ -134,7 +134,7 @@ const InvitationPage = () => {
     );
   }
 
-  const summary = () => {
+  const summarySection = () => {
     return (
       <div className={classes.summary}>
         <div className={classes.summaryWraper}>
@@ -143,15 +143,15 @@ const InvitationPage = () => {
               Cerita Kita
             </p>
           </div>
-            <p className={classes.summary}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet <br/>
-              volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, <br/>
-              nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque<br/>
-              dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare<br/>
-              sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,<br/> 
-              elit morbi mattis vulputate faucibus amet.
-            </p>
-            <img src={wingg} alt='wingBottom'/>
+          <p className={classes.summary}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet <br />
+            volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, <br />
+            nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque<br />
+            dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare<br />
+            sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,<br />
+            elit morbi mattis vulputate faucibus amet.
+          </p>
+          <img src={wingg} alt='wingBottom' />
         </div>
       </div>
     )
@@ -192,8 +192,8 @@ const InvitationPage = () => {
         <img className={classes.topEvent} src={topevent} alt='top' />
         <div className={classes.greeting}>
           <p>
-            Assalamu'alaikum Warahmatullahi Wabarakatuh<br/><br/>
-            Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.<br/>
+            Assalamu'alaikum Warahmatullahi Wabarakatuh<br /><br />
+            Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.<br />
             Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kamu
           </p>
         </div>
@@ -204,7 +204,7 @@ const InvitationPage = () => {
           <div className={classes.calender}>
             <img src={calender} alt='calender' />
             <p>
-              MINGGU 09 JANUARI 2022  
+              MINGGU 09 JANUARI 2022
             </p>
           </div>
           <div className={classes.timesWraper}>
@@ -222,7 +222,7 @@ const InvitationPage = () => {
           <div className={classes.locationWraper}>
             <img src={Location} alt='location' />
             <p>
-              JL. CISUNGSANG BANTEN                
+              JL. CISUNGSANG BANTEN
             </p>
           </div>
           <div onClick={goToMaps} className={classes.btnmap}>
@@ -233,7 +233,7 @@ const InvitationPage = () => {
       </div>
     );
   }
-  
+
   const generatePoemSection = () => {
     return (
       <div className={classes.poemSectionContainer}>
@@ -276,18 +276,45 @@ const InvitationPage = () => {
     );
   }
 
+  const attendingSection = () => {
+    return (
+      <div>
+        <p>attendingSection</p>
+      </div>
+    )
+  }
+
+  const giftSection = () => {
+    return (
+      <div>
+        <p>giftSection</p>
+      </div>
+    )
+  }
+
+  const footerSection = () => {
+    return (
+      <div>
+        <p>footerSection</p>
+      </div>
+    )
+  }
+
   const generateInvitation = () => {
     return (
       <div className={classes.invitationContainer}>
         {generateHeader()}
         {generateStory()}
         {generateSecondStory()}
-        {secondImage()}
-        {summary()}
+        {secondImageSection()}
+        {summarySection()}
         {generateBridesProfile()}
         {eventDetail()}
         {generatePoemSection()}
         {generateMessageSection()}
+        {attendingSection()}
+        {giftSection()}
+        {footerSection()}
         <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       </div>
     )
