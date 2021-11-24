@@ -9,7 +9,6 @@ import Male from '../../static/images/male.png';
 import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
 import WingBottom from '../../static/images/wing-bottom.png';
-import ThirdImage from '../../static/images/thirdimage.png';
 import Frame from '../../static/images/Frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
@@ -17,11 +16,19 @@ import calender from '../../static/icons/calender.png';
 import time from '../../static/icons/time.png';
 import Location from '../../static/icons/location.png';
 import plane from '../../static/icons/plane.png';
+import gunungan from '../../static/images/gunungan.png';
+import dropdown from '../../static/icons/dropdown.png';
+import dropup from '../../static/icons/dropup.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isShow, setIsShow] = useState(false);
+  const [guestName, setGuestName] = useState('');
+  const [address, setAddress] = useState('');
+  const [attend, setAttend] = useState('');
+  const [note, setNote] = useState('');
   const location = useLocation();
   let name = location?.search?.split('=')[1];
   name = name?.split('+').join(' ');
@@ -69,14 +76,31 @@ const InvitationPage = () => {
     );
   });
 
-
   const openInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
     setIsPlaying(!isPlaying);
   }
 
+  const showFormAttending = () => {
+    setIsShow(!isShow)
+  }
+
   const goToMaps = () => {
-    window.open('https://goo.gl/maps/mwWn37GwhiCRmrw6A', '_blank');
+    window.open('https://goo.gl/maps/gLzmCKcPg8m8AQdM8', '_blank');
+  }
+
+  const radioAttend = (e) => {
+    setAttend(e.target.value);
+  };
+
+  const onSubmitRadios = (e) => {
+    e.preventDefault();
+    console.log({
+      guestName,
+      address,
+      attend,
+      note
+    });
   }
 
   const generateHeader = () => {
@@ -168,15 +192,15 @@ const InvitationPage = () => {
           <div className={classes.card}>
             <img className={classes.bridesImage} src={Male} alt="brides" />
             <div className={classes.profileInfo}>
-              <p>Ridwan Krisdiansyah</p>
-              <p>putra sulung dari (Alm) bapak ... dan ibu ...</p>
+              <p className={classes.bridess}>Silmiati Azmi</p>
+              <p className={classes.parents}>Putri bungsu dari<br /> Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
             </div>
           </div>
           <div className={classes.card}>
             <img className={classes.bridesImage} src={Female} alt="brides" />
             <div className={classes.profileInfo}>
-              <p>Ridwan Krisdiansyah</p>
-              <p>putra sulung dari bapak ... dan ibu ...</p>
+              <p className={classes.bridess}>Ridwan Krisdiansyah</p>
+              <p className={classes.parents}>Putra pertama dari<br /> Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
             </div>
           </div>
         </div>
@@ -205,25 +229,25 @@ const InvitationPage = () => {
           <div className={classes.calender}>
             <img src={calender} alt='calender' />
             <p>
-              MINGGU 09 JANUARI 2022
+              MINGGU, 09 JANUARI 2022
             </p>
           </div>
           <div className={classes.timesWraper}>
             <div className={classes.time}>
               <img src={time} alt='time' />
-              <p>PUKUL 08.00 WIB -09.00 WIB</p>
+              <p>AKAD : PUKUL 09.00 WIB</p>
             </div>
             <div className={classes.time}>
               <img src={time} alt='time' />
               <p>
-                PUKUL 08.00 WIB - 09.00 WIB
+                RESEPSI : PUKUL 11.00 WIB s/d Selesai
               </p>
             </div>
           </div>
           <div className={classes.locationWraper}>
             <img src={Location} alt='location' />
             <p>
-              JL. CISUNGSANG BANTEN
+              KP. MULYASARI, RT. 01 RW. 02 DS. CIKADU KEC. CIBEBER KAB. LEBAK. BANTEN.
             </p>
           </div>
           <div onClick={goToMaps} className={classes.btnmap}>
@@ -280,18 +304,54 @@ const InvitationPage = () => {
     );
   }
 
+  const attendingSection = () => {
+    return (
+      <div className={classes.attendingContainer}>
+        <p className={classes.title}>"UCAPAN & DOA"</p>
+        <div className={classes.attendingWraper}>
+          <div className={classes.formWraper}>
+            <div className={classes.dropdownSection} onClick={showFormAttending}>
+              <p className={classes.formTitle}>Konfirmasi Kehadiran</p>
+              <div className={classes.icon}>
+                <img src={isShow ? dropup : dropdown} />
+              </div>
+            </div>
+            <form className={`${classes.formContainer} ${!isShow ? classes.hide : classes.show}`} onSubmit={onSubmitRadios}>
+              <div className={classes.inputForm}>
+                <div className={classes.inputs}>
+                  <input type='text' placeholder='Nama' required onChange={(e) => setGuestName(e.target.value)} />
+                  <input type='text' placeholder='Alamat' required onChange={(e) => setAddress(e.target.value)} />
+                  <textarea type='text' placeholder='Kirim Ucapan & Doa' onChange={(e) => setNote(e.target.value)} />
+                </div>
+              </div>
+              <div onChange={radioAttend} className={classes.radiosInput}>
+                <div className={classes.inputs}>
+                  <p>Konfirmasi</p>
+                  <input className={classes.radioItem} type='radio' name='attend' value='present' required ></input>
+                  <label for='attend'>Akan Hadir</label>
+                  <input className={classes.radioItem} type='radio' name='attend' value='absence' required></input>
+                  <label for='attend'>Berhalangan Hadir</label>
+                </div>
+                <button type='submit' className={classes.btnSend}>Kirim Ucapan</button>
+              </div>
+            </form>
+          </div>
+          <div className={classes.expressionSection}>
+            <img src={gunungan} />
+            <p className={classes.expression}>
+              Ungkapan terima kasih yang tulus dari kami apabila<br />
+              Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
+            </p>
+          </div>
+        </div>
+      </div >
+    );
+  }
+
   const generateMessageSection = () => {
     return (
       <p>Message Section</p>
     );
-  }
-
-  const attendingSection = () => {
-    return (
-      <div>
-        <p>attendingSection</p>
-      </div>
-    )
   }
 
   const giftSection = () => {
@@ -322,13 +382,13 @@ const InvitationPage = () => {
         {eventDetail()}
         {thirdImageSeparator()}
         {generatePoemSection()}
-        {/* {generateMessageSection()}
         {attendingSection()}
+        {generateMessageSection()}
         {giftSection()}
-        {footerSection()} */}
+        {footerSection()}
         <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       </div>
-    )
+    );
   }
   return (
     <div className={classes.container}>
