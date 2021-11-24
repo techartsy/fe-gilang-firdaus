@@ -10,7 +10,7 @@ import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
 import WingBottom from '../../static/images/wing-bottom.png';
 import ThirdImage from '../../static/images/thirdimage.png';
-import Frame from '../../static/images/frame.png';
+import Frame from '../../static/images/Frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
 import calender from '../../static/icons/calender.png';
@@ -124,7 +124,6 @@ const InvitationPage = () => {
     );
   }
 
-
   const secondImageSection = () => {
     return (
       <div className={classes.paralaxx}>
@@ -137,21 +136,23 @@ const InvitationPage = () => {
   const summarySection = () => {
     return (
       <div className={classes.summary}>
-        <div className={classes.summaryWraper}>
-          <div className={classes.title}>
-            <p>
-              Cerita Kita
+        <div className={classes.bg}>
+          <div className={classes.summaryWraper}>
+            <div className={classes.title}>
+              <p>
+                Cerita Kita
+              </p>
+            </div>
+            <p className={classes.summarySection}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet <br />
+              volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, <br />
+              nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque<br />
+              dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare<br />
+              sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,<br />
+              elit morbi mattis vulputate faucibus amet.
             </p>
+            <img src={wingg} alt='wingBottom' />
           </div>
-          <p className={classes.summary}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet <br />
-            volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, <br />
-            nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque<br />
-            dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare<br />
-            sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,<br />
-            elit morbi mattis vulputate faucibus amet.
-          </p>
-          <img src={wingg} alt='wingBottom' />
         </div>
       </div>
     )
@@ -234,10 +235,19 @@ const InvitationPage = () => {
     );
   }
 
+  const thirdImageSeparator = () => {
+    return (
+      <div>
+        <div className={classes.thirdImageSection}>
+          <div className={classes.paralaxxWraper}></div>
+        </div>
+      </div>
+    );
+  }
+
   const generatePoemSection = () => {
     return (
       <div className={classes.poemSectionContainer}>
-        <img className={classes.imageSeparator} src={ThirdImage} alt="brides" />
         <div className={classes.poemContainer}>
           <div className={classes.bg}>
             <img src={Frame} alt="frame" />
@@ -310,11 +320,12 @@ const InvitationPage = () => {
         {summarySection()}
         {generateBridesProfile()}
         {eventDetail()}
+        {thirdImageSeparator()}
         {generatePoemSection()}
-        {generateMessageSection()}
+        {/* {generateMessageSection()}
         {attendingSection()}
         {giftSection()}
-        {footerSection()}
+        {footerSection()} */}
         <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
       </div>
     )

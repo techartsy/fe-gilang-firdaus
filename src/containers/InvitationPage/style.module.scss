@@ -16,6 +16,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       margin-bottom: 22px;
+      border-bottom: 1px solid $color-gold;
       .headerTitle {
         float: right;
         width: 38%;
@@ -57,7 +58,6 @@
             heigth: 40px;
             margin: 10% 0.5rem;
           }
-
           .countdownTime {
             font-size: 35px;
             text-align: center;
@@ -119,8 +119,7 @@
       }
     }
     .paralaxx {
-      margin-bottom: 22px;
-      @include section-spacing;
+      border-top: 1px solid $color-gold;
       .paralaxxWraper {
         background-image: url("../../static/images/mainimage.png");
         @include parallax;
@@ -129,27 +128,35 @@
     }
     .summary {
       @include directionX;
-      .summaryWraper {
-        width: 64%;
-        @include directionY;
-        margin-top: 2%;
-        align-items: center;
-        justify-content: center;
-        @include content-center;
-        .title {
-          width: 180px;
-          height: 80px;
-          display: flex;
+      background-image: url('../../static/images/mainimage.png');
+      @include parallax;
+      border-top: 1px solid $color-gold;
+      border-bottom: 1px solid $color-gold;
+      .bg {
+        background-color: $color-black;
+        width: 100%;
+        opacity: 0.8;
+        .summaryWraper {
+          @include directionY;
+          margin-top: 2%;
+          align-items: center;
           justify-content: center;
-          font-size: 30px;
-          border-bottom: 1px solid $color-gold;
-        }
-        .summary {
-          text-align: center;
-          font-size: 28px;
-        }
-        img {
-          margin-bottom: 5%;
+          @include content-center;
+          .title {
+            width: 180px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+            border-bottom: 1px solid $color-gold;
+          }
+          .summarySection {
+            text-align: center;
+            font-size: 28px;
+          }
+          img {
+            margin-bottom: 5%;
+          }
         }
       }
     }
@@ -163,6 +170,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       margin-bottom: 22px;
+      margin-top: 22px;
       border-bottom: 1px solid $color-gold;
       .wingWrapper {
         @include content-center;
@@ -188,7 +196,6 @@
       background-image: url("../../static/images/batik-bg.png");
       height: 100%;
       width: 100%;
-      margin-bottom: 22px;
       background-repeat: no-repeat;
       background-size: cover;
       .topEvent {
@@ -279,26 +286,39 @@
         }
       }
     }
-    .poemSectionContainer {
-      font-size: 28px;
-      .imageSeparator {
-        margin: 22px 0;
-        width: 100%;
+    .thirdImageSection {
+      border-top: 1px solid $color-gold;
+      .paralaxxWraper {
+        background-image: url('../../static/images/thirdimage.png');
+        @include parallax;
+        min-height: 100vh;
       }
+    }
+    .poemSectionContainer {
+      border-bottom: 1px solid $color-gold;
+      font-size: 28px;
       .poemContainer {
         @include directionY;
         align-items: center;
         justify-content: center;
         .bg {
+          background-image: url('../../static//images/thirdimage.png');
+          background-color: $color-black;
+          @include parallax;
           img {
+            border-top: 1px solid $color-gold;
+            top: 12px;
             width: 100%;
+            background-color: $color-black;
             position: relative;
+            opacity: 0.95;
           }
         }
         .poemWrapper {
           position: absolute;
           z-index: 1;
           padding-left: 20%;
+          margin-top: 4%;
           p {
             margin-top: -30px;
           }
