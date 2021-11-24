@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { getAllGuest } from '../../store/actions';
 
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
@@ -29,9 +32,14 @@ const InvitationPage = () => {
   const [address, setAddress] = useState('');
   const [attend, setAttend] = useState('');
   const [note, setNote] = useState('');
+  const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
   name = name?.split('+').join(' ');
+
+  useEffect(() => {
+    dispatch(getAllGuest())
+  }, []);
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
@@ -313,7 +321,7 @@ const InvitationPage = () => {
             <div className={classes.dropdownSection} onClick={showFormAttending}>
               <p className={classes.formTitle}>Konfirmasi Kehadiran</p>
               <div className={classes.icon}>
-                <img src={isShow ? dropup : dropdown} />
+                <img src={isShow ? dropup : dropdown} alt="dropdown" />
               </div>
             </div>
             <form className={`${classes.formContainer} ${!isShow ? classes.hide : classes.show}`} onSubmit={onSubmitRadios}>
@@ -337,7 +345,7 @@ const InvitationPage = () => {
             </form>
           </div>
           <div className={classes.expressionSection}>
-            <img src={gunungan} />
+            <img src={gunungan} alt="gunungan" />
             <p className={classes.expression}>
               Ungkapan terima kasih yang tulus dari kami apabila<br />
               Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
