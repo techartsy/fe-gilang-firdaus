@@ -6,13 +6,14 @@ import { getAllGuest } from '../../store/actions';
 
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
+import PopupProkes from '../../components/PopupProkes';
 import Azmi from '../../static/images/azmi.png';
 import Ridwan from '../../static/images/ridwan.png';
 import Male from '../../static/images/male.png';
 import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
 import WingBottom from '../../static/images/wing-bottom.png';
-import Frame from '../../static/images/Frame.png';
+import Frame from '../../static/images/frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
 import calender from '../../static/icons/calender.png';
@@ -22,6 +23,8 @@ import plane from '../../static/icons/plane.png';
 import gunungan from '../../static/images/gunungan.png';
 import dropdown from '../../static/icons/dropdown.png';
 import dropup from '../../static/icons/dropup.png';
+import Mail from '../../static/icons/mail.png';
+import MessageImg from '../../static/images/message-img.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
@@ -32,10 +35,30 @@ const InvitationPage = () => {
   const [address, setAddress] = useState('');
   const [attend, setAttend] = useState('');
   const [note, setNote] = useState('');
+  const [showPopupProkes, setShowPopupProkes] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
   name = name?.split('+').join(' ');
+
+  const message = [
+    {
+      name: 'Rinoto Harto',
+      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
+    },
+    {
+      name: 'Rando Bintoro',
+      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
+    },
+    {
+      name: 'Braja Sifa',
+      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
+    },
+    {
+      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat',
+      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
+    },
+  ]
 
   useEffect(() => {
     dispatch(getAllGuest())
@@ -44,7 +67,7 @@ const InvitationPage = () => {
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
     const nextYear = year + 1;
-    const difference = +new Date(`01/09/${nextYear}`) - +new Date();
+    const difference = +new Date(`01/09/${nextYear}/09:00`) - +new Date();
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
@@ -52,6 +75,13 @@ const InvitationPage = () => {
         Jam: Math.floor((difference / (1000 * 60 * 60)) % 24) ? Math.floor((difference / (1000 * 60 * 60)) % 24) : '00',
         Menit: Math.floor((difference / 1000 / 60) % 60) !== 0 ? Math.floor((difference / 1000 / 60) % 60) : '00',
         Detik: Math.floor((difference / 1000) % 60) !== 0 ? Math.floor((difference / 1000) % 60) : '00'
+      };
+    } else {
+      timeLeft = {
+        Hari: '00',
+        Jam: '00',
+        Menit: '00',
+        Detik: '00'
       };
     }
     return timeLeft;
@@ -86,6 +116,7 @@ const InvitationPage = () => {
 
   const openInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
+    setShowPopupProkes(!showPopupProkes);
     setIsPlaying(!isPlaying);
   }
 
@@ -111,6 +142,10 @@ const InvitationPage = () => {
     });
   }
 
+  const closePopupProkes = () => {
+    setShowPopupProkes(!showPopupProkes);
+  }
+
   const generateHeader = () => {
     return (
       <div className={classes.header}>
@@ -120,7 +155,7 @@ const InvitationPage = () => {
           <p className={classes.titleBottom}>Azmi</p>
         </div>
         <div className={classes.countdown}>
-          {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+          {timerComponents.length && timerComponents}
         </div>
       </div>
     );
@@ -198,17 +233,17 @@ const InvitationPage = () => {
         </div>
         <div className={classes.profileWrapper}>
           <div className={classes.card}>
-            <img className={classes.bridesImage} src={Male} alt="brides" />
+            <img className={classes.bridesImage} src={Female} alt="brides" />
             <div className={classes.profileInfo}>
               <p className={classes.bridess}>Silmiati Azmi</p>
-              <p className={classes.parents}>Putri bungsu dari<br /> Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
+              <p className={classes.parents}>Putri Bungsu dari<br /> Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
             </div>
           </div>
           <div className={classes.card}>
-            <img className={classes.bridesImage} src={Female} alt="brides" />
+            <img className={classes.bridesImage} src={Male} alt="brides" />
             <div className={classes.profileInfo}>
               <p className={classes.bridess}>Ridwan Krisdiansyah</p>
-              <p className={classes.parents}>Putra pertama dari<br /> Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
+              <p className={classes.parents}>Putra Ketiga dari<br /> Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
             </div>
           </div>
         </div>
@@ -248,7 +283,7 @@ const InvitationPage = () => {
             <div className={classes.time}>
               <img src={time} alt='time' />
               <p>
-                RESEPSI : PUKUL 11.00 WIB s/d Selesai
+                RESEPSI : PUKUL 10.00 WIB s/d Selesai
               </p>
             </div>
           </div>
@@ -358,7 +393,47 @@ const InvitationPage = () => {
 
   const generateMessageSection = () => {
     return (
-      <p>Message Section</p>
+      <div className={classes.messageSectionContainer}>
+        <div className={classes.sectionTitle}>
+          <p>Ucapan & Doa kamu</p>
+        </div>
+        <div className={classes.mainContent}>
+          <div className={classes.leftSection}>
+            <img src={gunungan} alt="gunungan" />
+            <p>“ Sebuah Doa & Ucapan Untuk Kedua Mempelai ”</p>
+          </div>
+          <div className={classes.rightSection}>
+            <div className={classes.imgWrapper}>
+              <img className={classes.image} src={MessageImg} alt="message" />
+            </div>
+            <div className={classes.messageWrapper}>
+              {message && message.map((item, idx) => {
+                return (
+                  <div className={classes.messageItemWrapper} key={idx}>
+                    <div className={classes.avatar}>
+                      <img src={Mail} alt='avatar' />
+                    </div>
+                    <div className={classes.messageShape}>
+                      <div className={classes.outerTriangle}>
+                        <div className={classes.innerTriangle} />
+                      </div>
+                      <div className={classes.messageBubble}>
+                        <div className={classes.name}>
+                          {item.name}
+                        </div>
+                        <div className={classes.message}>
+                          {item.message}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+        </div>
+      </div>
     );
   }
 
@@ -394,7 +469,8 @@ const InvitationPage = () => {
         {generateMessageSection()}
         {giftSection()}
         {footerSection()}
-        <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        {/* <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> */}
+        <PopupProkes open={showPopupProkes} handleClose={closePopupProkes} />
       </div>
     );
   }
