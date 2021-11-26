@@ -162,6 +162,7 @@
     }
     .bridesProfileContainer {
       @include parallax;
+      @include section-spacing;
       padding: 3% 0;
       background-image: url("../../static/images/batik-bg.png");
       height: 100%;
@@ -171,7 +172,8 @@
       background-repeat: no-repeat;
       background-size: cover;
       margin-bottom: 22px;
-      margin-top: 22px;
+      margin-top: 45px;
+      border-top: 1px solid $color-gold;
       border-bottom: 1px solid $color-gold;
       .wingWrapper {
         @include content-center;
@@ -636,9 +638,14 @@
         }
         .giftInfoWraper {
           background-image: url('../../static/images/giftbg.png');
+          background-repeat: no-repeat;
+          background-size: cover;
           margin-bottom: 10%;
           padding-bottom: 5%;
           @include directionY;
+          // padding: 20px;
+          // border: 1px solid $color-gold;
+          // border-radius: 10px;
           .imageDetail {
             @include directionY;
             .rose {
@@ -660,20 +667,16 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 5%;
-            // justify-content: space-between;
-            border: 1px solid red;
             @include content-center;
             .copy {
               position: absolute;
               width: 115px;
-              // margin-right: 5%;
-              // margin-bottom: 3%;
+              cursor: pointer;
             }
             .notifCopy {
               position: absolute;
               text-align: center;
               left: 75px;
-              // margin-right: 10%;
             }
           }
           .infoTitle {
@@ -701,18 +704,9 @@
             border: 1px solid $color-gold;
             font-size: 18px;
             margin-bottom: 1%;
+            cursor: pointer;
           }
         }
-        // .hide {
-        //   opacity: 0;
-        //   transform: translateY(-11%);
-        //   transition: all 1.5s;
-        // }
-        // .show {
-        //   opacity: 1;
-        //   transform: translateY(0);
-        //   transition: all 1.5s;
-        // }
       }
     }
     .closingSectionContainer {
