@@ -485,7 +485,7 @@ const InvitationPage = () => {
         <div className={classes.giftWraper}>
           <div className={classes.tittleRibbon}>
             <p className={classes.titleGift}>Haidah Pernikahan</p>
-            <img className={classes.ribbon} src={wingribbon} />
+            <img className={classes.ribbon} src={wingribbon} alt="wing" />
           </div>
           <div className={classes.dropdownSection} onClick={showGiftInfo}>
             <p className={classes.title}>Kirm Hadiah</p>
@@ -496,10 +496,10 @@ const InvitationPage = () => {
           {isShowGift &&
             <div className={classes.giftInfoWraper}>
               <div className={classes.imageDetail}>
-                <img className={classes.rose} src={rosegift} />
-                <img className={classes.card} src={creditcard} />
+                <img className={classes.rose} src={rosegift} alt="rose" />
+                <img className={classes.card} src={creditcard} alt="credit-card" />
                 <div className={classes.copyWraper}>
-                  <img className={classes.copy} src={numbercopy} onClick={copyText} />
+                  <img className={classes.copy} src={numbercopy} onClick={copyText} alt="copy-text" />
                   <p className={classes.notifCopy}>{notif}</p>
                 </div>
               </div>
