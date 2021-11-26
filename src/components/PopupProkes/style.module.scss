@@ -4,11 +4,12 @@
   .prokesTitle {
     @include body;
     color: $color-gold;
-    font-size: 26px;
+    font-size: 24px;
     text-align: center;
     margin-bottom: 8%;
     text-decoration-line: underline;
     text-underline-offset: 10px;
+    margin-top: -3%;
     p {
       color: $color-gold;
     }
@@ -17,19 +18,19 @@
     @include directionX;
     justify-content: space-around;
     color: $color-gold;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 16px;
     width: 100%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     text-align: center;
     .iconWrapperPopup {
       @include directionY;
       align-items: center;
       width: 25%;
       img {
-        width: 75px;
-        height: 75px;
         @include content-center;
+        width: 60px;
+        height: 60px;
       }
     }
   }
@@ -37,7 +38,7 @@
     @include directionX;
     justify-content: space-around;
     color: $color-gold;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 16px;
     width: 100%;
     text-align: center;
@@ -46,17 +47,17 @@
       width: 25%;
       align-items: center;
       img {
-        width: 75px;
-        height: 75px;
         @include content-center;
+        width: 60px;
+        height: 60px;
       }
     }
   }
   .appeal {
-    margin-top: 4%;
-    margin-bottom: 4%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     color: $color-gold;
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     line-height: 23.05px;
   }
@@ -75,5 +76,6 @@
     font-size: 23px;
     text-align: center;
     cursor: pointer;
+    margin-bottom: 4%;
   }
 }
