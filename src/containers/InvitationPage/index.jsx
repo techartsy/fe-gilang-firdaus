@@ -16,30 +16,37 @@ import Male from '../../static/images/male.png';
 import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
 import WingBottom from '../../static/images/wing-bottom.png';
-import Frame from '../../static/images/frame.png';
+import Frame from '../../static/images/Frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
+import gunungan from '../../static/images/gunungan.png';
+import MessageImg from '../../static/images/message-img.png';
+import ClosingWing from '../../static/images/closing-wing.png';
+import wingribbon from '../../static/images/wingribbon.png';
+import rosegift from '../../static/images/rosegift.png';
+import creditcard from '../../static/images/creditcard.png';
+import numbercopy from '../../static/images/numbercopy.png';
 import calender from '../../static/icons/calender.png';
 import time from '../../static/icons/time.png';
 import Location from '../../static/icons/location.png';
 import plane from '../../static/icons/plane.png';
-import gunungan from '../../static/images/gunungan.png';
 import dropdown from '../../static/icons/dropdown.png';
 import dropup from '../../static/icons/dropup.png';
 import Mail from '../../static/icons/mail.png';
-import MessageImg from '../../static/images/message-img.png';
-import ClosingWing from '../../static/images/closing-wing.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isShow, setIsShow] = useState(false);
+  const [isShowGift, setIsShowGift] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [address, setAddress] = useState('');
   const [attend, setAttend] = useState('');
   const [note, setNote] = useState('');
   const [showPopupProkes, setShowPopupProkes] = useState(false);
+  const [notif, setNotif] = useState('');
+  const wording = '123456 copy text';
   const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
@@ -47,6 +54,14 @@ const InvitationPage = () => {
 
   const messages = useSelector(state => state.invitationReducer.messages);
   const isError = useSelector(state => state.invitationReducer.isError);
+
+  const copyText = () => {
+    navigator.clipboard.writeText(wording);
+    setNotif('Copied');
+    setTimeout(() => {
+      setNotif('');
+    }, 3000);
+  }
 
   useEffect(() => {
     dispatch(getAllGuest())
@@ -135,6 +150,10 @@ const InvitationPage = () => {
 
   const showFormAttending = () => {
     setIsShow(!isShow)
+  }
+
+  const showGiftInfo = () => {
+    setIsShowGift(!isShowGift)
   }
 
   const goToMaps = () => {
@@ -455,7 +474,6 @@ const InvitationPage = () => {
               })}
             </div>
           </div>
-
         </div>
       </div>
     );
@@ -463,8 +481,41 @@ const InvitationPage = () => {
 
   const giftSection = () => {
     return (
-      <div>
-        <p>giftSection</p>
+      <div className={classes.giftContainer}>
+        <div className={classes.giftWraper}>
+          <div className={classes.tittleRibbon}>
+            <p className={classes.titleGift}>Haidah Pernikahan</p>
+            <img className={classes.ribbon} src={wingribbon} />
+          </div>
+          <div className={classes.dropdownSection} onClick={showGiftInfo}>
+            <p className={classes.title}>Kirm Hadiah</p>
+            <div className={classes.icon}>
+              <img src={isShowGift ? dropup : dropdown} alt='dropdown' />
+            </div>
+          </div>
+          {isShowGift &&
+            <div className={classes.giftInfoWraper}>
+              <div className={classes.imageDetail}>
+                <img className={classes.rose} src={rosegift} />
+                <img className={classes.card} src={creditcard} />
+                <div className={classes.copyWraper}>
+                  <img className={classes.copy} src={numbercopy} onClick={copyText} />
+                  <p className={classes.notifCopy}>{notif}</p>
+                </div>
+              </div>
+              <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
+              <p className={classes.infoDetail}>
+                Nama : Ridwan Krisdiansyah <br />
+                Alamat : Jl Tarumanegara No 77 RT 05 RW 09 Kel. Cirendeu, <br />
+                Kec. Ciputat Timur, Tangerang Selatan, Banten, 15419
+              </p>
+              <p className={classes.closingStatement}>
+                Silahkan konfirmasi kirim hadiah spesial kamu
+              </p>
+              <div className={classes.btnConfirmation}>klik disini</div>
+            </div>
+          }
+        </div>
       </div>
     )
   }
@@ -475,8 +526,8 @@ const InvitationPage = () => {
         <div className={classes.closingSentenceWrapper}>
           <p>
             Kehadiran & doa Anda adalah berkah, kehormatan & kebahagiaan bagi kami.<br />
-            Kami mengatakan dari hati kami yang terdalam<br/>
-            atas perhatian Anda<br/>
+            Kami mengatakan dari hati kami yang terdalam<br />
+            atas perhatian Anda<br />
             Terima kasih
           </p>
         </div>
