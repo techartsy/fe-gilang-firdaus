@@ -5,15 +5,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 const App = () => {
-  const [notif, setNotif] = useState('');
-  const wording = '123456 copy text';
-  const copyText = () => {
-    navigator.clipboard.writeText(wording);
-    setNotif('Copied');
-    setTimeout(() => {
-      setNotif('');
-    }, 1000);
-  }
 
   return (
     // <div className="App">
@@ -29,10 +20,10 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route exact path="/" element={<InvitationPage />}/>
+          <Route exact path="/" element={<InvitationPage />} />
         </Routes>
       </Router>
-  </Provider>
+    </Provider>
   );
 }
 

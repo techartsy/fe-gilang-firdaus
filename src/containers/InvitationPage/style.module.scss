@@ -603,6 +603,118 @@
         }
       }
     }
+    .giftContainer {
+      @include section-spacing;
+      .giftWraper {
+        width: 60%;
+        @include content-center;
+        .tittleRibbon {
+          .titleGift {
+            width: 30%;
+            @include content-center;
+            text-align: center;
+            font-size: 30px;
+            border-bottom: 1px solid $color-gold;
+          }
+          .ribbon {
+            display: flex;
+            @include content-center;
+            @include content-center;
+          }
+        }
+        .dropdownSection {
+          width: 30%;
+          @include content-center;
+          @include directionX;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 5%;
+          .title {
+            font-size: 24px;;
+            margin-right: 6%;
+          }
+        }
+        .giftInfoWraper {
+          background-image: url('../../static/images/giftbg.png');
+          margin-bottom: 10%;
+          padding-bottom: 5%;
+          @include directionY;
+          .imageDetail {
+            @include directionY;
+            .rose {
+              display: flex;
+              @include content-center;              
+              width: 204px;
+              margin-bottom: 5%;
+            }
+            .card {
+              display: flex;
+              @include content-center;
+              width: 449px;
+              margin-bottom: 10%;
+            }
+          }
+          .copyWraper {
+            position: relative;
+            @include directionX;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5%;
+            // justify-content: space-between;
+            border: 1px solid red;
+            @include content-center;
+            .copy {
+              position: absolute;
+              width: 115px;
+              // margin-right: 5%;
+              // margin-bottom: 3%;
+            }
+            .notifCopy {
+              position: absolute;
+              text-align: center;
+              left: 75px;
+              // margin-right: 10%;
+            }
+          }
+          .infoTitle {
+            font-size: 30px;
+            display: flex;
+            @include content-center;
+          }
+          .infoDetail {
+            font-size: 18px;
+            @include content-center;
+            text-align: center;
+          }
+          .closingStatement {
+            font-size: 18px;
+            @include content-center;
+          }
+          .btnConfirmation {
+            display: flex;
+            @include content-center;
+            justify-content: center;
+            align-items: center;
+            width: 116px;
+            height: 37px;
+            border-radius: 10px;
+            border: 1px solid $color-gold;
+            font-size: 18px;
+            margin-bottom: 1%;
+          }
+        }
+        // .hide {
+        //   opacity: 0;
+        //   transform: translateY(-11%);
+        //   transition: all 1.5s;
+        // }
+        // .show {
+        //   opacity: 1;
+        //   transform: translateY(0);
+        //   transition: all 1.5s;
+        // }
+      }
+    }
     .closingSectionContainer {
       @include directionY;
       justify-content: center;
@@ -612,7 +724,6 @@
       background-size: cover;
       text-align: center;
       .closingSentenceWrapper {
-        margin-top: 5%;
         font-size: 28px;
         width: 65%;
       }
