@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2'
+import 'sweetalert2/src/sweetalert2.scss'
 
-import { getAllGuest } from '../../store/actions';
+import { getAllGuest, submitRegistration, resetErrorPost } from '../../store/actions';
 
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
@@ -42,28 +45,37 @@ const InvitationPage = () => {
   let name = location?.search?.split('=')[1];
   name = name?.split('+').join(' ');
 
-  const message = [
-    {
-      name: 'Rinoto Harto',
-      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
-    },
-    {
-      name: 'Rando Bintoro',
-      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
-    },
-    {
-      name: 'Braja Sifa',
-      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
-    },
-    {
-      name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat',
-      message: 'pesan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus, elit morbi mattis vulputate faucibus amet.'
-    },
-  ]
+  const messages = useSelector(state => state.invitationReducer.messages);
+  const isError = useSelector(state => state.invitationReducer.isError);
 
   useEffect(() => {
     dispatch(getAllGuest())
   }, []);
+
+  useEffect(() => {
+    if (isError) {
+      Toast.fire({
+        icon: 'success',
+        title: 'Pesan Terkirim',
+        background: 'black',
+      })
+      setTimeout(() => {
+        dispatch(resetErrorPost());
+      }, 1000);
+    }
+  }, [isError])
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
@@ -135,12 +147,23 @@ const InvitationPage = () => {
 
   const onSubmitRadios = (e) => {
     e.preventDefault();
-    console.log({
-      guestName,
+
+    const payload = {
+      name: guestName,
       address,
       attend,
-      note
-    });
+      message: note,
+      pax: '',
+    }
+    dispatch(submitRegistration(payload, Toast.fire({
+      icon: 'success',
+      title: 'Pesan Terkirim',
+      background: 'black',
+      color: '#fbd258',
+    })));
+    setGuestName('');
+    setAddress('');
+    setNote('');
   }
 
   const closePopupProkes = () => {
@@ -363,9 +386,9 @@ const InvitationPage = () => {
             <form className={`${classes.formContainer} ${!isShow ? classes.hide : classes.show}`} onSubmit={onSubmitRadios}>
               <div className={classes.inputForm}>
                 <div className={classes.inputs}>
-                  <input type='text' placeholder='Nama' required onChange={(e) => setGuestName(e.target.value)} />
-                  <input type='text' placeholder='Alamat' required onChange={(e) => setAddress(e.target.value)} />
-                  <textarea type='text' placeholder='Kirim Ucapan & Doa' onChange={(e) => setNote(e.target.value)} />
+                  <input type='text' value={guestName} placeholder='Nama' required onChange={(e) => setGuestName(e.target.value)} />
+                  <input type='text' placeholder='Alamat' value={address} required onChange={(e) => setAddress(e.target.value)} />
+                  <textarea type='text' placeholder='Kirim Ucapan & Doa' value={note} onChange={(e) => setNote(e.target.value)} />
                 </div>
               </div>
               <div onChange={radioAttend} className={classes.radiosInput}>
@@ -408,7 +431,7 @@ const InvitationPage = () => {
               <img className={classes.image} src={MessageImg} alt="message" />
             </div>
             <div className={classes.messageWrapper}>
-              {message && message.map((item, idx) => {
+              {messages && messages.map((item, idx) => {
                 return (
                   <div className={classes.messageItemWrapper} key={idx}>
                     <div className={classes.avatar}>

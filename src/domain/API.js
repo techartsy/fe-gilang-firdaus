@@ -5,6 +5,7 @@ const base_URL = "https://be-invitation-ridwan.herokuapp.com/invitation/";
 const urls = {
   get_all_guest: "guest",
   submitContact: "contact/order",
+  post_registration: "guest",
 };
 
 const callAPI = (endpoint, method, headers = {}, params = {}, data = {}) => {
@@ -27,6 +28,6 @@ export const getAllGuest = () => {
   return callAPI(urls.get_all_guest, "get", {});
 };
 
-export const postContact = (value) => {
-  callAPI(urls.submitContact, "post", {}, {}, value);
+export const postRegistration = (guestData) => {
+  return callAPI(urls.post_registration, "post", {}, {}, guestData);
 };

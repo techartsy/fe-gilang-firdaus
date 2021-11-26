@@ -1,8 +1,11 @@
 import {
-  HELLO_WORLD,
-  POST_CONTACT,
+  POST_REGISTRATION,
   GET_ALL_GUEST,
   SET_GUESTS,
+  SET_MESSAGES,
+  SET_NEW_GUEST,
+  SET_ERROR_POST,
+  RESET_ERROR_POST,
 } from "../constants/index";
 
 export const getAllGuest = () => {
@@ -16,14 +19,32 @@ export const setGuests = (guests) => {
     guests,
   };
 };
-export const requestHelloWorld = () => {
+export const submitRegistration = (guestData, callback, errorNotif) => {
   return {
-    type: HELLO_WORLD,
+    type: POST_REGISTRATION,
+    guestData,
   };
 };
-export const submitContact = (value) => {
+export const setMessages = (messages) => {
+  console.log(messages, "action");
   return {
-    type: POST_CONTACT,
-    value,
+    type: SET_MESSAGES,
+    messages,
+  };
+};
+export const setNewGuest = (guest) => {
+  return {
+    type: SET_NEW_GUEST,
+    guest,
+  };
+};
+export const setErrorPost = () => {
+  return {
+    type: SET_ERROR_POST,
+  };
+};
+export const resetErrorPost = () => {
+  return {
+    type: RESET_ERROR_POST,
   };
 };
