@@ -25,6 +25,7 @@ import dropdown from '../../static/icons/dropdown.png';
 import dropup from '../../static/icons/dropup.png';
 import Mail from '../../static/icons/mail.png';
 import MessageImg from '../../static/images/message-img.png';
+import ClosingWing from '../../static/images/closing-wing.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
@@ -262,7 +263,7 @@ const InvitationPage = () => {
           <p>
             Assalamu'alaikum Warahmatullahi Wabarakatuh<br /><br />
             Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.<br />
-            Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kamu
+            Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami
           </p>
         </div>
         <div className={classes.details}>
@@ -445,6 +446,22 @@ const InvitationPage = () => {
     )
   }
 
+  const closingSection = () => {
+    return (
+      <div className={classes.closingSectionContainer}>
+        <div className={classes.closingSentenceWrapper}>
+          <p>
+            Kehadiran & doa Anda adalah berkah, kehormatan & kebahagiaan bagi kami.<br />
+            Kami mengatakan dari hati kami yang terdalam<br/>
+            atas perhatian Anda<br/>
+            Terima kasih
+          </p>
+        </div>
+        <img src={ClosingWing} alt="wing" className={classes.image} />
+      </div>
+    );
+  }
+
   const footerSection = () => {
     return (
       <div>
@@ -468,6 +485,7 @@ const InvitationPage = () => {
         {attendingSection()}
         {generateMessageSection()}
         {giftSection()}
+        {closingSection()}
         {footerSection()}
         {/* <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> */}
         <PopupProkes open={showPopupProkes} handleClose={closePopupProkes} />
