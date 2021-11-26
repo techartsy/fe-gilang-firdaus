@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Swal from 'sweetalert2'
-import 'sweetalert2/src/sweetalert2.scss'
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 import { getAllGuest, submitRegistration, resetErrorPost } from '../../store/actions';
 
