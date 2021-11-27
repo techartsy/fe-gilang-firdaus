@@ -18,12 +18,61 @@
     @include directionX;
     @include content-center;
     font-size: 12px;
-    text-align: center;
+    justify-content: center;
     width: 100%;
+    margin-bottom: 2%;
   }
   .form {
     @include directionY;
     color: $color-gold;
+    .separate {
+      @include directionX;
+      justify-content: space-between;
+      .column {
+        @include directionY;
+        input {
+          @include body;
+          color: $color-gold;
+          padding-left: 15px;
+          min-width: 220px;
+          height: 25px;
+          margin-top: 2%;
+          margin-bottom: 2%;
+          border-radius: 10px;
+          margin-right: 20px;
+          background-color: $color-black;
+          border: 1px solid $color-gold;
+        }
+        .disabled {
+          opacity: 0.5;
+        }
+        select {
+          @include body;
+          background-color: $color-black;
+          color: $color-gold;
+          margin-top: 2%;
+          margin-bottom: 2%;
+          width: 100%;
+          height: 30px;
+          padding: 0 15px;
+          border-radius: 10px;
+          border-color: $color-gold;
+        }
+        ::-webkit-input-placeholder {
+          color: $color-gold;
+        }
+        select:focus {
+          outline: none !important;
+          border-color: $color-red;
+          box-shadow: 0 0 8px $color-red;
+        }
+        input:focus {
+          outline: none !important;
+          border-color: $color-red;
+          box-shadow: 0 0 8px $color-red;
+        }
+      }
+    }
     label {
       font-size: 12px;
     }
@@ -42,18 +91,6 @@
     .disabled {
       opacity: 0.5;
     }
-    select {
-      @include body;
-      background-color: $color-black;
-      color: $color-gold;
-      margin-top: 2%;
-      margin-bottom: 2%;
-      min-width: 410px;
-      height: 25px;
-      padding: 0 15px;
-      border-radius: 10px;
-      border-color: $color-gold;
-    }
     textarea {
       @include body;
       color: $color-gold;
@@ -68,11 +105,6 @@
     }
     ::-webkit-input-placeholder {
       color: $color-gold;
-    }
-    select:focus {
-      outline: none !important;
-      border-color: $color-red;
-      box-shadow: 0 0 8px $color-red;
     }
     input:focus {
       outline: none !important;
