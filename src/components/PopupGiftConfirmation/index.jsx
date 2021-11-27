@@ -80,14 +80,20 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
             <p>Konfirmasi kiriman anda untuk memudahkan mempelai dalam melakukan pendataan</p>
           </div>
           <form className={classes.form} onSubmit={onSubmit}>
-            <label for="name">Nama Pengirim</label>
-            <input input type='text' value={name} placeholder='Nama' name="name" required onChange={(e) => setName(e.target.value)} />
-            <label for="destination">Tujuan Pengiriman</label>
-            <select name="destination" onChange={selectDestination}>
-              <option value="" selected disabled>-- Pilih Tujuan --</option>
-              <option value="Hadiah Fisik">Alamat Rumah</option>
-              <option value="Rekening">Mandiri / 1234567890 / Ridwan Krisdiansah</option>
-            </select>
+            <div className={classes.separate}>
+              <div className={classes.column}>
+                <label for="name">Nama Pengirim</label>
+                <input input type='text' value={name} placeholder='Nama' name="name" required onChange={(e) => setName(e.target.value)} />
+              </div>
+              <div className={classes.column}>
+                <label for="destination">Tujuan Pengiriman</label>
+                <select name="destination" onChange={selectDestination}>
+                  <option value="" selected disabled>-- Pilih Tujuan --</option>
+                  <option value="Hadiah Fisik">Alamat Rumah</option>
+                  <option value="Rekening">Mandiri / 1570005756763 / Ridwan Krisdiansah</option>
+                </select>
+              </div>
+            </div>
             <label for="receipt">Nomor Resi</label>
             <input className={`${destination.toLowerCase() === 'rekening' ? classes.disabled : ''}`} disabled={destination.toLowerCase() === 'rekening'} input type='text' value={receipt} placeholder='Nomor Resi' name="receipt" required onChange={(e) => setReceipt(e.target.value)} />
             <label for="note">Catatan</label>
