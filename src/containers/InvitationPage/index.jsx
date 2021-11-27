@@ -33,6 +33,7 @@ import plane from '../../static/icons/plane.png';
 import dropdown from '../../static/icons/dropdown.png';
 import dropup from '../../static/icons/dropup.png';
 import Mail from '../../static/icons/mail.png';
+import whatsapp from '../../static/icons/whatsapp.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
@@ -538,8 +539,10 @@ const InvitationPage = () => {
 
   const footerSection = () => {
     return (
-      <div>
-        <p>footerSection</p>
+      <div className={classes.footerContainer}>
+        <p className={classes.colaboration}>In Colaboration</p>
+        <p className={classes.brand}>TECHARTSY</p>
+        <img className={classes.contact} src={whatsapp} />
       </div>
     )
   }

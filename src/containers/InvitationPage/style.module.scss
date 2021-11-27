@@ -717,9 +717,30 @@
       background-repeat: no-repeat;
       background-size: cover;
       text-align: center;
+      border-bottom: 1px solid $color-gold;
       .closingSentenceWrapper {
-        font-size: 28px;
+        font-size: 30px;
         width: 65%;
+      }
+    }
+    .footerContainer {
+      @include useMulish;
+      margin-top: 22px;
+      @include directionY;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid $color-gold;
+      .colaboration {
+        font-size: 38px;
+      }
+      .brand {
+        font-size: 30px;
+        margin-top: 0%;
+      }
+      .contact {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 5%;
       }
     }
   }
