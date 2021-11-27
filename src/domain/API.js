@@ -6,6 +6,7 @@ const urls = {
   get_all_guest: "guest",
   submitContact: "contact/order",
   post_registration: "guest",
+  post_gift_confirmation: "gift",
 };
 
 const callAPI = (endpoint, method, headers = {}, params = {}, data = {}) => {
@@ -30,4 +31,8 @@ export const getAllGuest = () => {
 
 export const postRegistration = (guestData) => {
   return callAPI(urls.post_registration, "post", {}, {}, guestData);
+};
+
+export const postGiftConfirmation = (guestData) => {
+  return callAPI(urls.post_gift_confirmation, "post", {}, {}, guestData);
 };

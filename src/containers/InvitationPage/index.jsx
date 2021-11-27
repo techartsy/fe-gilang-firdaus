@@ -5,11 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
-import { getAllGuest, submitRegistration, resetErrorPost } from '../../store/actions';
+import {
+  getAllGuest,
+  submitRegistration,
+  resetErrorPost,
+  postGiftConfirmation,
+  resetConfirmationError,
+  resetConfirmationSuccess
+} from '../../store/actions';
 
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
 import PopupProkes from '../../components/PopupProkes';
+import PopupGiftConfirmation from '../../components/PopupGiftConfirmation';
 import Azmi from '../../static/images/azmi.png';
 import Ridwan from '../../static/images/ridwan.png';
 import Male from '../../static/images/male.png';
@@ -41,12 +49,15 @@ const InvitationPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [isShowGift, setIsShowGift] = useState(false);
+  const [closeGift, setCloseGift] = useState(true);
   const [guestName, setGuestName] = useState('');
   const [address, setAddress] = useState('');
   const [attend, setAttend] = useState('');
   const [note, setNote] = useState('');
   const [showPopupProkes, setShowPopupProkes] = useState(false);
+  const [openConfirmation, setOpenConfirmation] = useState(false);
   const [notif, setNotif] = useState('');
+  
   const wording = '123456 copy text';
   const dispatch = useDispatch();
   const location = useLocation();
@@ -55,6 +66,8 @@ const InvitationPage = () => {
 
   const messages = useSelector(state => state.invitationReducer.messages);
   const isError = useSelector(state => state.invitationReducer.isError);
+  const confirmationErrorMessage = useSelector(state => state.invitationReducer.confirmationErrorMessage);
+  const confirmationSuccess = useSelector(state => state.invitationReducer.confirmationSuccess);
 
   const copyText = () => {
     navigator.clipboard.writeText(wording);
@@ -63,6 +76,18 @@ const InvitationPage = () => {
       setNotif('');
     }, 3000);
   }
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
   useEffect(() => {
     dispatch(getAllGuest())
@@ -81,17 +106,41 @@ const InvitationPage = () => {
     }
   }, [isError])
 
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
+  useEffect(() => {
+    if (!_.isEmpty(confirmationErrorMessage)) {
+      Toast.fire({
+        icon: "error",
+        title: `${confirmationErrorMessage}`,
+        background: "black",
+        color: "#fbd258",
+        customClass: {
+          container: 'swal-overlay'
+        }
+      });
+      setTimeout(() => {
+        dispatch(resetConfirmationError())
+      }, 2000);
     }
-  })
+  }, [confirmationErrorMessage])
+
+  useEffect(() => {
+    if (confirmationSuccess) {
+      Toast.fire({
+        icon: "success",
+        title: "Konfirmasi Berhasil",
+        background: "black",
+        textColor: "#fbd258",
+        customClass: {
+          container: 'swal-overlay'
+        }
+      });
+      setTimeout(() => {
+        dispatch(resetConfirmationSuccess())
+      }, 2000);
+      setOpenConfirmation(!openConfirmation);
+    }
+
+  }, [confirmationSuccess])
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
@@ -143,10 +192,18 @@ const InvitationPage = () => {
     );
   });
 
+  const closePopupProkes = () => {
+    setShowPopupProkes(!showPopupProkes);
+  }
+
   const openInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
     setShowPopupProkes(!showPopupProkes);
     setIsPlaying(!isPlaying);
+  }
+
+  const handleConfirmation = () => {
+    setOpenConfirmation(!openConfirmation);
   }
 
   const showFormAttending = () => {
@@ -154,7 +211,15 @@ const InvitationPage = () => {
   }
 
   const showGiftInfo = () => {
-    setIsShowGift(!isShowGift)
+    if (isShowGift) {
+      setIsShowGift(!isShowGift)
+      setTimeout(() => {
+        setCloseGift(!closeGift)
+      }, 1500);
+    } else {
+      setIsShowGift(!isShowGift)
+      setCloseGift(!closeGift)
+    }
   }
 
   const goToMaps = () => {
@@ -186,15 +251,15 @@ const InvitationPage = () => {
     setNote('');
   }
 
-  const closePopupProkes = () => {
-    setShowPopupProkes(!showPopupProkes);
+  const submitGiftConfirmation = (value) => {
+    dispatch(postGiftConfirmation(value));
   }
 
   const generateHeader = () => {
     return (
       <div className={classes.header}>
         <div className={classes.headerTitle}>
-          <p className={classes.titleTop}>Ridwan</p>
+          <p className={classes.titleTop}>Krisdiansyah</p>
           <p className={classes.titleMid}>&</p>
           <p className={classes.titleBottom}>Azmi</p>
         </div>
@@ -494,28 +559,26 @@ const InvitationPage = () => {
               <img src={isShowGift ? dropup : dropdown} alt='dropdown' />
             </div>
           </div>
-          {isShowGift &&
-            <div className={classes.giftInfoWraper}>
-              <div className={classes.imageDetail}>
-                <img className={classes.rose} src={rosegift} alt="rose" />
-                <img className={classes.card} src={creditcard} alt="credit-card" />
-                <div className={classes.copyWraper}>
-                  <img className={classes.copy} src={numbercopy} onClick={copyText} alt="copy-text" />
-                  <p className={classes.notifCopy}>{notif}</p>
-                </div>
+          <div className={`${classes.giftInfoWraper} ${isShowGift ? classes.showGift : classes.hideGift} ${closeGift ? classes.closeGift : ''}`}>
+            <div className={classes.imageDetail}>
+              <img className={classes.rose} src={rosegift} alt="rose" />
+              <img className={classes.card} src={creditcard} alt="credit-card" />
+              <div className={classes.copyWraper}>
+                <img className={classes.copy} src={numbercopy} onClick={copyText} alt="copy-text" />
+                <p className={classes.notifCopy}>{notif}</p>
               </div>
-              <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
-              <p className={classes.infoDetail}>
-                Nama : Ridwan Krisdiansyah <br />
-                Alamat : Jl Tarumanegara No 77 RT 05 RW 09 Kel. Cirendeu, <br />
-                Kec. Ciputat Timur, Tangerang Selatan, Banten, 15419
-              </p>
-              <p className={classes.closingStatement}>
-                Silahkan konfirmasi kirim hadiah spesial kamu
-              </p>
-              <div className={classes.btnConfirmation}>klik disini</div>
             </div>
-          }
+            <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
+            <p className={classes.infoDetail}>
+              Nama : Ridwan Krisdiansyah <br />
+              Alamat : Jl Tarumanegara No 77 RT 05 RW 09 Kel. Cirendeu, <br />
+              Kec. Ciputat Timur, Tangerang Selatan, Banten, 15419
+            </p>
+            <p className={classes.closingStatement}>
+              Silahkan konfirmasi kirim hadiah spesial kamu
+            </p>
+            <div className={classes.btnConfirmation} onClick={handleConfirmation}>klik disini</div>
+          </div>
         </div>
       </div>
     )
@@ -542,7 +605,7 @@ const InvitationPage = () => {
       <div className={classes.footerContainer}>
         <p className={classes.colaboration}>In Colaboration</p>
         <p className={classes.brand}>TECHARTSY</p>
-        <img className={classes.contact} src={whatsapp} />
+        <img className={classes.contact} src={whatsapp} alt="whatsapp" />
       </div>
     )
   }
@@ -566,6 +629,12 @@ const InvitationPage = () => {
         {footerSection()}
         {/* <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> */}
         <PopupProkes open={showPopupProkes} handleClose={closePopupProkes} />
+        <PopupGiftConfirmation
+          open={openConfirmation}
+          handleClose={handleConfirmation}
+          submitGiftConfirmation={submitGiftConfirmation}
+          confirmationSuccess={confirmationSuccess}
+        />
       </div>
     );
   }
