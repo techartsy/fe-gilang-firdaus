@@ -1,0 +1,106 @@
+@import "../../styles/base";
+
+.popupWrapper {
+  @include body;
+  color: $color-gold;
+  padding: 0 20px;
+  .popupTitleWrapper {
+    color: $color-gold;
+    font-size: 15px;
+    text-align: center;
+    text-decoration-line: underline;
+    text-underline-offset: 12px;
+    .headerImg {
+      width: 80px;
+    }
+  }
+  .subtitle {
+    @include directionX;
+    @include content-center;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+  }
+  .form {
+    @include directionY;
+    color: $color-gold;
+    label {
+      font-size: 12px;
+    }
+    input {
+      @include body;
+      color: $color-gold;
+      padding-left: 15px;
+      min-width: 410px;
+      height: 25px;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      border-radius: 10px;
+      background-color: $color-black;
+      border: 1px solid $color-gold;
+    }
+    .disabled {
+      opacity: 0.5;
+    }
+    select {
+      @include body;
+      background-color: $color-black;
+      color: $color-gold;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      min-width: 410px;
+      height: 25px;
+      padding: 0 15px;
+      border-radius: 10px;
+      border-color: $color-gold;
+    }
+    textarea {
+      @include body;
+      color: $color-gold;
+      height: 90px;
+      padding-left: 15px;
+      padding-top: 30px;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      border-radius: 16px;
+      background-color: $color-black;
+      border: 1px solid $color-gold;
+    }
+    ::-webkit-input-placeholder {
+      color: $color-gold;
+    }
+    select:focus {
+      outline: none !important;
+      border-color: $color-red;
+      box-shadow: 0 0 8px $color-red;
+    }
+    input:focus {
+      outline: none !important;
+      border-color: $color-red;
+      box-shadow: 0 0 8px $color-red;
+    }
+    textarea:focus {
+      outline: none !important;
+      border-color: $color-red;
+      box-shadow: 0 0 8px $color-red;
+    }
+    .infoWrapper {
+      @include directionX;
+      justify-content: space-between;
+      margin: 2% 0;
+      .whatsapp {
+        width: 20px;
+        height: 20px;
+      }
+      .actionBtn {
+        @include body;
+        font-size: 13px;
+        width: 75px;
+        border-radius: 6px;
+        border: 1px solid $color-gold;
+        background-color: $color-black;
+        color: $color-gold;
+      }
+    }
+  }
+}

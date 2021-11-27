@@ -631,26 +631,24 @@
           justify-content: center;
           align-items: center;
           margin-bottom: 5%;
+          cursor: pointer;
           .title {
-            font-size: 24px;;
+            font-size: 24px;
             margin-right: 6%;
           }
         }
         .giftInfoWraper {
-          background-image: url('../../static/images/giftbg.png');
+          background-image: url("../../static/images/giftbg.png");
           background-repeat: no-repeat;
           background-size: cover;
           margin-bottom: 10%;
           padding-bottom: 5%;
           @include directionY;
-          // padding: 20px;
-          // border: 1px solid $color-gold;
-          // border-radius: 10px;
           .imageDetail {
             @include directionY;
             .rose {
               display: flex;
-              @include content-center;              
+              @include content-center;
               width: 204px;
               margin-bottom: 5%;
             }
@@ -707,6 +705,16 @@
             cursor: pointer;
           }
         }
+        .hideGift {
+          opacity: 0;
+          transition: opacity 2s;
+        }
+        .closeGift {
+          display: none;
+        }
+        .showGift {
+          @include fadeIn;
+        }
       }
     }
     .closingSectionContainer {
@@ -742,6 +750,15 @@
         height: 30px;
         margin-bottom: 5%;
       }
+    }
+    .my-swal {
+      z-index: 10000 !important;
+    }
+    .swal-overlay {
+      z-index: 100000000000 !important;
+    }
+    :host ::ng-deep .swal-overlay {
+      z-index: 30000000000 !important;
     }
   }
 }
