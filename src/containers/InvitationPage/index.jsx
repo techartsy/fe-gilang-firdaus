@@ -34,6 +34,7 @@ import wingribbon from '../../static/images/wingribbon.png';
 import rosegift from '../../static/images/rosegift.png';
 import creditcard from '../../static/images/creditcard.png';
 import numbercopy from '../../static/images/numbercopy.png';
+import logoGold from '../../static/images/logoGold.png';
 import calender from '../../static/icons/calender.png';
 import time from '../../static/icons/time.png';
 import Location from '../../static/icons/location.png';
@@ -57,8 +58,7 @@ const InvitationPage = () => {
   const [showPopupProkes, setShowPopupProkes] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [notif, setNotif] = useState('');
-  
-  const wording = '123456 copy text';
+  const wording = '1570005756763';
   const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
@@ -550,7 +550,7 @@ const InvitationPage = () => {
       <div className={classes.giftContainer}>
         <div className={classes.giftWraper}>
           <div className={classes.tittleRibbon}>
-            <p className={classes.titleGift}>Haidah Pernikahan</p>
+            <p className={classes.titleGift}>Hadiah Pernikahan</p>
             <img className={classes.ribbon} src={wingribbon} alt="wing" />
           </div>
           <div className={classes.dropdownSection} onClick={showGiftInfo}>
@@ -604,8 +604,8 @@ const InvitationPage = () => {
     return (
       <div className={classes.footerContainer}>
         <p className={classes.colaboration}>In Colaboration</p>
-        <p className={classes.brand}>TECHARTSY</p>
-        <img className={classes.contact} src={whatsapp} alt="whatsapp" />
+        <img className={classes.brand} alt='techartsyGold' src={logoGold} />
+        <img className={classes.contact} src={whatsapp} />
       </div>
     )
   }
@@ -627,7 +627,7 @@ const InvitationPage = () => {
         {giftSection()}
         {closingSection()}
         {footerSection()}
-        {/* <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> */}
+        <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
         <PopupProkes open={showPopupProkes} handleClose={closePopupProkes} />
         <PopupGiftConfirmation
           open={openConfirmation}
