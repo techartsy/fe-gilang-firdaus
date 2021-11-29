@@ -4,12 +4,21 @@
   @include body;
   color: $color-gold;
   padding: 0 20px;
+  @include apply-at-sm-md-size {
+    padding: 0 5px;
+  }
   .popupTitleWrapper {
     color: $color-gold;
     font-size: 15px;
     text-align: center;
     text-decoration-line: underline;
     text-underline-offset: 12px;
+    p {
+      @include apply-at-sm-md-size {
+        // border: 1px solid red;
+        margin-top: -1px;
+      }
+    }
     .headerImg {
       width: 80px;
     }
@@ -21,6 +30,9 @@
     justify-content: center;
     width: 100%;
     margin-bottom: 2%;
+    @include apply-at-sm-md-size {
+      text-align: center;
+    }
   }
   .form {
     @include directionY;
@@ -28,13 +40,16 @@
     .separate {
       @include directionX;
       justify-content: space-between;
+      @include apply-at-sm-md-size {
+        @include directionY;
+      }
       .column {
         @include directionY;
         input {
           @include body;
           color: $color-gold;
           padding-left: 15px;
-          min-width: 220px;
+          width: 220px;
           height: 25px;
           margin-top: 2%;
           margin-bottom: 2%;
@@ -42,6 +57,11 @@
           margin-right: 20px;
           background-color: $color-black;
           border: 1px solid $color-gold;
+          @include apply-at-sm-md-size {
+            width: 220px;
+            font-size: 10px;
+            padding-left: 10px;
+          }
         }
         .disabled {
           opacity: 0.5;
@@ -57,6 +77,11 @@
           padding: 0 15px;
           border-radius: 10px;
           border-color: $color-gold;
+          @include apply-at-sm-md-size {
+            width: 240px;
+            font-size: 10px;
+            padding-left: 5px;
+          }
         }
         ::-webkit-input-placeholder {
           color: $color-gold;
@@ -75,18 +100,25 @@
     }
     label {
       font-size: 12px;
+      margin-bottom: 2px;
+      margin-top: 2px;
     }
     input {
       @include body;
       color: $color-gold;
       padding-left: 15px;
-      min-width: 410px;
+      width: 410px;
       height: 25px;
       margin-top: 2%;
       margin-bottom: 2%;
       border-radius: 10px;
       background-color: $color-black;
       border: 1px solid $color-gold;
+      @include apply-at-sm-md-size {
+        width: 220px;
+        font-size: 10px;
+        padding-left: 10px;
+      }
     }
     .disabled {
       opacity: 0.5;
@@ -102,6 +134,10 @@
       border-radius: 16px;
       background-color: $color-black;
       border: 1px solid $color-gold;
+      @include apply-at-sm-md-size {
+        width: 220px;
+        font-size: 10px;
+      }
     }
     ::-webkit-input-placeholder {
       color: $color-gold;
@@ -120,6 +156,9 @@
       @include directionX;
       justify-content: space-between;
       margin: 2% 0;
+      @include apply-at-sm-md-size {
+        margin-top: 20px;
+      }
       .whatsapp {
         width: 20px;
         height: 20px;

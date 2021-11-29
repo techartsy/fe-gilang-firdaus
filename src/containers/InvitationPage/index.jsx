@@ -13,6 +13,7 @@ import {
   resetConfirmationError,
   resetConfirmationSuccess
 } from '../../store/actions';
+import useWindowDimensions from '../../utils/useWindowDimensions';
 
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
@@ -35,6 +36,7 @@ import rosegift from '../../static/images/rosegift.png';
 import creditcard from '../../static/images/creditcard.png';
 import numbercopy from '../../static/images/numbercopy.png';
 import logoGold from '../../static/images/logoGold.png';
+import logoSm from '../../static/images/logo-sm.png';
 import calender from '../../static/icons/calender.png';
 import time from '../../static/icons/time.png';
 import Location from '../../static/icons/location.png';
@@ -63,12 +65,12 @@ const InvitationPage = () => {
   const location = useLocation();
   let name = location?.search?.split('=')[1];
   name = name?.split('+').join(' ');
+  const { width } = useWindowDimensions();
 
   const messages = useSelector(state => state.invitationReducer.messages);
   const isError = useSelector(state => state.invitationReducer.isError);
   const confirmationErrorMessage = useSelector(state => state.invitationReducer.confirmationErrorMessage);
   const confirmationSuccess = useSelector(state => state.invitationReducer.confirmationSuccess);
-
   const copyText = () => {
     navigator.clipboard.writeText(wording);
     setNotif('Copied');
@@ -275,7 +277,7 @@ const InvitationPage = () => {
       <div className={classes.storySection}>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
+            <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
           </div>
         </div>
         <div className={classes.imageWrapper}>
@@ -320,11 +322,11 @@ const InvitationPage = () => {
               </p>
             </div>
             <p className={classes.summarySection}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet <br />
-              volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, <br />
-              nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque<br />
-              dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare<br />
-              sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,<br />
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet {width === 'lg' && <br />}
+              volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, {width === 'lg' && <br />}
+              nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque{width === 'lg' && <br />}
+              dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare{width === 'lg' && <br />}
+              sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,{width === 'lg' && <br />}
               elit morbi mattis vulputate faucibus amet.
             </p>
             <img src={wingg} alt='wingBottom' />
@@ -345,14 +347,14 @@ const InvitationPage = () => {
             <img className={classes.bridesImage} src={Female} alt="brides" />
             <div className={classes.profileInfo}>
               <p className={classes.bridess}>Silmiati Azmi</p>
-              <p className={classes.parents}>Putri Bungsu dari<br /> Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
+              <p className={classes.parents}>Putri Bungsu dari{width === 'lg' && <br />} Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
             </div>
           </div>
           <div className={classes.card}>
             <img className={classes.bridesImage} src={Male} alt="brides" />
             <div className={classes.profileInfo}>
               <p className={classes.bridess}>Ridwan Krisdiansyah</p>
-              <p className={classes.parents}>Putra Ketiga dari<br /> Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
+              <p className={classes.parents}>Putra Ketiga dari{width === 'lg' && <br />} Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
             </div>
           </div>
         </div>
@@ -369,8 +371,10 @@ const InvitationPage = () => {
         <img className={classes.topEvent} src={topevent} alt='top' />
         <div className={classes.greeting}>
           <p>
-            Assalamu'alaikum Warahmatullahi Wabarakatuh<br /><br />
-            Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.<br />
+            Assalamu'alaikum Warahmatullahi Wabarakatuh<br />
+          </p>
+          <p className={classes.subtitle}>
+            Maha Suci Allah {width !== 'lg' && <br />} yang telah menciptakan makhluk-Nya berpasang-pasangan. <br />
             Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami
           </p>
         </div>
@@ -385,16 +389,29 @@ const InvitationPage = () => {
             </p>
           </div>
           <div className={classes.timesWraper}>
-            <div className={classes.time}>
-              <img src={time} alt='time' />
-              <p>AKAD : PUKUL 09.00 WIB</p>
-            </div>
-            <div className={classes.time}>
-              <img src={time} alt='time' />
-              <p>
-                RESEPSI : PUKUL 10.00 WIB s/d Selesai
-              </p>
-            </div>
+            {width === 'lg' ? (
+              <>
+                <div className={classes.time}>
+                  <img src={time} alt='time' />
+                  <p>AKAD : PUKUL 09.00 WIB</p>
+                </div>
+                <div className={classes.time}>
+                  <img src={time} alt='time' />
+                  <p>
+                    RESEPSI : PUKUL 10.00 WIB s/d Selesai
+                  </p>
+                </div>
+              </>
+              ) : (
+                <>
+                <div className={classes.timeMobileWrapper}>
+                  <img src={time} alt='time' />
+                  <p>AKAD 09.00 WIB</p>
+                  <div className={classes.separator} />
+                  <p>RESEPSI 10.00 WIB - SELESAI</p>
+                </div>
+                </>
+            )}
           </div>
           <div className={classes.locationWraper}>
             <img src={Location} alt='location' />
@@ -479,10 +496,16 @@ const InvitationPage = () => {
               <div onChange={radioAttend} className={classes.radiosInput}>
                 <div className={classes.inputs}>
                   <p>Konfirmasi</p>
-                  <input className={classes.radioItem} type='radio' name='attend' value='present' required ></input>
-                  <label for='attend'>Akan Hadir</label>
-                  <input className={classes.radioItem} type='radio' name='attend' value='absence' required></input>
-                  <label for='attend'>Berhalangan Hadir</label>
+                  <div className={classes.radioWrapper}>
+                    <div className={classes.radioItem}>
+                      <input className={classes.radioItem} type='radio' name='attend' value='present' required ></input>
+                      <label for='attend'>Akan Hadir</label>
+                    </div>
+                    <div className={classes.radioItem}>
+                      <input className={classes.radioItem} type='radio' name='attend' value='absence' required></input>
+                      <label for='attend'>Berhalangan Hadir</label>
+                    </div>
+                  </div>
                 </div>
                 <button type='submit' className={classes.btnSend}>Kirim Ucapan</button>
               </div>
@@ -528,7 +551,7 @@ const InvitationPage = () => {
                       </div>
                       <div className={classes.messageBubble}>
                         <div className={classes.name}>
-                          {item.name}
+                          {item.name}...
                         </div>
                         <div className={classes.message}>
                           {item.message}
@@ -550,7 +573,7 @@ const InvitationPage = () => {
       <div className={classes.giftContainer}>
         <div className={classes.giftWraper}>
           <div className={classes.tittleRibbon}>
-            <p className={classes.titleGift}>Hadiah Pernikahan</p>
+            <p className={classes.titleGift}>"Hadiah Pernikahan"</p>
             <img className={classes.ribbon} src={wingribbon} alt="wing" />
           </div>
           <div className={classes.dropdownSection} onClick={showGiftInfo}>
@@ -571,8 +594,8 @@ const InvitationPage = () => {
             <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
             <p className={classes.infoDetail}>
               Nama : Ridwan Krisdiansyah <br />
-              Alamat : Jl Tarumanegara No 77 RT 05 RW 09 Kel. Cirendeu, <br />
-              Kec. Ciputat Timur, Tangerang Selatan, Banten, 15419
+              Nama : Ridwan Krisdiansyah
+              Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394
             </p>
             <p className={classes.closingStatement}>
               Silahkan konfirmasi kirim hadiah spesial kamu
@@ -604,8 +627,8 @@ const InvitationPage = () => {
     return (
       <div className={classes.footerContainer}>
         <p className={classes.colaboration}>In Colaboration</p>
-        <img className={classes.brand} alt='techartsyGold' src={logoGold} />
-        <img className={classes.contact} src={whatsapp} />
+        <img className={classes.brand} alt='techartsyGold' src={width === 'lg' ? logoGold : logoSm} />
+        <img className={classes.contact} src={whatsapp} alt="whatsapp" />
       </div>
     )
   }
@@ -627,7 +650,7 @@ const InvitationPage = () => {
         {giftSection()}
         {closingSection()}
         {footerSection()}
-        <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        {/* <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> */}
         <PopupProkes open={showPopupProkes} handleClose={closePopupProkes} />
         <PopupGiftConfirmation
           open={openConfirmation}

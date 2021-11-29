@@ -16,6 +16,10 @@
   display: flex;
   flex-direction: column;
 }
+@mixin reverseDirectionY {
+  display: flex;
+  flex-direction: column-reverse;
+}
 @mixin paddedWrapper {
   padding: 1.8rem;
 

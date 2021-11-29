@@ -7,7 +7,6 @@
     .header {
       @include directionY;
       @include parallax;
-      background-image: url("../../static/images/mainimage.png");
       height: 100%;
       width: 100%;
       top: 0;
@@ -17,6 +16,15 @@
       background-size: cover;
       margin-bottom: 22px;
       border-bottom: 1px solid $color-gold;
+      @include apply-at-lg-size {
+        background-image: url("../../static/images/mainimage.png");
+      }
+      @include apply-at-sm-md-size {
+        background-image: url("../../static/images/mainimage-sm.png");
+        background-size: contain;
+        height: 320px;
+        justify-content: space-between;
+      }
       .headerTitle {
         float: right;
         width: 38%;
@@ -32,11 +40,24 @@
           max-height: 40px;
           color: $color-white;
           text-align: center;
+          @include apply-at-sm-md-size {
+            margin-left: 10%;
+            max-height: 20px;
+          }
         }
         .titleBottom {
           max-height: 40px;
           text-align: right;
           margin-right: 13%;
+          @include apply-at-sm-md-size {
+            height: 100%;
+            margin-top: -8%;
+          }
+        }
+        @include apply-at-sm-md-size {
+          font-size: 30px;
+          width: 75%;
+          margin: 0 auto;
         }
       }
       .countdown {
@@ -50,26 +71,31 @@
         justify-content: space-around;
         color: $color-white;
         margin-bottom: 3%;
+        @include apply-at-sm-md-size {
+          padding: 0;
+          width: 55%;
+          text-align: center;
+          margin-bottom: 5%;
+        }
         .countdownItem {
           border-radius: 20px;
-          @include apply-at-sm-size {
+          @include apply-at-sm-md-size {
             font-size: 9px;
             width: 42px;
             heigth: 40px;
-            margin: 10% 0.5rem;
           }
           .countdownTime {
             font-size: 35px;
             text-align: center;
-            @include apply-at-sm-size {
-              padding: 0 0.5rem;
+            @include apply-at-sm-md-size {
+              font-size: 15px;
             }
           }
           .countdownInterval {
             font-size: 26px;
-            @include apply-at-sm-size {
+            @include apply-at-sm-md-size {
               margin: 0;
-              padding-bottom: 0.5rem;
+              font-size: 15px;
             }
           }
         }
@@ -84,9 +110,17 @@
       .storyWrapper {
         align-self: center;
         width: 50%;
+        @include apply-at-sm-md-size {
+          width: 90%;
+          text-align: left;
+          letter-spacing: 0.7px;
+        }
         .story {
           @include content-center;
           width: 90%;
+          @include apply-at-sm-md-size {
+            width: 100%;
+          }
         }
       }
       .imageWrapper {
@@ -95,6 +129,15 @@
           width: 100%;
           height: 100%;
         }
+        @include apply-at-sm-md-size {
+          @include content-center;
+          margin-top: 5%;
+          width: 90%;
+        }
+      }
+      @include apply-at-sm-md-size {
+        @include reverseDirectionY;
+        font-size: 16px;
       }
     }
     .secondStoryContainer {
@@ -104,6 +147,11 @@
       text-align: center;
       .imageWrapper {
         width: 50%;
+        @include apply-at-sm-md-size {
+          @include content-center;
+          margin-top: 5%;
+          width: 90%;
+        }
         img {
           width: 100%;
           height: 100%;
@@ -112,26 +160,52 @@
       .storyWrapper {
         align-self: center;
         width: 50%;
+        @include apply-at-sm-md-size {
+          width: 90%;
+          text-align: left;
+          letter-spacing: 0.7px;
+        }
         .story {
           @include content-center;
           width: 90%;
+          @include apply-at-sm-md-size {
+            width: 100%;
+          }
         }
+      }
+      @include apply-at-sm-md-size {
+        @include directionY;
+        font-size: 16px;
+        text-align: left;
       }
     }
     .paralaxx {
       border-top: 1px solid $color-gold;
       .paralaxxWraper {
-        background-image: url("../../static/images/mainimage.png");
         @include parallax;
+        background-image: url("../../static/images/mainimage.png");
         min-height: 100vh;
+        object-fit: cover;
+        background-repeat: no-repeat;
+        background-size: cover;
+        @include apply-at-sm-md-size {
+          background-position: center;
+        }
       }
     }
     .summary {
       @include directionX;
-      background-image: url("../../static/images/mainimage.png");
       @include parallax;
+      background-image: url("../../static/images/mainimage.png");
+      // oject-fit: cover;
+      background-repeat: no-repeat;
+      background-size: cover;
       border-top: 1px solid $color-gold;
       border-bottom: 1px solid $color-gold;
+      @include apply-at-sm-md-size {
+        background-position: center;
+        // height: 100vh;
+      }
       .bg {
         background-color: $color-black;
         width: 100%;
@@ -149,13 +223,27 @@
             justify-content: center;
             font-size: 30px;
             border-bottom: 1px solid $color-gold;
+            @include apply-at-sm-md-size {
+              border: none;
+              text-decoration-line: underline;
+              text-underline-offset: 12px;
+              font-size: 16px;
+              height: 100%;
+            }
           }
           .summarySection {
             text-align: center;
             font-size: 28px;
+            @include apply-at-sm-md-size {
+              font-size: 14px;
+              width: 90%;
+            }
           }
           img {
             margin-bottom: 5%;
+            @include apply-at-sm-md-size {
+              height: 38px;
+            }
           }
         }
       }
@@ -183,22 +271,39 @@
           margin-right: auto;
           margin-top: 2%;
           margin-bottom: 3%;
+          @include apply-at-sm-md-size {
+            height: 49px;
+          }
         }
       }
       .profileWrapper {
         @include directionX;
         justify-content: space-around;
         text-align: center;
+        @include apply-at-sm-md-size {
+          @include reverseDirectionY;
+        }
         .card {
           .bridesImage {
             width: 460px;
+            @include apply-at-sm-md-size {
+              width: 172px;
+            }
           }
           .profileInfo {
             .bridess {
               font-size: 26px;
+              @include apply-at-sm-md-size {
+                font-size: 16px;
+              }
             }
             .parents {
               font-size: 22px;
+              @include apply-at-sm-md-size {
+                @include content-center;
+                font-size: 16px;
+                width: 80%;
+              }
             }
           }
         }
@@ -217,11 +322,28 @@
         @include content-center;
         margin-top: 8%;
         margin-bottom: 5%;
+        @include apply-at-sm-md-size {
+          width: 187px;
+        }
       }
       .greeting {
+        @include apply-at-sm-md-size {
+          @include content-center;
+          width: 95%;
+        }
         p {
           font-size: 29px;
           text-align: center;
+          @include apply-at-sm-md-size {
+            font-size: 15px;
+            line-height: 24px;
+          }
+        }
+        .subtitle {
+          @include apply-at-sm-md-size {
+            font-size: 13px;
+            font-weight: normal;
+          }
         }
       }
       .details {
@@ -236,6 +358,11 @@
             font-size: 35px;
             padding-bottom: 14px;
             border-bottom: 1px solid $color-gold;
+            @include apply-at-sm-md-size {
+              margin-top: 10%;
+              font-size: 14px;
+              width: 40%;
+            }
           }
         }
         .calender {
@@ -245,10 +372,23 @@
           width: 20%;
           margin-bottom: 3%;
           border-bottom: 1px solid $color-gold;
+          @include apply-at-sm-md-size {
+            margin-top: 8%;
+            font-size: 12px;
+            width: 50%;
+          }
           p {
             width: 220px;
             text-align: center;
             margin-top: 6%;
+            @include apply-at-sm-md-size {
+              margin-top: 8%;
+            }
+          }
+          img {
+            @include apply-at-sm-md-size {
+              width: 35px;
+            }
           }
         }
         .timesWraper {
@@ -267,6 +407,25 @@
               text-align: center;
             }
           }
+          .timeMobileWrapper {
+            @include content-center;
+            margin-top: 8%;
+            text-align: center;
+            font-size: 12px;
+            img {
+              @include apply-at-sm-md-size {
+                width: 35px;
+              }
+            }
+            .separator {
+              @include apply-at-sm-md-size {
+                height: 1px;
+                background: $color-gold;
+                margin-top: -10px;
+                margin-bottom: -10px;
+              }
+            }
+          }
         }
         .locationWraper {
           @include directionY;
@@ -275,9 +434,22 @@
           margin-bottom: 5%;
           width: 28%;
           border-bottom: 1px solid $color-gold;
+          @include apply-at-sm-md-size {
+            width: 60%;
+            font-size: 12px;
+            margin-top: 8%;
+          }
           p {
             width: 100%;
             text-align: center;
+            @include apply-at-sm-md-size {
+              margin-top: 8%;
+            }
+          }
+          img {
+            @include apply-at-sm-md-size {
+              width: 30px;
+            }
           }
         }
         .btnmap {
@@ -293,10 +465,27 @@
           border: 1px solid $color-gold;
           border-radius: 20px;
           cursor: pointer;
+          @include apply-at-sm-md-size {
+            width: 95px;
+            font-size: 10px;
+            height: 30px;
+            border-radius: 10px;
+            margin-top: 10%;
+            // border: 1px solid red;
+          }
+          img {
+            @include apply-at-sm-md-size {
+              width: 20px;
+            }
+          }
           p {
             margin-right: 4%;
             color: $color-gold;
             text-decoration: none;
+            @include apply-at-sm-md-size {
+              width: 100%;
+              text-align: center;
+            }
           }
         }
       }
@@ -307,6 +496,9 @@
         background-image: url("../../static/images/thirdimage.png");
         @include parallax;
         min-height: 100vh;
+        @include apply-at-sm-md-size {
+          background-position: center;
+        }
       }
     }
     .poemSectionContainer {
@@ -319,11 +511,18 @@
         justify-content: center;
         background-image: url("../../static//images/thirdimage.png");
         @include parallax;
+        @include apply-at-sm-md-size {
+          background-position: center;
+        }
         .bg {
           width: 100%;
           background-color: $color-black;
           opacity: 0.92;
           padding: 2% 0;
+          @include apply-at-sm-md-size {
+            height: 572px;
+            padding: 0;
+          }
           img {
             @include directionX;
             @include content-center;
@@ -332,6 +531,10 @@
             min-height: 900px;
             background-color: $color-black;
             position: relative;
+            @include apply-at-sm-md-size {
+              min-height: 572px;
+              width: 100%;
+            }
           }
         }
         .poemWrapper {
@@ -339,8 +542,15 @@
           z-index: 1;
           padding-left: 15%;
           margin-top: 4%;
+          @include apply-at-sm-md-size {
+            margin-top: 0;
+          }
           p {
             margin-top: -30px;
+            @include apply-at-sm-md-size {
+              margin: 0;
+              font-size: 14px;
+            }
           }
           .poemMid {
             width: 66%;
@@ -362,11 +572,20 @@
       background-image: url("../../static/images/message-bg.png");
       background-repeat: no-repeat;
       background-size: cover;
+
       .title {
         @include body;
         margin-top: 5%;
         margin-left: 15%;
         font-size: 30px;
+        @include apply-at-sm-md-size {
+          @include content-center;
+          font-size: 16px;
+          text-align: center;
+          border-bottom: 1px solid $color-gold;
+          margin-bottom: 5%;
+          width: 40%;
+        }
       }
       .attendingWraper {
         width: 90%;
@@ -375,6 +594,9 @@
         @include content-center;
         justify-content: space-between;
         margin-bottom: 5%;
+        @include apply-at-sm-md-size {
+          @include reverseDirectionY;
+        }
         .formWraper {
           .dropdownSection {
             width: 500px;
@@ -386,6 +608,16 @@
             .formTitle {
               margin-right: 40%;
               font-size: 24px;
+              @include apply-at-sm-md-size {
+                font-size: 12px;
+              }
+            }
+            .icon {
+              img {
+                @include apply-at-sm-md-size {
+                  width: 12px;
+                }
+              }
             }
           }
           .formContainer {
@@ -396,6 +628,11 @@
               .inputs {
                 @include directionY;
                 font-size: 24px;
+                p {
+                  @include apply-at-sm-md-size {
+                    font-size: 12px;
+                  }
+                }
                 input {
                   @include useMulish;
                   color: $color-gold;
@@ -406,6 +643,11 @@
                   border-radius: 16px;
                   background-color: $color-black;
                   border: 1px solid $color-gold;
+                  @include apply-at-sm-md-size {
+                    width: 95%;
+                    border-radius: 10px;
+                    font-size: 11px;
+                  }
                 }
                 textarea {
                   @include useMulish;
@@ -416,6 +658,11 @@
                   border-radius: 16px;
                   background-color: $color-black;
                   border: 1px solid $color-gold;
+                  @include apply-at-sm-md-size {
+                    font-size: 11px;
+                    height: 86px;
+                    border-radius: 10px;
+                  }
                 }
                 ::-webkit-input-placeholder {
                   color: $color-gold;
@@ -435,6 +682,36 @@
             .radiosInput {
               @include directionX;
               justify-content: space-between;
+              .inputs {
+                @include apply-at-sm-md-size {
+                  @include directionY;
+                  font-size: 12px;
+                  width: 180px;
+                  margin-top: 2%;
+                }
+                .radioWrapper {
+                  @include directionX;
+                  width: 100%;
+                  @include apply-at-sm-md-size {
+                    @include directionY;
+                  }
+                  .radioItem {
+                    @include directionX;
+                    margin-right: 10px;
+                    @include apply-at-sm-md-size {
+                      @include directionX;
+                      align-items: center;
+                      margin: 2% 0;
+                    }
+                    label {
+                      @include apply-at-sm-md-size {
+                        font-size: 10px;
+                        margin-left: 5%;
+                      }
+                    }
+                  }
+                }
+              }
               .btnSend {
                 align-self: flex-end;
                 font-weight: bold;
@@ -445,6 +722,13 @@
                 color: $color-gold;
                 background-color: $color-black;
                 border: 1px solid $color-gold;
+                @include apply-at-sm-md-size {
+                  width: 94px;
+                  height: 32px;
+                  font-size: 12px;
+                  border-radius: 6px;
+                  font-weight: normal;
+                }
               }
             }
           }
@@ -464,8 +748,14 @@
           @include body;
           justify-content: center;
           align-items: center;
+          @include apply-at-sm-md-size {
+            font-size: 14px;
+          }
           img {
             width: 269px;
+            @include apply-at-sm-md-size {
+              width: 155px;
+            }
           }
           .expression {
             text-align: center;
@@ -487,6 +777,10 @@
         width: 20%;
         font-size: 29px;
         margin-bottom: 5%;
+        @include apply-at-sm-md-size {
+          font-size: 14px;
+          width: 40%;
+        }
       }
       .mainContent {
         @include directionX;
@@ -494,6 +788,10 @@
         align-items: center;
         justify-content: space-between;
         width: 90%;
+        @include apply-at-sm-md-size {
+          @include reverseDirectionY;
+          width: 100%;
+        }
         .leftSection {
           @include directionY;
           align-items: center;
@@ -501,6 +799,18 @@
           margin-right: 3%;
           p {
             font-size: 26px;
+            @include apply-at-sm-md-size {
+              font-size: 14px;
+            }
+          }
+          @include apply-at-sm-md-size {
+            width: 100%;
+          }
+          img {
+            @include apply-at-sm-md-size {
+              width: 155px;
+              margin-top: 10%;
+            }
           }
         }
         .rightSection {
@@ -508,11 +818,19 @@
           border: 1px solid $color-gold;
           border-radius: 10px;
           padding: 2% 3%;
+          @include apply-at-sm-md-size {
+            width: 100%;
+          }
           .imgWrapper {
             .image {
               @include directionX;
               @include content-center;
               max-width: 570px;
+              @include apply-at-sm-md-size {
+                height: 213px;
+                width: 100%;
+                border-radius: 0px;
+              }
             }
           }
           .messageWrapper {
@@ -532,17 +850,18 @@
               color: $color-black;
               height: auto;
               @include apply-at-sm-size {
-                width: 100%;
+                @include content-center;
+                width: 90%;
               }
               .avatar {
                 @include directionX;
                 width: 5%;
                 margin: auto;
                 @include apply-at-sm-size {
-                  height: 22px;
-                  width: 22px;
-                  margin-bottom: 10%;
-                  margin-right: 10px;
+                  align-items: center;
+                  height: 25px;
+                  width: 25px;
+                  margin-right: 5px;
                 }
               }
               .messageShape {
@@ -575,13 +894,12 @@
                   background-color: $color-black;
                   color: $color-gold;
                   border: 1px solid $color-gold;
-                  border-radius: 17px;
+                  border-radius: 6px;
                   text-align: left;
                   padding: 20px;
                   width: 100%;
                   margin-left: -5px;
                   @include apply-at-sm-size {
-                    margin-left: 15px;
                     width: 80%;
                   }
                   .name {
@@ -589,6 +907,7 @@
                     margin-bottom: 1.5%;
                     @include apply-at-sm-size {
                       margin-bottom: 0.5rem;
+                      font-size: 12px;
                     }
                   }
                   .message {
@@ -617,11 +936,21 @@
             text-align: center;
             font-size: 30px;
             border-bottom: 1px solid $color-gold;
+            @include apply-at-sm-md-size {
+              font-size: 16px;
+              // border: 1px solid red;
+              width: 100%;
+              text-decoration-line: underline;
+              text-underline-offset: 12px;
+              border: none;
+            }
           }
           .ribbon {
             display: flex;
             @include content-center;
-            @include content-center;
+            @include apply-at-sm-md-size {
+              width: 89px;
+            }
           }
         }
         .dropdownSection {
@@ -632,9 +961,28 @@
           align-items: center;
           margin-bottom: 5%;
           cursor: pointer;
+          @include apply-at-sm-md-size {
+            width: 100%;
+            align-items: center;
+          }
           .title {
             font-size: 24px;
             margin-right: 6%;
+            @include apply-at-sm-md-size {
+              font-size: 14px;
+              // border: 1px solid red;
+            }
+          }
+          .icon {
+            @include apply-at-sm-md-size {
+              margin-top: -5px;
+            }
+            img {
+              @include apply-at-sm-md-size {
+                width: 10px;
+                height: 6px;
+              }
+            }
           }
         }
         .giftInfoWraper {
@@ -651,12 +999,18 @@
               @include content-center;
               width: 204px;
               margin-bottom: 5%;
+              @include apply-at-sm-md-size {
+                width: 85px;
+              }
             }
             .card {
               display: flex;
               @include content-center;
               width: 449px;
               margin-bottom: 10%;
+              @include apply-at-sm-md-size {
+                width: 180px;
+              }
             }
           }
           .copyWraper {
@@ -667,6 +1021,9 @@
             margin-bottom: 5%;
             @include content-center;
             .copy {
+              @include apply-at-sm-md-size {
+                width: 70px;
+              }
               position: absolute;
               width: 115px;
               cursor: pointer;
@@ -675,21 +1032,34 @@
               position: absolute;
               text-align: center;
               left: 75px;
+              @include apply-at-sm-md-size {
+                font-size: 12px;
+                left: 50px;
+              }
             }
           }
           .infoTitle {
             font-size: 30px;
             display: flex;
             @include content-center;
+            @include apply-at-sm-md-size {
+              font-size: 14px;
+            }
           }
           .infoDetail {
             font-size: 18px;
             @include content-center;
             text-align: center;
+            @include apply-at-sm-md-size {
+              font-size: 12px;
+            }
           }
           .closingStatement {
             font-size: 18px;
             @include content-center;
+            @include apply-at-sm-md-size {
+              font-size: 12px;
+            }
           }
           .btnConfirmation {
             display: flex;
@@ -703,6 +1073,11 @@
             font-size: 18px;
             margin-bottom: 1%;
             cursor: pointer;
+            @include apply-at-sm-md-size {
+              width: 70px;
+              font-size: 12px;
+              height: 25px;
+            }
           }
         }
         .hideGift {
@@ -729,6 +1104,18 @@
       .closingSentenceWrapper {
         font-size: 30px;
         width: 65%;
+        @include apply-at-sm-md-size {
+          font-size: 14px;
+          // border: 1px solid red;
+          width: 90%;
+          padding-top: 10%;
+        }
+      }
+      .image {
+        @include apply-at-sm-md-size {
+          width: 147px;
+          margin-bottom: 5%;
+        }
       }
     }
     .footerContainer {
@@ -740,15 +1127,27 @@
       border-top: 1px solid $color-gold;
       .colaboration {
         font-size: 38px;
+        @include apply-at-sm-md-size {
+          font-size: 11px;
+        }
       }
       .brand {
         margin-top: -1%;
         margin-bottom: 2%;
+        @include apply-at-sm-md-size {
+          width: 80px;
+          height: 23px;
+          // border: 1px solid red;
+        }
       }
       .contact {
         width: 30px;
         height: 30px;
         margin-bottom: 2%;
+        @include apply-at-sm-md-size {
+          width: 14px;
+          height: 14px;
+        }
       }
     }
     .my-swal {
