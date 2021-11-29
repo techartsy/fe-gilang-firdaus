@@ -197,14 +197,12 @@
       @include directionX;
       @include parallax;
       background-image: url("../../static/images/mainimage.png");
-      // oject-fit: cover;
       background-repeat: no-repeat;
       background-size: cover;
       border-top: 1px solid $color-gold;
       border-bottom: 1px solid $color-gold;
       @include apply-at-sm-md-size {
         background-position: center;
-        // height: 100vh;
       }
       .bg {
         background-color: $color-black;
@@ -471,7 +469,6 @@
             height: 30px;
             border-radius: 10px;
             margin-top: 10%;
-            // border: 1px solid red;
           }
           img {
             @include apply-at-sm-md-size {
@@ -605,6 +602,10 @@
             align-items: center;
             border-bottom: 1px solid $color-gold;
             cursor: pointer;
+            @include apply-at-sm-md-size {
+              width: 100%;
+              justify-content: space-between;
+            }
             .formTitle {
               margin-right: 40%;
               font-size: 24px;
@@ -820,6 +821,7 @@
           padding: 2% 3%;
           @include apply-at-sm-md-size {
             width: 100%;
+            border: none;
           }
           .imgWrapper {
             .image {
@@ -938,7 +940,6 @@
             border-bottom: 1px solid $color-gold;
             @include apply-at-sm-md-size {
               font-size: 16px;
-              // border: 1px solid red;
               width: 100%;
               text-decoration-line: underline;
               text-underline-offset: 12px;
@@ -970,7 +971,6 @@
             margin-right: 6%;
             @include apply-at-sm-md-size {
               font-size: 14px;
-              // border: 1px solid red;
             }
           }
           .icon {
@@ -1013,6 +1013,63 @@
               }
             }
           }
+          .infoWrapper {
+            border-top: 1px dotted $color-gold;
+            border-bottom: 1px dotted $color-gold;
+            margin: 20px 0;
+            padding-bottom: 40px;
+            text-align: center;
+            @include apply-at-sm-md-size {
+              padding-bottom: 35px;
+            }
+            .infoTitle {
+              font-size: 30px;
+              display: flex;
+              @include content-center;
+              justify-content: center;
+              @include apply-at-sm-md-size {
+                font-size: 14px;
+                text-align: center;
+              }
+            }
+            .infoDetail {
+              font-size: 18px;
+              @include content-center;
+              text-align: center;
+              @include apply-at-sm-md-size {
+                font-size: 12px;
+              }
+            }
+            .copyWraper {
+              position: relative;
+              @include directionX;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 5%;
+              @include content-center;
+              .copy {
+                top: 10px;
+                position: absolute;
+                width: 115px;
+                cursor: pointer;
+                @include apply-at-sm-md-size {
+                  width: 70px;
+                  top: 5px;
+                }
+              }
+              .notifCopy {
+                position: absolute;
+                right: -110px;
+                top: 0;
+                @include apply-at-sm-md-size {
+                  font-size: 12px;
+                  left: 155px;
+                  top: -5px;
+                  right: 50px;
+                }
+              }
+            }
+          }
           .copyWraper {
             position: relative;
             @include directionX;
@@ -1038,22 +1095,7 @@
               }
             }
           }
-          .infoTitle {
-            font-size: 30px;
-            display: flex;
-            @include content-center;
-            @include apply-at-sm-md-size {
-              font-size: 14px;
-            }
-          }
-          .infoDetail {
-            font-size: 18px;
-            @include content-center;
-            text-align: center;
-            @include apply-at-sm-md-size {
-              font-size: 12px;
-            }
-          }
+
           .closingStatement {
             font-size: 18px;
             @include content-center;
@@ -1103,12 +1145,13 @@
       border-bottom: 1px solid $color-gold;
       .closingSentenceWrapper {
         font-size: 30px;
-        width: 65%;
+        width: 75%;
+        margin-bottom: -25px;
         @include apply-at-sm-md-size {
           font-size: 14px;
-          // border: 1px solid red;
-          width: 90%;
-          padding-top: 10%;
+          width: 100%;
+          padding-top: 5%;
+          margin-bottom: 0;
         }
       }
       .image {
@@ -1135,9 +1178,7 @@
         margin-top: -1%;
         margin-bottom: 2%;
         @include apply-at-sm-md-size {
-          width: 80px;
-          height: 23px;
-          // border: 1px solid red;
+          width: 70px;
         }
       }
       .contact {
