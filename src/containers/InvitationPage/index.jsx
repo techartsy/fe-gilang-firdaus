@@ -60,7 +60,9 @@ const InvitationPage = () => {
   const [showPopupProkes, setShowPopupProkes] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [notif, setNotif] = useState('');
+  const [gifNotif, setGiftNotif] = useState('');
   const wording = '1570005756763';
+  const giftAddress = 'Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394';
   const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
@@ -76,6 +78,14 @@ const InvitationPage = () => {
     setNotif('Copied');
     setTimeout(() => {
       setNotif('');
+    }, 3000);
+  }
+
+  const copyAddress = () => {
+    navigator.clipboard.writeText(giftAddress);
+    setGiftNotif('Copied');
+    setTimeout(() => {
+      setGiftNotif('');
     }, 3000);
   }
 
@@ -532,7 +542,7 @@ const InvitationPage = () => {
         <div className={classes.mainContent}>
           <div className={classes.leftSection}>
             <img src={gunungan} alt="gunungan" />
-            <p>“ Sebuah Doa & Ucapan Untuk Kedua Mempelai ”</p>
+            <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
           </div>
           <div className={classes.rightSection}>
             <div className={classes.imgWrapper}>
@@ -577,7 +587,7 @@ const InvitationPage = () => {
             <img className={classes.ribbon} src={wingribbon} alt="wing" />
           </div>
           <div className={classes.dropdownSection} onClick={showGiftInfo}>
-            <p className={classes.title}>Kirm Hadiah</p>
+            <p className={classes.title}>Kirim Hadiah</p>
             <div className={classes.icon}>
               <img src={isShowGift ? dropup : dropdown} alt='dropdown' />
             </div>
@@ -591,12 +601,18 @@ const InvitationPage = () => {
                 <p className={classes.notifCopy}>{notif}</p>
               </div>
             </div>
-            <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
-            <p className={classes.infoDetail}>
-              Nama : Ridwan Krisdiansyah <br />
-              Nama : Ridwan Krisdiansyah
-              Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394
-            </p>
+            <div className={classes.infoWrapper}>
+              <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
+              <p className={classes.infoDetail}>
+                Nama : Ridwan Krisdiansyah <br />
+                Nama : Ridwan Krisdiansyah
+                Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394
+              </p>
+              <div className={classes.copyWraper}>
+                <img className={classes.copy} src={numbercopy} onClick={copyAddress} alt="copy-text" />
+                <p className={classes.notifCopy}>{gifNotif}</p>
+              </div>
+            </div>
             <p className={classes.closingStatement}>
               Silahkan konfirmasi kirim hadiah spesial kamu
             </p>
@@ -612,10 +628,8 @@ const InvitationPage = () => {
       <div className={classes.closingSectionContainer}>
         <div className={classes.closingSentenceWrapper}>
           <p>
-            Kehadiran & doa Anda adalah berkah, kehormatan & kebahagiaan bagi kami.<br />
-            Kami mengatakan dari hati kami yang terdalam<br />
-            atas perhatian Anda<br />
-            Terima kasih
+            Bagi Kami Kehadiran & doa Anda<br/> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
+            Dari hati yang terdalam, kami ucapkan terima kasih
           </p>
         </div>
         <img src={ClosingWing} alt="wing" className={classes.image} />
@@ -650,7 +664,7 @@ const InvitationPage = () => {
         {giftSection()}
         {closingSection()}
         {footerSection()}
-        {/* <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} /> */}
+        <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
         <PopupProkes open={showPopupProkes} handleClose={closePopupProkes} />
         <PopupGiftConfirmation
           open={openConfirmation}
