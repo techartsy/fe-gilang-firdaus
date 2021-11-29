@@ -1,60 +1,63 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { HELLO_WORLD, POST_CONTACT } from "./store/constants/index";
-import { receiveHelloWorld } from "./store/actions/index";
-import { getAllGallery, postContact } from "./domain/API";
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
-function* helloWorld(action) {
-  try {
-    const fetchData = yield call(getAllGallery);
-    yield put(receiveHelloWorld("hello world saga"));
-  } catch (e) {
-    yield put({ type: "USER_FETCH_FAILED", message: e.message });
-  }
-}
+import _ from "lodash";
+import {
+  GET_ALL_GUEST,
+  POST_REGISTRATION,
+  POST_GIFT_CONFIRMATION,
+} from "./store/constants/index";
+import {
+  getAllGuest,
+  postRegistration,
+  postGiftConfirmation,
+} from "./domain/API";
+import {
+  setGuests,
+  setMessages,
+  setNewGuest,
+  setErrorPost,
+  setConfirmationError,
+  setConfirmationSuccess,
+} from "./store/actions";
 
-function* submitContact({ value }) {
-  const {
-    name,
-    email,
-    message,
-    subject,
-    phone,
-    resetForm,
-    showSuccessNotif,
-    showErrorNotif,
-  } = value;
+function* doGetAllGuest() {
   try {
-    const formValue = {
-      name,
-      email,
-      message,
-      subject,
-      phone,
-    };
-    const response = yield call(postContact, formValue);
-    showSuccessNotif();
-    resetForm();
+    const guestsData = yield call(getAllGuest);
+    const messages = guestsData?.guests.filter((item) => {
+      return !_.isEmpty(item.message);
+    });
+    yield put(setMessages(messages.reverse()));
+    yield put(setGuests(guestsData.guests));
   } catch (error) {
-    showErrorNotif();
     console.log(error);
   }
 }
 
-/*
-  Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-  Allows concurrent fetches of user.
-*/
-
-/*
-  Alternatively you may use takeLatest.
-
-  Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
-  dispatched while a fetch is already pending, that pending fetch is cancelled
-  and only the latest one will be run.
-*/
-export default function* mySaga() {
-  yield takeLatest(HELLO_WORLD, helloWorld);
-  yield takeLatest(POST_CONTACT, submitContact);
+function* doPostRegistration({ guestData }) {
+  try {
+    const newData = yield call(postRegistration, guestData);
+    if (newData) {
+      yield put(setNewGuest(newData));
+    }
+  } catch (error) {
+    yield put(setErrorPost);
+  }
 }
 
-// export default mySaga;
+function* doGiftConfirmation({ userData }) {
+  try {
+    const confirmationResponse = yield call(postGiftConfirmation, userData);
+    if (confirmationResponse) {
+      yield put(setConfirmationSuccess());
+    }
+  } catch (error) {
+    if (error.response.status === 400) {
+      yield put(setConfirmationError(error.response.data.message));
+    }
+  }
+}
+
+export default function* mySaga() {
+  yield takeLatest(GET_ALL_GUEST, doGetAllGuest);
+  yield takeLatest(POST_REGISTRATION, doPostRegistration);
+  yield takeLatest(POST_GIFT_CONFIRMATION, doGiftConfirmation);
+}

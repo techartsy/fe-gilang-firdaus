@@ -1,35 +1,163 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
+
+import {
+  getAllGuest,
+  submitRegistration,
+  resetErrorPost,
+  postGiftConfirmation,
+  resetConfirmationError,
+  resetConfirmationSuccess
+} from '../../store/actions';
+import useWindowDimensions from '../../utils/useWindowDimensions';
 
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
+import PopupProkes from '../../components/PopupProkes';
+import PopupGiftConfirmation from '../../components/PopupGiftConfirmation';
 import Azmi from '../../static/images/azmi.png';
 import Ridwan from '../../static/images/ridwan.png';
 import Male from '../../static/images/male.png';
 import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
 import WingBottom from '../../static/images/wing-bottom.png';
-import ThirdImage from '../../static/images/thirdimage.png';
-import Frame from '../../static/images/frame.png';
+import Frame from '../../static/images/Frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
+import gunungan from '../../static/images/gunungan.png';
+import MessageImg from '../../static/images/message-img.png';
+import ClosingWing from '../../static/images/closing-wing.png';
+import wingribbon from '../../static/images/wingribbon.png';
+import rosegift from '../../static/images/rosegift.png';
+import creditcard from '../../static/images/creditcard.png';
+import numbercopy from '../../static/images/numbercopy.png';
+import logoGold from '../../static/images/logoGold.png';
+import logoSm from '../../static/images/logo-sm.png';
 import calender from '../../static/icons/calender.png';
 import time from '../../static/icons/time.png';
 import Location from '../../static/icons/location.png';
 import plane from '../../static/icons/plane.png';
+import dropdown from '../../static/icons/dropdown.png';
+import dropup from '../../static/icons/dropup.png';
+import Mail from '../../static/icons/mail.png';
+import whatsapp from '../../static/icons/whatsapp.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isShow, setIsShow] = useState(false);
+  const [isShowGift, setIsShowGift] = useState(false);
+  const [closeGift, setCloseGift] = useState(true);
+  const [guestName, setGuestName] = useState('');
+  const [address, setAddress] = useState('');
+  const [attend, setAttend] = useState('');
+  const [note, setNote] = useState('');
+  const [showPopupProkes, setShowPopupProkes] = useState(false);
+  const [openConfirmation, setOpenConfirmation] = useState(false);
+  const [notif, setNotif] = useState('');
+  const [gifNotif, setGiftNotif] = useState('');
+  const wording = '1570005756763';
+  const giftAddress = 'Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394';
+  const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
   name = name?.split('+').join(' ');
+  const { width } = useWindowDimensions();
+
+  const messages = useSelector(state => state.invitationReducer.messages);
+  const isError = useSelector(state => state.invitationReducer.isError);
+  const confirmationErrorMessage = useSelector(state => state.invitationReducer.confirmationErrorMessage);
+  const confirmationSuccess = useSelector(state => state.invitationReducer.confirmationSuccess);
+  const copyText = () => {
+    navigator.clipboard.writeText(wording);
+    setNotif('Copied');
+    setTimeout(() => {
+      setNotif('');
+    }, 3000);
+  }
+
+  const copyAddress = () => {
+    navigator.clipboard.writeText(giftAddress);
+    setGiftNotif('Copied');
+    setTimeout(() => {
+      setGiftNotif('');
+    }, 3000);
+  }
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  useEffect(() => {
+    dispatch(getAllGuest())
+  }, []);
+
+  useEffect(() => {
+    if (isError) {
+      Toast.fire({
+        icon: 'success',
+        title: 'Pesan Terkirim',
+        background: 'black',
+      })
+      setTimeout(() => {
+        dispatch(resetErrorPost());
+      }, 1000);
+    }
+  }, [isError])
+
+  useEffect(() => {
+    if (!_.isEmpty(confirmationErrorMessage)) {
+      Toast.fire({
+        icon: "error",
+        title: `${confirmationErrorMessage}`,
+        background: "black",
+        color: "#fbd258",
+        customClass: {
+          container: 'swal-overlay'
+        }
+      });
+      setTimeout(() => {
+        dispatch(resetConfirmationError())
+      }, 2000);
+    }
+  }, [confirmationErrorMessage])
+
+  useEffect(() => {
+    if (confirmationSuccess) {
+      Toast.fire({
+        icon: "success",
+        title: "Konfirmasi Berhasil",
+        background: "black",
+        textColor: "#fbd258",
+        customClass: {
+          container: 'swal-overlay'
+        }
+      });
+      setTimeout(() => {
+        dispatch(resetConfirmationSuccess())
+      }, 2000);
+      setOpenConfirmation(!openConfirmation);
+    }
+
+  }, [confirmationSuccess])
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
     const nextYear = year + 1;
-    const difference = +new Date(`01/09/${nextYear}`) - +new Date();
+    const difference = +new Date(`01/09/${nextYear}/09:00`) - +new Date();
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
@@ -37,6 +165,13 @@ const InvitationPage = () => {
         Jam: Math.floor((difference / (1000 * 60 * 60)) % 24) ? Math.floor((difference / (1000 * 60 * 60)) % 24) : '00',
         Menit: Math.floor((difference / 1000 / 60) % 60) !== 0 ? Math.floor((difference / 1000 / 60) % 60) : '00',
         Detik: Math.floor((difference / 1000) % 60) !== 0 ? Math.floor((difference / 1000) % 60) : '00'
+      };
+    } else {
+      timeLeft = {
+        Hari: '00',
+        Jam: '00',
+        Menit: '00',
+        Detik: '00'
       };
     }
     return timeLeft;
@@ -69,26 +204,79 @@ const InvitationPage = () => {
     );
   });
 
+  const closePopupProkes = () => {
+    setShowPopupProkes(!showPopupProkes);
+  }
 
   const openInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
+    setShowPopupProkes(!showPopupProkes);
     setIsPlaying(!isPlaying);
   }
 
+  const handleConfirmation = () => {
+    setOpenConfirmation(!openConfirmation);
+  }
+
+  const showFormAttending = () => {
+    setIsShow(!isShow)
+  }
+
+  const showGiftInfo = () => {
+    if (isShowGift) {
+      setIsShowGift(!isShowGift)
+      setTimeout(() => {
+        setCloseGift(!closeGift)
+      }, 1500);
+    } else {
+      setIsShowGift(!isShowGift)
+      setCloseGift(!closeGift)
+    }
+  }
+
   const goToMaps = () => {
-    window.open('https://goo.gl/maps/mwWn37GwhiCRmrw6A', '_blank');
+    window.open('https://goo.gl/maps/gLzmCKcPg8m8AQdM8', '_blank');
+  }
+
+  const radioAttend = (e) => {
+    setAttend(e.target.value);
+  };
+
+  const onSubmitRadios = (e) => {
+    e.preventDefault();
+
+    const payload = {
+      name: guestName,
+      address,
+      attend,
+      message: note,
+      pax: '',
+    }
+    dispatch(submitRegistration(payload, Toast.fire({
+      icon: 'success',
+      title: 'Pesan Terkirim',
+      background: 'black',
+      color: '#fbd258',
+    })));
+    setGuestName('');
+    setAddress('');
+    setNote('');
+  }
+
+  const submitGiftConfirmation = (value) => {
+    dispatch(postGiftConfirmation(value));
   }
 
   const generateHeader = () => {
     return (
       <div className={classes.header}>
         <div className={classes.headerTitle}>
-          <p className={classes.titleTop}>Ridwan</p>
+          <p className={classes.titleTop}>Krisdiansyah</p>
           <p className={classes.titleMid}>&</p>
           <p className={classes.titleBottom}>Azmi</p>
         </div>
         <div className={classes.countdown}>
-          {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+          {timerComponents.length && timerComponents}
         </div>
       </div>
     );
@@ -99,7 +287,7 @@ const InvitationPage = () => {
       <div className={classes.storySection}>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
+            <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
           </div>
         </div>
         <div className={classes.imageWrapper}>
@@ -124,7 +312,6 @@ const InvitationPage = () => {
     );
   }
 
-
   const secondImageSection = () => {
     return (
       <div className={classes.paralaxx}>
@@ -137,21 +324,23 @@ const InvitationPage = () => {
   const summarySection = () => {
     return (
       <div className={classes.summary}>
-        <div className={classes.summaryWraper}>
-          <div className={classes.title}>
-            <p>
-              Cerita Kita
+        <div className={classes.bg}>
+          <div className={classes.summaryWraper}>
+            <div className={classes.title}>
+              <p>
+                Cerita Kita
+              </p>
+            </div>
+            <p className={classes.summarySection}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet {width === 'lg' && <br />}
+              volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, {width === 'lg' && <br />}
+              nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque{width === 'lg' && <br />}
+              dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare{width === 'lg' && <br />}
+              sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,{width === 'lg' && <br />}
+              elit morbi mattis vulputate faucibus amet.
             </p>
+            <img src={wingg} alt='wingBottom' />
           </div>
-          <p className={classes.summary}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet <br />
-            volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, <br />
-            nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque<br />
-            dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare<br />
-            sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,<br />
-            elit morbi mattis vulputate faucibus amet.
-          </p>
-          <img src={wingg} alt='wingBottom' />
         </div>
       </div>
     )
@@ -165,17 +354,17 @@ const InvitationPage = () => {
         </div>
         <div className={classes.profileWrapper}>
           <div className={classes.card}>
-            <img className={classes.bridesImage} src={Male} alt="brides" />
+            <img className={classes.bridesImage} src={Female} alt="brides" />
             <div className={classes.profileInfo}>
-              <p>Ridwan Krisdiansyah</p>
-              <p>putra sulung dari (Alm) bapak ... dan ibu ...</p>
+              <p className={classes.bridess}>Silmiati Azmi</p>
+              <p className={classes.parents}>Putri Bungsu dari{width === 'lg' && <br />} Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
             </div>
           </div>
           <div className={classes.card}>
-            <img className={classes.bridesImage} src={Female} alt="brides" />
+            <img className={classes.bridesImage} src={Male} alt="brides" />
             <div className={classes.profileInfo}>
-              <p>Ridwan Krisdiansyah</p>
-              <p>putra sulung dari bapak ... dan ibu ...</p>
+              <p className={classes.bridess}>Ridwan Krisdiansyah</p>
+              <p className={classes.parents}>Putra Ketiga dari{width === 'lg' && <br />} Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
             </div>
           </div>
         </div>
@@ -192,9 +381,11 @@ const InvitationPage = () => {
         <img className={classes.topEvent} src={topevent} alt='top' />
         <div className={classes.greeting}>
           <p>
-            Assalamu'alaikum Warahmatullahi Wabarakatuh<br /><br />
-            Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.<br />
-            Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kamu
+            Assalamu'alaikum Warahmatullahi Wabarakatuh<br />
+          </p>
+          <p className={classes.subtitle}>
+            Maha Suci Allah {width !== 'lg' && <br />} yang telah menciptakan makhluk-Nya berpasang-pasangan. <br />
+            Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami
           </p>
         </div>
         <div className={classes.details}>
@@ -204,25 +395,38 @@ const InvitationPage = () => {
           <div className={classes.calender}>
             <img src={calender} alt='calender' />
             <p>
-              MINGGU 09 JANUARI 2022
+              MINGGU, 09 JANUARI 2022
             </p>
           </div>
           <div className={classes.timesWraper}>
-            <div className={classes.time}>
-              <img src={time} alt='time' />
-              <p>PUKUL 08.00 WIB -09.00 WIB</p>
-            </div>
-            <div className={classes.time}>
-              <img src={time} alt='time' />
-              <p>
-                PUKUL 08.00 WIB - 09.00 WIB
-              </p>
-            </div>
+            {width === 'lg' ? (
+              <>
+                <div className={classes.time}>
+                  <img src={time} alt='time' />
+                  <p>AKAD : PUKUL 09.00 WIB</p>
+                </div>
+                <div className={classes.time}>
+                  <img src={time} alt='time' />
+                  <p>
+                    RESEPSI : PUKUL 10.00 WIB s/d Selesai
+                  </p>
+                </div>
+              </>
+              ) : (
+                <>
+                <div className={classes.timeMobileWrapper}>
+                  <img src={time} alt='time' />
+                  <p>AKAD 09.00 WIB</p>
+                  <div className={classes.separator} />
+                  <p>RESEPSI 10.00 WIB - SELESAI</p>
+                </div>
+                </>
+            )}
           </div>
           <div className={classes.locationWraper}>
             <img src={Location} alt='location' />
             <p>
-              JL. CISUNGSANG BANTEN
+              KP. MULYASARI, RT. 01 RW. 02 DS. CIKADU KEC. CIBEBER KAB. LEBAK. BANTEN.
             </p>
           </div>
           <div onClick={goToMaps} className={classes.btnmap}>
@@ -234,10 +438,19 @@ const InvitationPage = () => {
     );
   }
 
+  const thirdImageSeparator = () => {
+    return (
+      <div>
+        <div className={classes.thirdImageSection}>
+          <div className={classes.paralaxxWraper}></div>
+        </div>
+      </div>
+    );
+  }
+
   const generatePoemSection = () => {
     return (
       <div className={classes.poemSectionContainer}>
-        <img className={classes.imageSeparator} src={ThirdImage} alt="brides" />
         <div className={classes.poemContainer}>
           <div className={classes.bg}>
             <img src={Frame} alt="frame" />
@@ -270,32 +483,166 @@ const InvitationPage = () => {
     );
   }
 
-  const generateMessageSection = () => {
+  const attendingSection = () => {
     return (
-      <p>Message Section</p>
+      <div className={classes.attendingContainer}>
+        <p className={classes.title}>"UCAPAN & DOA"</p>
+        <div className={classes.attendingWraper}>
+          <div className={classes.formWraper}>
+            <div className={classes.dropdownSection} onClick={showFormAttending}>
+              <p className={classes.formTitle}>Konfirmasi Kehadiran</p>
+              <div className={classes.icon}>
+                <img src={isShow ? dropup : dropdown} alt="dropdown" />
+              </div>
+            </div>
+            <form className={`${classes.formContainer} ${!isShow ? classes.hide : classes.show}`} onSubmit={onSubmitRadios}>
+              <div className={classes.inputForm}>
+                <div className={classes.inputs}>
+                  <input type='text' value={guestName} placeholder='Nama' required onChange={(e) => setGuestName(e.target.value)} />
+                  <input type='text' placeholder='Alamat' value={address} required onChange={(e) => setAddress(e.target.value)} />
+                  <textarea type='text' placeholder='Kirim Ucapan & Doa' value={note} onChange={(e) => setNote(e.target.value)} />
+                </div>
+              </div>
+              <div onChange={radioAttend} className={classes.radiosInput}>
+                <div className={classes.inputs}>
+                  <p>Konfirmasi</p>
+                  <div className={classes.radioWrapper}>
+                    <div className={classes.radioItem}>
+                      <input className={classes.radioItem} type='radio' name='attend' value='present' required ></input>
+                      <label for='attend'>Akan Hadir</label>
+                    </div>
+                    <div className={classes.radioItem}>
+                      <input className={classes.radioItem} type='radio' name='attend' value='absence' required></input>
+                      <label for='attend'>Berhalangan Hadir</label>
+                    </div>
+                  </div>
+                </div>
+                <button type='submit' className={classes.btnSend}>Kirim Ucapan</button>
+              </div>
+            </form>
+          </div>
+          <div className={classes.expressionSection}>
+            <img src={gunungan} alt="gunungan" />
+            <p className={classes.expression}>
+              Ungkapan terima kasih yang tulus dari kami apabila<br />
+              Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
+            </p>
+          </div>
+        </div>
+      </div >
     );
   }
 
-  const attendingSection = () => {
+  const generateMessageSection = () => {
     return (
-      <div>
-        <p>attendingSection</p>
+      <div className={classes.messageSectionContainer}>
+        <div className={classes.sectionTitle}>
+          <p>Ucapan & Doa kamu</p>
+        </div>
+        <div className={classes.mainContent}>
+          <div className={classes.leftSection}>
+            <img src={gunungan} alt="gunungan" />
+            <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
+          </div>
+          <div className={classes.rightSection}>
+            <div className={classes.imgWrapper}>
+              <img className={classes.image} src={MessageImg} alt="message" />
+            </div>
+            <div className={classes.messageWrapper}>
+              {messages && messages.map((item, idx) => {
+                return (
+                  <div className={classes.messageItemWrapper} key={idx}>
+                    <div className={classes.avatar}>
+                      <img src={Mail} alt='avatar' />
+                    </div>
+                    <div className={classes.messageShape}>
+                      <div className={classes.outerTriangle}>
+                        <div className={classes.innerTriangle} />
+                      </div>
+                      <div className={classes.messageBubble}>
+                        <div className={classes.name}>
+                          {item.name}...
+                        </div>
+                        <div className={classes.message}>
+                          {item.message}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 
   const giftSection = () => {
     return (
-      <div>
-        <p>giftSection</p>
+      <div className={classes.giftContainer}>
+        <div className={classes.giftWraper}>
+          <div className={classes.tittleRibbon}>
+            <p className={classes.titleGift}>"Hadiah Pernikahan"</p>
+            <img className={classes.ribbon} src={wingribbon} alt="wing" />
+          </div>
+          <div className={classes.dropdownSection} onClick={showGiftInfo}>
+            <p className={classes.title}>Kirim Hadiah</p>
+            <div className={classes.icon}>
+              <img src={isShowGift ? dropup : dropdown} alt='dropdown' />
+            </div>
+          </div>
+          <div className={`${classes.giftInfoWraper} ${isShowGift ? classes.showGift : classes.hideGift} ${closeGift ? classes.closeGift : ''}`}>
+            <div className={classes.imageDetail}>
+              <img className={classes.rose} src={rosegift} alt="rose" />
+              <img className={classes.card} src={creditcard} alt="credit-card" />
+              <div className={classes.copyWraper}>
+                <img className={classes.copy} src={numbercopy} onClick={copyText} alt="copy-text" />
+                <p className={classes.notifCopy}>{notif}</p>
+              </div>
+            </div>
+            <div className={classes.infoWrapper}>
+              <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
+              <p className={classes.infoDetail}>
+                Nama : Ridwan Krisdiansyah <br />
+                Nama : Ridwan Krisdiansyah
+                Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394
+              </p>
+              <div className={classes.copyWraper}>
+                <img className={classes.copy} src={numbercopy} onClick={copyAddress} alt="copy-text" />
+                <p className={classes.notifCopy}>{gifNotif}</p>
+              </div>
+            </div>
+            <p className={classes.closingStatement}>
+              Silahkan konfirmasi kirim hadiah spesial kamu
+            </p>
+            <div className={classes.btnConfirmation} onClick={handleConfirmation}>klik disini</div>
+          </div>
+        </div>
       </div>
     )
   }
 
+  const closingSection = () => {
+    return (
+      <div className={classes.closingSectionContainer}>
+        <div className={classes.closingSentenceWrapper}>
+          <p>
+            Bagi Kami Kehadiran & doa Anda<br/> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
+            Dari hati yang terdalam, kami ucapkan terima kasih
+          </p>
+        </div>
+        <img src={ClosingWing} alt="wing" className={classes.image} />
+      </div>
+    );
+  }
+
   const footerSection = () => {
     return (
-      <div>
-        <p>footerSection</p>
+      <div className={classes.footerContainer}>
+        <p className={classes.colaboration}>In Colaboration</p>
+        <img className={classes.brand} alt='techartsyGold' src={width === 'lg' ? logoGold : logoSm} />
+        <img className={classes.contact} src={whatsapp} alt="whatsapp" />
       </div>
     )
   }
@@ -310,14 +657,23 @@ const InvitationPage = () => {
         {summarySection()}
         {generateBridesProfile()}
         {eventDetail()}
+        {thirdImageSeparator()}
         {generatePoemSection()}
-        {generateMessageSection()}
         {attendingSection()}
+        {generateMessageSection()}
         {giftSection()}
+        {closingSection()}
         {footerSection()}
         <AudioComponent isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        <PopupProkes open={showPopupProkes} handleClose={closePopupProkes} />
+        <PopupGiftConfirmation
+          open={openConfirmation}
+          handleClose={handleConfirmation}
+          submitGiftConfirmation={submitGiftConfirmation}
+          confirmationSuccess={confirmationSuccess}
+        />
       </div>
-    )
+    );
   }
   return (
     <div className={classes.container}>

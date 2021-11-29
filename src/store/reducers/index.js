@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import hellowWorld from "./HelloWorld";
+import invitationReducer from "./invitationReducer";
 
 const rootReducer = combineReducers({
-  hellowWorld: hellowWorld,
+  invitationReducer: invitationReducer,
 });
 
 export default rootReducer;

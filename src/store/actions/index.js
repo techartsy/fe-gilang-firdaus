@@ -1,23 +1,81 @@
 import {
-  HELLO_WORLD,
-  RECEIVE_HELLO_WORLD,
-  POST_CONTACT,
+  POST_REGISTRATION,
+  GET_ALL_GUEST,
+  SET_GUESTS,
+  SET_MESSAGES,
+  SET_NEW_GUEST,
+  SET_ERROR_POST,
+  RESET_ERROR_POST,
+  POST_GIFT_CONFIRMATION,
+  SET_CONFIRMATION_ERROR,
+  RESET_CONFIRMATION_ERROR,
+  SET_CONFIRMATION_SUCCESS,
+  RESET_CONFIRMATION_SUCCESS,
 } from "../constants/index";
 
-export const requestHelloWorld = () => {
+export const getAllGuest = () => {
   return {
-    type: HELLO_WORLD,
+    type: GET_ALL_GUEST,
   };
 };
-export const receiveHelloWorld = (text) => {
+export const setGuests = (guests) => {
   return {
-    type: RECEIVE_HELLO_WORLD,
-    text,
+    type: SET_GUESTS,
+    guests,
   };
 };
-export const submitContact = (value) => {
+export const submitRegistration = (guestData, callback, errorNotif) => {
   return {
-    type: POST_CONTACT,
-    value,
+    type: POST_REGISTRATION,
+    guestData,
+  };
+};
+export const setMessages = (messages) => {
+  return {
+    type: SET_MESSAGES,
+    messages,
+  };
+};
+export const setNewGuest = (guest) => {
+  return {
+    type: SET_NEW_GUEST,
+    guest,
+  };
+};
+export const setErrorPost = () => {
+  return {
+    type: SET_ERROR_POST,
+  };
+};
+export const resetErrorPost = () => {
+  return {
+    type: RESET_ERROR_POST,
+  };
+};
+export const postGiftConfirmation = (userData) => {
+  return {
+    type: POST_GIFT_CONFIRMATION,
+    userData,
+  };
+};
+export const setConfirmationError = (message) => {
+  return {
+    type: SET_CONFIRMATION_ERROR,
+    message,
+  };
+};
+export const resetConfirmationError = () => {
+  return {
+    type: RESET_CONFIRMATION_ERROR,
+  };
+};
+export const setConfirmationSuccess = () => {
+  return {
+    type: SET_CONFIRMATION_SUCCESS,
+  };
+};
+export const resetConfirmationSuccess = () => {
+  return {
+    type: RESET_CONFIRMATION_SUCCESS,
   };
 };
