@@ -88,7 +88,7 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
               <div className={classes.column}>
                 <label for="destination">Tujuan Pengiriman</label>
                 <select name="destination" onChange={selectDestination}>
-                  <option value="" selected disabled>-- Pilih Tujuan --</option>
+                  <option value="" disabled>-- Pilih Tujuan --</option>
                   <option value="Hadiah Fisik">Alamat Rumah</option>
                   <option value="Rekening">Mandiri / 1570005756763 / Ridwan Krisdiansah</option>
                 </select>

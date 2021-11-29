@@ -31,7 +31,6 @@ export const submitRegistration = (guestData, callback, errorNotif) => {
   };
 };
 export const setMessages = (messages) => {
-  console.log(messages, "action");
   return {
     type: SET_MESSAGES,
     messages,
