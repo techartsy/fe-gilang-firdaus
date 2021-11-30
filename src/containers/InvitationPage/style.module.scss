@@ -1167,18 +1167,19 @@
       @include directionY;
       justify-content: center;
       align-items: center;
+      margin-bottom: 6%;
       border-top: 1px solid $color-gold;
       .colaboration {
         font-size: 38px;
         @include apply-at-sm-md-size {
-          font-size: 11px;
+          font-size: 14px;
         }
       }
       .brand {
         margin-top: -1%;
-        margin-bottom: 2%;
+        margin-bottom: 4%;
         @include apply-at-sm-md-size {
-          width: 70px;
+          width: 80px;
         }
       }
       .contact {
@@ -1186,8 +1187,9 @@
         height: 30px;
         margin-bottom: 2%;
         @include apply-at-sm-md-size {
-          width: 14px;
-          height: 14px;
+          width: 20px;
+          height: 20px;
+          margin-bottom: 5%;
         }
       }
     }
