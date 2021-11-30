@@ -3,7 +3,10 @@
 .container {
   @include body;
   background-color: $color-black;
-  min-height: 100vh;
+  height: 100vh;
+  overflow-y: hidden;
+  @include apply-at-sm-md-size {
+  }
   .wraper {
     @include directionY;
     align-items: center;
@@ -17,8 +20,12 @@
     align-items: center;
     margin-top: -74px;
     justify-content: center;
+    @include apply-at-sm-md-size {
+      margin-top: -7%;
+      font-size: 16px;
+    }
     .to {
-      margin: -20px 0;
+      margin: -14px 0;
     }
   }
   .btn {
@@ -33,5 +40,10 @@
     background-color: $color-gold;
     color: $color-black;
     cursor: pointer;
+    @include apply-at-sm-md-size {
+      font-size: 14px;
+      width: 110px;
+      margin-top: 2%;
+    }
   }
 }
