@@ -6,6 +6,8 @@ export default function useWindowDimensions() {
   const getWindowDimensions = () => {
     let width = hasWindow ? window.innerWidth : null;
     let height = hasWindow ? window.innerHeight : null;
+    console.log(width, 'width before')
+    console.log(height, 'height before')
     if (width < 767) {
       width = "sm";
     } else if (width < 1023) {
@@ -13,6 +15,8 @@ export default function useWindowDimensions() {
     } else {
       width = "lg";
     }
+    console.log(width, 'width')
+    console.log(height, 'height')
     return {
       width,
       height,

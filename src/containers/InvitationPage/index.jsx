@@ -412,15 +412,15 @@ const InvitationPage = () => {
                   </p>
                 </div>
               </>
-              ) : (
-                <>
+            ) : (
+              <>
                 <div className={classes.timeMobileWrapper}>
                   <img src={time} alt='time' />
                   <p>AKAD 09.00 WIB</p>
                   <div className={classes.separator} />
                   <p>RESEPSI 10.00 WIB - SELESAI</p>
                 </div>
-                </>
+              </>
             )}
           </div>
           <div className={classes.locationWraper}>
@@ -605,7 +605,6 @@ const InvitationPage = () => {
               <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
               <p className={classes.infoDetail}>
                 Nama : Ridwan Krisdiansyah <br />
-                Nama : Ridwan Krisdiansyah
                 Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394
               </p>
               <div className={classes.copyWraper}>
@@ -628,7 +627,7 @@ const InvitationPage = () => {
       <div className={classes.closingSectionContainer}>
         <div className={classes.closingSentenceWrapper}>
           <p>
-            Bagi Kami Kehadiran & doa Anda<br/> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
+            Bagi Kami Kehadiran & doa Anda<br /> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
             Dari hati yang terdalam, kami ucapkan terima kasih
           </p>
         </div>
