@@ -79,7 +79,7 @@ const InvitationPage = () => {
     setTimeout(() => {
       setNotif('');
     }, 3000);
-  }
+  };
 
   const copyAddress = () => {
     navigator.clipboard.writeText(giftAddress);
@@ -87,7 +87,7 @@ const InvitationPage = () => {
     setTimeout(() => {
       setGiftNotif('');
     }, 3000);
-  }
+  };
 
   const Toast = Swal.mixin({
     toast: true,
@@ -99,7 +99,7 @@ const InvitationPage = () => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  })
+  });
 
   useEffect(() => {
     dispatch(getAllGuest())
@@ -115,7 +115,7 @@ const InvitationPage = () => {
       setTimeout(() => {
         dispatch(resetErrorPost());
       }, 1000);
-    }
+    };
   }, [isError])
 
   useEffect(() => {
@@ -132,7 +132,7 @@ const InvitationPage = () => {
       setTimeout(() => {
         dispatch(resetConfirmationError())
       }, 2000);
-    }
+    };
   }, [confirmationErrorMessage])
 
   useEffect(() => {
@@ -150,7 +150,7 @@ const InvitationPage = () => {
         dispatch(resetConfirmationSuccess())
       }, 2000);
       setOpenConfirmation(!openConfirmation);
-    }
+    };
 
   }, [confirmationSuccess])
 
@@ -173,7 +173,7 @@ const InvitationPage = () => {
         Menit: '00',
         Detik: '00'
       };
-    }
+    };
     return timeLeft;
   };
 
@@ -190,7 +190,7 @@ const InvitationPage = () => {
   Object.keys(timeLeft).forEach((interval) => {
     if (!timeLeft[interval]) {
       return;
-    }
+    };
 
     timerComponents.push(
       <div className={classes.countdownItem}>
@@ -206,21 +206,21 @@ const InvitationPage = () => {
 
   const closePopupProkes = () => {
     setShowPopupProkes(!showPopupProkes);
-  }
+  };
 
   const openInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
     setShowPopupProkes(!showPopupProkes);
     setIsPlaying(!isPlaying);
-  }
+  };
 
   const handleConfirmation = () => {
     setOpenConfirmation(!openConfirmation);
-  }
+  };
 
   const showFormAttending = () => {
     setIsShow(!isShow)
-  }
+  };
 
   const showGiftInfo = () => {
     if (isShowGift) {
@@ -231,12 +231,12 @@ const InvitationPage = () => {
     } else {
       setIsShowGift(!isShowGift)
       setCloseGift(!closeGift)
-    }
-  }
+    };
+  };
 
   const goToMaps = () => {
     window.open('https://goo.gl/maps/gLzmCKcPg8m8AQdM8', '_blank');
-  }
+  };
 
   const radioAttend = (e) => {
     setAttend(e.target.value);
@@ -261,11 +261,11 @@ const InvitationPage = () => {
     setGuestName('');
     setAddress('');
     setNote('');
-  }
+  };
 
   const submitGiftConfirmation = (value) => {
     dispatch(postGiftConfirmation(value));
-  }
+  };
 
   const generateHeader = () => {
     return (
@@ -280,7 +280,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const generateStory = () => {
     return (
@@ -295,7 +295,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const generateSecondStory = () => {
     return (
@@ -310,7 +310,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const secondImageSection = () => {
     return (
@@ -319,7 +319,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const summarySection = () => {
     return (
@@ -343,8 +343,8 @@ const InvitationPage = () => {
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const generateBridesProfile = () => {
     return (
@@ -373,7 +373,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const eventDetail = () => {
     return (
@@ -436,7 +436,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const thirdImageSeparator = () => {
     return (
@@ -446,7 +446,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const generatePoemSection = () => {
     return (
@@ -481,7 +481,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const attendingSection = () => {
     return (
@@ -531,7 +531,7 @@ const InvitationPage = () => {
         </div>
       </div >
     );
-  }
+  };
 
   const generateMessageSection = () => {
     return (
@@ -576,7 +576,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const giftSection = () => {
     return (
@@ -619,8 +619,8 @@ const InvitationPage = () => {
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const closingSection = () => {
     return (
@@ -634,17 +634,22 @@ const InvitationPage = () => {
         <img src={ClosingWing} alt="wing" className={classes.image} />
       </div>
     );
-  }
+  };
 
   const footerSection = () => {
     return (
       <div className={classes.footerContainer}>
         <p className={classes.colaboration}>In Colaboration</p>
         <img className={classes.brand} alt='techartsyGold' src={width === 'lg' ? logoGold : logoSm} />
-        <img className={classes.contact} src={whatsapp} alt="whatsapp" />
-      </div>
-    )
-  }
+        <a
+          rel="noreferrer"
+          href="https://wa.me/62895706454243?text=Hallo%20saya%20mau%20pesan%20Undangan%20..."
+          target="_blank">
+          <img className={classes.contact} src={whatsapp} alt="whatsapp" />
+        </a>
+      </div >
+    );
+  };
 
   const generateInvitation = () => {
     return (
@@ -673,7 +678,7 @@ const InvitationPage = () => {
         />
       </div>
     );
-  }
+  };
   return (
     <div className={classes.container}>
       {!isInvitationOpen ? <StartedComponent openInvitation={openInvitation} name={name} /> : generateInvitation()}
