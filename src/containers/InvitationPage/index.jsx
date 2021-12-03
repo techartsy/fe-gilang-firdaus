@@ -355,14 +355,7 @@ const InvitationPage = () => {
                   Cerita Kita
                 </p>
               </div>
-            </ScrollAnimation>
-            <div className={classes.summaryAnimation}>
-              <ScrollAnimation
-                animateIn='fadeIn'
-                delay={1000}
-                duration={3}
-                animateOnce={true}
-              >
+              <div className={classes.summaryAnimation}>
                 <p className={classes.summarySection}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet {width === 'lg' && <br />}
                   volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, {width === 'lg' && <br />}
@@ -371,9 +364,9 @@ const InvitationPage = () => {
                   sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,{width === 'lg' && <br />}
                   elit morbi mattis vulputate faucibus amet.
                 </p>
-              </ScrollAnimation>
-            </div>
-            <img src={wingg} alt='wingBottom' />
+              </div>
+              <img src={wingg} alt='wingBottom' />
+            </ScrollAnimation>
           </div>
         </div>
       </div>
