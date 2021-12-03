@@ -299,7 +299,6 @@ const InvitationPage = () => {
             <ScrollAnimation
               animateIn='fadeInLeft'
               duration={2}
-              animateOnce={true}
             >
               <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
             </ScrollAnimation>
@@ -323,7 +322,6 @@ const InvitationPage = () => {
             <ScrollAnimation
               animateIn='fadeInRight'
               duration={2}
-              animateOnce={true}
             >
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
             </ScrollAnimation>
