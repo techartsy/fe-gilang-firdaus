@@ -7,6 +7,22 @@
   @include apply-at-sm-md-size {
     padding: 0 5px;
   }
+  .closeIcon {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    background-color: $color-gold;
+    cursor: pointer;
+    width: 25px;
+    text-align: center;
+    border-radius: 50%;
+    color: $color-black;
+    opacity: 0.8;
+    @include apply-at-sm-md-size {
+      right: 3%;
+    }
+  }
+
   .popupTitleWrapper {
     color: $color-gold;
     font-size: 15px;

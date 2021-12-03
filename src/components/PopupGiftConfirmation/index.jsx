@@ -74,6 +74,9 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
         }}
       >
         <div className={classes.popupWrapper}>
+          <div className={classes.closeIcon} onClick={handleClose}>
+            &#10006;
+          </div>
           <div className={classes.popupTitleWrapper} onClose={handleClose}>
             <img className={classes.headerImg} src={Rose} alt="Rose" />
             <p>Konfirmasi Hadiah</p>
