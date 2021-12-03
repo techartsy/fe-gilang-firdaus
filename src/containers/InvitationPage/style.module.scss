@@ -12,7 +12,7 @@
       top: 0;
       border: none;
       object-fit: cover;
-      background-repeat: no-repeatsummarySection;
+      background-repeat: no-repeat;
       background-size: cover;
       margin-bottom: 22px;
       border-bottom: 1px solid $color-gold;
@@ -204,6 +204,7 @@
       background-image: url("../../static/images/mainimage.png");
       background-repeat: no-repeat;
       background-size: cover;
+      object-fit: cover;
       border-top: 1px solid $color-gold;
       border-bottom: 1px solid $color-gold;
       @include apply-at-sm-md-size {
@@ -220,6 +221,7 @@
           justify-content: center;
           @include content-center;
           .title {
+            @include content-center;
             width: 180px;
             height: 80px;
             display: flex;
@@ -235,7 +237,6 @@
             }
           }
           .summaryAnimation {
-            text-align: center;
             .summarySection {
               @include content-center;
               text-align: center;
@@ -247,6 +248,8 @@
             }
           }
           img {
+            @include directionX;
+            @include content-center;
             margin-bottom: 5%;
             @include apply-at-sm-md-size {
               height: 38px;
@@ -324,6 +327,7 @@
       width: 100%;
       background-repeat: no-repeat;
       background-size: cover;
+      object-fit: cover;
       .topEvent {
         @include directionX;
         @include content-center;
