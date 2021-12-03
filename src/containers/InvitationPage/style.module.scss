@@ -25,39 +25,44 @@
         height: 320px;
         justify-content: space-between;
       }
-      .headerTitle {
-        float: right;
-        width: 38%;
-        font-size: 90px;
-        margin-right: 10%;
-        margin-bottom: 3%;
-        align-self: flex-end;
-        .titleTop {
-          max-height: 20px;
-          text-align: left;
+      .headerAnimation {
+        @include apply-at-sm-size {
+          @include directionX;
         }
-        .titleMid {
-          max-height: 40px;
-          color: $color-white;
-          text-align: center;
-          @include apply-at-sm-md-size {
-            margin-left: 10%;
+        .headerTitle {
+          float: right;
+          width: 38%;
+          font-size: 90px;
+          margin-right: 10%;
+          margin-bottom: 3%;
+          align-self: flex-end;
+          .titleTop {
             max-height: 20px;
+            text-align: left;
           }
-        }
-        .titleBottom {
-          max-height: 40px;
-          text-align: right;
-          margin-right: 13%;
+          .titleMid {
+            max-height: 40px;
+            color: $color-white;
+            text-align: center;
+            @include apply-at-sm-md-size {
+              margin-left: 10%;
+              max-height: 20px;
+            }
+          }
+          .titleBottom {
+            max-height: 40px;
+            text-align: right;
+            margin-right: 13%;
+            @include apply-at-sm-md-size {
+              height: 100%;
+              margin-top: -8%;
+            }
+          }
           @include apply-at-sm-md-size {
-            height: 100%;
-            margin-top: -8%;
+            font-size: 30px;
+            width: 75%;
+            margin: 0 auto;
           }
-        }
-        @include apply-at-sm-md-size {
-          font-size: 30px;
-          width: 75%;
-          margin: 0 auto;
         }
       }
       .countdown {
@@ -199,6 +204,7 @@
       background-image: url("../../static/images/mainimage.png");
       background-repeat: no-repeat;
       background-size: cover;
+      object-fit: cover;
       border-top: 1px solid $color-gold;
       border-bottom: 1px solid $color-gold;
       @include apply-at-sm-md-size {
@@ -215,6 +221,7 @@
           justify-content: center;
           @include content-center;
           .title {
+            @include content-center;
             width: 180px;
             height: 80px;
             display: flex;
@@ -229,15 +236,20 @@
               height: 100%;
             }
           }
-          .summarySection {
-            text-align: center;
-            font-size: 28px;
-            @include apply-at-sm-md-size {
-              font-size: 14px;
-              width: 90%;
+          .summaryAnimation {
+            .summarySection {
+              @include content-center;
+              text-align: center;
+              font-size: 28px;
+              @include apply-at-sm-md-size {
+                font-size: 14px;
+                width: 90%;
+              }
             }
           }
           img {
+            @include directionX;
+            @include content-center;
             margin-bottom: 5%;
             @include apply-at-sm-md-size {
               height: 38px;
@@ -315,6 +327,7 @@
       width: 100%;
       background-repeat: no-repeat;
       background-size: cover;
+      object-fit: cover;
       .topEvent {
         @include directionX;
         @include content-center;
@@ -735,7 +748,7 @@
           }
           .hide {
             opacity: 0;
-            transform: translateY(-11%);
+            transform: translateY(-4%);
             transition: all 1.5s;
           }
           .show {
@@ -796,7 +809,7 @@
         .leftSection {
           @include directionY;
           align-items: center;
-          width: 50%;
+          width: 100%;
           margin-right: 3%;
           p {
             font-size: 26px;
@@ -824,14 +837,17 @@
             border: none;
           }
           .imgWrapper {
+            @include apply-at-sm-md-size {
+              width: 100%;
+            }
             .image {
               @include directionX;
               @include content-center;
               max-width: 570px;
+              border: 1px solid $color-gold;
+              border-radius: 9px;
               @include apply-at-sm-md-size {
-                height: 213px;
-                width: 100%;
-                border-radius: 0px;
+                width: 90%;
               }
             }
           }
@@ -1063,7 +1079,7 @@
                 top: 0;
                 @include apply-at-sm-md-size {
                   font-size: 12px;
-                  left: 155px;
+                  left: 165px;
                   top: -5px;
                   right: 50px;
                 }
@@ -1144,8 +1160,9 @@
       text-align: center;
       border-bottom: 1px solid $color-gold;
       .closingSentenceWrapper {
+        @include content-center;
         font-size: 30px;
-        width: 75%;
+        width: 100%;
         margin-bottom: -25px;
         @include apply-at-sm-md-size {
           font-size: 14px;
@@ -1167,18 +1184,19 @@
       @include directionY;
       justify-content: center;
       align-items: center;
+      margin-bottom: 6%;
       border-top: 1px solid $color-gold;
       .colaboration {
         font-size: 38px;
         @include apply-at-sm-md-size {
-          font-size: 11px;
+          font-size: 14px;
         }
       }
       .brand {
         margin-top: -1%;
-        margin-bottom: 2%;
+        margin-bottom: 4%;
         @include apply-at-sm-md-size {
-          width: 70px;
+          width: 80px;
         }
       }
       .contact {
@@ -1186,8 +1204,9 @@
         height: 30px;
         margin-bottom: 2%;
         @include apply-at-sm-md-size {
-          width: 14px;
-          height: 14px;
+          width: 20px;
+          height: 20px;
+          margin-bottom: 5%;
         }
       }
     }

@@ -5,6 +5,7 @@ import MuiDialogContent from "@material-ui/core/DialogContent";
 import Rose from '../../static/images/rosegift.png';
 import whatsapp from '../../static/icons/whatsapp.png';
 import classes from "./style.module.scss";
+import windowDimension from '../../utils/useWindowDimensions';
 
 const styles = (theme) => ({
   root: {
@@ -25,6 +26,7 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
   const [destination, setDestination] = useState('');
   const [receipt, setReceipt] = useState('');
   const [note, setNote] = useState('');
+  const { width } = windowDimension();
   useEffect(() => {
     if (confirmationSuccess) {
       setName('');
@@ -57,7 +59,7 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
       onClose={handleClose}
       aria-labelledby="customized-dialog-title"
       open={open}
-      overlayStyle={{backgroundColor: 'transparent'}}
+      overlayStyle={{ backgroundColor: 'transparent' }}
       style={{
         fontFamily: "'Charm', cursive",
       }}
@@ -65,13 +67,16 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
       <DialogContent
         dividers
         style={{
-          overflowY: "hidden",
+          overflowY: `${width !== 'lg' ? 'scroll' : 'hidden'}`,
           backgroundColor: "#000000",
           border: '1px solid #fbd258',
           borderRadius: '6px'
         }}
       >
         <div className={classes.popupWrapper}>
+          <div className={classes.closeIcon} onClick={handleClose}>
+            &#10006;
+          </div>
           <div className={classes.popupTitleWrapper} onClose={handleClose}>
             <img className={classes.headerImg} src={Rose} alt="Rose" />
             <p>Konfirmasi Hadiah</p>
@@ -99,7 +104,12 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
             <label for="note">Catatan</label>
             <textarea type='text' name="note" value={note} onChange={(e) => setNote(e.target.value)} />
             <div className={classes.infoWrapper}>
-              <img src={whatsapp} alt="whatsapp" className={classes.whatsapp} />
+              <a
+                rel="noreferrer"
+                href="https://wa.me/6285863589565?text=Hallo%20saya%20mau%20konfirmasi%20pengiriman"
+                target="_blank">
+                <img src={whatsapp} alt="whatsapp" className={classes.whatsapp} />
+              </a>
               <button type='submit' className={classes.actionBtn}>Kirim</button>
             </div>
           </form>

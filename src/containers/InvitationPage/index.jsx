@@ -14,7 +14,8 @@ import {
   resetConfirmationSuccess
 } from '../../store/actions';
 import useWindowDimensions from '../../utils/useWindowDimensions';
-
+import ScrollAnimation from 'react-animate-on-scroll';
+import "animate.css/animate.min.css";
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
 import PopupProkes from '../../components/PopupProkes';
@@ -25,7 +26,7 @@ import Male from '../../static/images/male.png';
 import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
 import WingBottom from '../../static/images/wing-bottom.png';
-import Frame from '../../static/images/Frame.png';
+import Frame from '../../static/images/frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
 import gunungan from '../../static/images/gunungan.png';
@@ -74,11 +75,11 @@ const InvitationPage = () => {
   const confirmationErrorMessage = useSelector(state => state.invitationReducer.confirmationErrorMessage);
   const confirmationSuccess = useSelector(state => state.invitationReducer.confirmationSuccess);
   const copyText = () => {
-    navigator.clipboard.writeText(wording);
-    setNotif('Copied');
+    navigator.clipboard.writeText(wording)
+    setNotif('Copied')
     setTimeout(() => {
-      setNotif('');
-    }, 3000);
+      setNotif('')
+    }, 3000)
   }
 
   const copyAddress = () => {
@@ -87,7 +88,7 @@ const InvitationPage = () => {
     setTimeout(() => {
       setGiftNotif('');
     }, 3000);
-  }
+  };
 
   const Toast = Swal.mixin({
     toast: true,
@@ -99,7 +100,7 @@ const InvitationPage = () => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  })
+  });
 
   useEffect(() => {
     dispatch(getAllGuest())
@@ -115,7 +116,7 @@ const InvitationPage = () => {
       setTimeout(() => {
         dispatch(resetErrorPost());
       }, 1000);
-    }
+    };
   }, [isError])
 
   useEffect(() => {
@@ -132,7 +133,7 @@ const InvitationPage = () => {
       setTimeout(() => {
         dispatch(resetConfirmationError())
       }, 2000);
-    }
+    };
   }, [confirmationErrorMessage])
 
   useEffect(() => {
@@ -173,7 +174,7 @@ const InvitationPage = () => {
         Menit: '00',
         Detik: '00'
       };
-    }
+    };
     return timeLeft;
   };
 
@@ -190,7 +191,7 @@ const InvitationPage = () => {
   Object.keys(timeLeft).forEach((interval) => {
     if (!timeLeft[interval]) {
       return;
-    }
+    };
 
     timerComponents.push(
       <div className={classes.countdownItem}>
@@ -206,21 +207,21 @@ const InvitationPage = () => {
 
   const closePopupProkes = () => {
     setShowPopupProkes(!showPopupProkes);
-  }
+  };
 
   const openInvitation = () => {
     setIsInvitationOpen(!isInvitationOpen);
     setShowPopupProkes(!showPopupProkes);
     setIsPlaying(!isPlaying);
-  }
+  };
 
   const handleConfirmation = () => {
     setOpenConfirmation(!openConfirmation);
-  }
+  };
 
   const showFormAttending = () => {
     setIsShow(!isShow)
-  }
+  };
 
   const showGiftInfo = () => {
     if (isShowGift) {
@@ -231,12 +232,12 @@ const InvitationPage = () => {
     } else {
       setIsShowGift(!isShowGift)
       setCloseGift(!closeGift)
-    }
-  }
+    };
+  };
 
   const goToMaps = () => {
     window.open('https://goo.gl/maps/gLzmCKcPg8m8AQdM8', '_blank');
-  }
+  };
 
   const radioAttend = (e) => {
     setAttend(e.target.value);
@@ -261,33 +262,46 @@ const InvitationPage = () => {
     setGuestName('');
     setAddress('');
     setNote('');
-  }
+  };
 
   const submitGiftConfirmation = (value) => {
     dispatch(postGiftConfirmation(value));
-  }
-
+  };
   const generateHeader = () => {
     return (
       <div className={classes.header}>
-        <div className={classes.headerTitle}>
-          <p className={classes.titleTop}>Krisdiansyah</p>
-          <p className={classes.titleMid}>&</p>
-          <p className={classes.titleBottom}>Azmi</p>
-        </div>
+        <ScrollAnimation
+          animateIn='fadeIn'
+          delay={2000}
+          duration={2}
+          animateOnce={true}
+        >
+          <div className={classes.headerAnimation}>
+            <div className={classes.headerTitle}>
+              <p className={classes.titleTop}>Krisdiansyah</p>
+              <p className={classes.titleMid}>&</p>
+              <p className={classes.titleBottom}>Azmi</p>
+            </div>
+          </div>
+        </ScrollAnimation>
         <div className={classes.countdown}>
           {timerComponents.length && timerComponents}
         </div>
-      </div>
+      </div >
     );
-  }
+  };
 
   const generateStory = () => {
     return (
       <div className={classes.storySection}>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
-            <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
+            <ScrollAnimation
+              animateIn='fadeInLeft'
+              duration={2}
+            >
+              <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
+            </ScrollAnimation>
           </div>
         </div>
         <div className={classes.imageWrapper}>
@@ -295,7 +309,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const generateSecondStory = () => {
     return (
@@ -305,12 +319,17 @@ const InvitationPage = () => {
         </div>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
+            <ScrollAnimation
+              animateIn='fadeInRight'
+              duration={2}
+            >
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
+            </ScrollAnimation>
           </div>
         </div>
       </div>
     );
-  }
+  };
 
   const secondImageSection = () => {
     return (
@@ -319,32 +338,40 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const summarySection = () => {
     return (
       <div className={classes.summary}>
         <div className={classes.bg}>
           <div className={classes.summaryWraper}>
-            <div className={classes.title}>
-              <p>
-                Cerita Kita
-              </p>
-            </div>
-            <p className={classes.summarySection}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet {width === 'lg' && <br />}
-              volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, {width === 'lg' && <br />}
-              nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque{width === 'lg' && <br />}
-              dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare{width === 'lg' && <br />}
-              sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,{width === 'lg' && <br />}
-              elit morbi mattis vulputate faucibus amet.
-            </p>
-            <img src={wingg} alt='wingBottom' />
+            <ScrollAnimation
+              animateIn='fadeIn'
+              duration={2}
+              animateOnce={true}
+            >
+              <div className={classes.title}>
+                <p>
+                  Cerita Kita
+                </p>
+              </div>
+              <div className={classes.summaryAnimation}>
+                <p className={classes.summarySection}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet {width === 'lg' && <br />}
+                  volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, {width === 'lg' && <br />}
+                  nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque{width === 'lg' && <br />}
+                  dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare{width === 'lg' && <br />}
+                  sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,{width === 'lg' && <br />}
+                  elit morbi mattis vulputate faucibus amet.
+                </p>
+              </div>
+              <img src={wingg} alt='wingBottom' />
+            </ScrollAnimation>
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const generateBridesProfile = () => {
     return (
@@ -353,90 +380,109 @@ const InvitationPage = () => {
           <img className={classes.image} src={WingTop} alt="wing" />
         </div>
         <div className={classes.profileWrapper}>
-          <div className={classes.card}>
-            <img className={classes.bridesImage} src={Female} alt="brides" />
-            <div className={classes.profileInfo}>
-              <p className={classes.bridess}>Silmiati Azmi</p>
-              <p className={classes.parents}>Putri Bungsu dari{width === 'lg' && <br />} Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
+          <ScrollAnimation
+            animateIn='fadeInLeft'
+            duration={2}
+            animateOnce={true}
+          >
+            <div className={classes.card}>
+              <img className={classes.bridesImage} src={Female} alt="brides" />
+              <div className={classes.profileInfo}>
+                <p className={classes.bridess}>Silmiati Azmi</p>
+                <p className={classes.parents}>Putri Bungsu dari{width === 'lg' && <br />} Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
+              </div>
             </div>
-          </div>
-          <div className={classes.card}>
-            <img className={classes.bridesImage} src={Male} alt="brides" />
-            <div className={classes.profileInfo}>
-              <p className={classes.bridess}>Ridwan Krisdiansyah</p>
-              <p className={classes.parents}>Putra Ketiga dari{width === 'lg' && <br />} Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn='fadeInRight'
+            duration={2}
+            animateOnce={true}
+          >
+            <div className={classes.card}>
+              <img className={classes.bridesImage} src={Male} alt="brides" />
+              <div className={classes.profileInfo}>
+                <p className={classes.bridess}>Ridwan Krisdiansyah</p>
+                <p className={classes.parents}>Putra Ketiga dari{width === 'lg' && <br />} Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
+              </div>
             </div>
-          </div>
+          </ScrollAnimation>
         </div>
         <div className={classes.wingWrapper}>
           <img className={classes.image} src={WingBottom} alt="wing" />
         </div>
       </div>
     );
-  }
+  };
 
   const eventDetail = () => {
     return (
       <div className={classes.event}>
-        <img className={classes.topEvent} src={topevent} alt='top' />
-        <div className={classes.greeting}>
-          <p>
-            Assalamu'alaikum Warahmatullahi Wabarakatuh<br />
-          </p>
-          <p className={classes.subtitle}>
-            Maha Suci Allah {width !== 'lg' && <br />} yang telah menciptakan makhluk-Nya berpasang-pasangan. <br />
-            Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami
-          </p>
-        </div>
-        <div className={classes.details}>
-          <div className={classes.titleWraper}>
-            <p className={classes.title}>AKAD & RESEPSI</p>
-          </div>
-          <div className={classes.calender}>
-            <img src={calender} alt='calender' />
+        <ScrollAnimation
+          animateIn='fadeIn'
+          duration={3}
+          delay={1000}
+          animateOnce={true}
+        >
+          <img className={classes.topEvent} src={topevent} alt='top' />
+          <div className={classes.greeting}>
             <p>
-              MINGGU, 09 JANUARI 2022
+              Assalamu'alaikum Warahmatullahi Wabarakatuh<br />
+            </p>
+            <p className={classes.subtitle}>
+              Maha Suci Allah {width !== 'lg' && <br />} yang telah menciptakan makhluk-Nya berpasang-pasangan. <br />
+              Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami
             </p>
           </div>
-          <div className={classes.timesWraper}>
-            {width === 'lg' ? (
-              <>
-                <div className={classes.time}>
-                  <img src={time} alt='time' />
-                  <p>AKAD : PUKUL 09.00 WIB</p>
-                </div>
-                <div className={classes.time}>
-                  <img src={time} alt='time' />
-                  <p>
-                    RESEPSI : PUKUL 10.00 WIB s/d Selesai
-                  </p>
-                </div>
-              </>
+          <div className={classes.details}>
+            <div className={classes.titleWraper}>
+              <p className={classes.title}>AKAD & RESEPSI</p>
+            </div>
+            <div className={classes.calender}>
+              <img src={calender} alt='calender' />
+              <p>
+                MINGGU, 09 JANUARI 2022
+              </p>
+            </div>
+            <div className={classes.timesWraper}>
+              {width === 'lg' ? (
+                <>
+                  <div className={classes.time}>
+                    <img src={time} alt='time' />
+                    <p>AKAD : PUKUL 09.00 WIB</p>
+                  </div>
+                  <div className={classes.time}>
+                    <img src={time} alt='time' />
+                    <p>
+                      RESEPSI : PUKUL 10.00 WIB s/d Selesai
+                    </p>
+                  </div>
+                </>
               ) : (
                 <>
-                <div className={classes.timeMobileWrapper}>
-                  <img src={time} alt='time' />
-                  <p>AKAD 09.00 WIB</p>
-                  <div className={classes.separator} />
-                  <p>RESEPSI 10.00 WIB - SELESAI</p>
-                </div>
+                  <div className={classes.timeMobileWrapper}>
+                    <img src={time} alt='time' />
+                    <p>AKAD 09.00 WIB</p>
+                    <div className={classes.separator} />
+                    <p>RESEPSI 10.00 WIB - SELESAI</p>
+                  </div>
                 </>
-            )}
+              )}
+            </div>
+            <div className={classes.locationWraper}>
+              <img src={Location} alt='location' />
+              <p>
+                KP. MULYASARI, RT. 01 RW. 02 DS. CIKADU KEC. CIBEBER KAB. LEBAK. BANTEN.
+              </p>
+            </div>
+            <div onClick={goToMaps} className={classes.btnmap}>
+              <p>Menuju Lokasi</p>
+              <img src={plane} alt='gotomap' />
+            </div>
           </div>
-          <div className={classes.locationWraper}>
-            <img src={Location} alt='location' />
-            <p>
-              KP. MULYASARI, RT. 01 RW. 02 DS. CIKADU KEC. CIBEBER KAB. LEBAK. BANTEN.
-            </p>
-          </div>
-          <div onClick={goToMaps} className={classes.btnmap}>
-            <p>Menuju Lokasi</p>
-            <img src={plane} alt='gotomap' />
-          </div>
-        </div>
+        </ScrollAnimation>
       </div>
     );
-  }
+  };
 
   const thirdImageSeparator = () => {
     return (
@@ -446,7 +492,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const generatePoemSection = () => {
     return (
@@ -456,6 +502,11 @@ const InvitationPage = () => {
             <img src={Frame} alt="frame" />
           </div>
           <div className={classes.poemWrapper}>
+          <ScrollAnimation
+            animateIn='fadeIn'
+            duration={3}
+            animateOnce={true}
+          >
             <div className={classes.poemTop}>
               <p>Mama yang tercinta</p>
               <p>Akhirnya kutemukan juga jodohku</p>
@@ -476,12 +527,19 @@ const InvitationPage = () => {
               <p>Pada waktunya</p>
               <p>Aku mesti kau lepas pergi</p>
             </div>
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn='fadeInUp'
+            duration={2}
+            animateOnce={true}
+          >
             <p className={classes.author}>W.S. Rendra</p>
+          </ScrollAnimation>
           </div>
         </div>
       </div>
     );
-  }
+  };
 
   const attendingSection = () => {
     return (
@@ -521,17 +579,23 @@ const InvitationPage = () => {
               </div>
             </form>
           </div>
-          <div className={classes.expressionSection}>
-            <img src={gunungan} alt="gunungan" />
-            <p className={classes.expression}>
-              Ungkapan terima kasih yang tulus dari kami apabila<br />
-              Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
-            </p>
-          </div>
+          <ScrollAnimation
+            animateIn='fadeIn'
+            duration={2}
+            animateOnce={true}
+          >
+            <div className={classes.expressionSection}>
+              <img src={gunungan} alt="gunungan" />
+              <p className={classes.expression}>
+                Ungkapan terima kasih yang tulus dari kami apabila<br />
+                Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
+              </p>
+            </div>
+          </ScrollAnimation>
         </div>
       </div >
     );
-  }
+  };
 
   const generateMessageSection = () => {
     return (
@@ -540,10 +604,16 @@ const InvitationPage = () => {
           <p>Ucapan & Doa kamu</p>
         </div>
         <div className={classes.mainContent}>
-          <div className={classes.leftSection}>
-            <img src={gunungan} alt="gunungan" />
-            <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
-          </div>
+          <ScrollAnimation
+            animateIn='fadeIn'
+            duration={2}
+            animateOnce={true}
+          >
+            <div className={classes.leftSection}>
+              <img src={gunungan} alt="gunungan" />
+              <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
+            </div>
+          </ScrollAnimation>
           <div className={classes.rightSection}>
             <div className={classes.imgWrapper}>
               <img className={classes.image} src={MessageImg} alt="message" />
@@ -576,7 +646,7 @@ const InvitationPage = () => {
         </div>
       </div>
     );
-  }
+  };
 
   const giftSection = () => {
     return (
@@ -605,7 +675,6 @@ const InvitationPage = () => {
               <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
               <p className={classes.infoDetail}>
                 Nama : Ridwan Krisdiansyah <br />
-                Nama : Ridwan Krisdiansyah
                 Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394
               </p>
               <div className={classes.copyWraper}>
@@ -620,32 +689,43 @@ const InvitationPage = () => {
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const closingSection = () => {
     return (
       <div className={classes.closingSectionContainer}>
-        <div className={classes.closingSentenceWrapper}>
-          <p>
-            Bagi Kami Kehadiran & doa Anda<br/> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
-            Dari hati yang terdalam, kami ucapkan terima kasih
-          </p>
-        </div>
+        <ScrollAnimation
+          animateIn='fadeIn'
+          duration={2}
+          animateOnce={true}
+        >
+          <div className={classes.closingSentenceWrapper}>
+            <p>
+              Bagi Kami Kehadiran & doa Anda<br /> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
+              Dari hati yang terdalam, kami ucapkan terima kasih
+            </p>
+          </div>
+        </ScrollAnimation>
         <img src={ClosingWing} alt="wing" className={classes.image} />
       </div>
     );
-  }
+  };
 
   const footerSection = () => {
     return (
       <div className={classes.footerContainer}>
         <p className={classes.colaboration}>In Colaboration</p>
         <img className={classes.brand} alt='techartsyGold' src={width === 'lg' ? logoGold : logoSm} />
-        <img className={classes.contact} src={whatsapp} alt="whatsapp" />
-      </div>
-    )
-  }
+        <a
+          rel="noreferrer"
+          href="https://wa.me/62895706454243?text=Hallo%20saya%20mau%20pesan%20Undangan%20..."
+          target="_blank">
+          <img className={classes.contact} src={whatsapp} alt="whatsapp" />
+        </a>
+      </div >
+    );
+  };
 
   const generateInvitation = () => {
     return (
@@ -674,7 +754,7 @@ const InvitationPage = () => {
         />
       </div>
     );
-  }
+  };
   return (
     <div className={classes.container}>
       {!isInvitationOpen ? <StartedComponent openInvitation={openInvitation} name={name} /> : generateInvitation()}
