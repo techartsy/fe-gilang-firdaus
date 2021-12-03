@@ -373,14 +373,7 @@ const InvitationPage = () => {
                 </p>
               </ScrollAnimation>
             </div>
-            <ScrollAnimation
-              animateIn='fadeIn'
-              delay={500}
-              duration={2}
-              animateOnce={true}
-            >
-              <img src={wingg} alt='wingBottom' />
-            </ScrollAnimation>
+            <img src={wingg} alt='wingBottom' />
           </div>
         </div>
       </div>
@@ -516,52 +509,39 @@ const InvitationPage = () => {
             <img src={Frame} alt="frame" />
           </div>
           <div className={classes.poemWrapper}>
-            <ScrollAnimation
-              animateIn='fadeInLeft'
-              duration={2}
-              animateOnce={true}
-            >
-              <div className={classes.poemTop}>
-                <p>Mama yang tercinta</p>
-                <p>Akhirnya kutemukan juga jodohku</p>
-                <p>Seseorang bagai kau</p>
-                <p>Sederhana dalam tingkah dan bicara</p>
-                <p>Serta sangat menyayangiku</p>
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation
-              animateIn='fadeIn'
-              duration={2}
-              delay={500}
-              animateOnce={true}
-            >
-              <div className={classes.poemMid}>
-                <p>Mama</p>
-                <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
-                <p>Kini terbang dan menemui jodohnya</p>
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation
-              animateIn='fadeInRight'
-              duration={2}
-              animateOnce={true}
-            >
-              <div className={classes.poemBottom}>
-                <p>Mama</p>
-                <p>Aku telah menemukan jodohku</p>
-                <p>Janganlah engkau cemburu</p>
-                <p>Hendaklah hatimu yang baik itu mengerti</p>
-                <p>Pada waktunya</p>
-                <p>Aku mesti kau lepas pergi</p>
-              </div>
-            </ScrollAnimation>
-            <ScrollAnimation
-              animateIn='fadeIn'
-              duration={2}
-              animateOnce={true}
-            >
-              <p className={classes.author}>W.S. Rendra</p>
-            </ScrollAnimation>
+          <ScrollAnimation
+            animateIn='fadeIn'
+            duration={3}
+            animateOnce={true}
+          >
+            <div className={classes.poemTop}>
+              <p>Mama yang tercinta</p>
+              <p>Akhirnya kutemukan juga jodohku</p>
+              <p>Seseorang bagai kau</p>
+              <p>Sederhana dalam tingkah dan bicara</p>
+              <p>Serta sangat menyayangiku</p>
+            </div>
+            <div className={classes.poemMid}>
+              <p>Mama</p>
+              <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
+              <p>Kini terbang dan menemui jodohnya</p>
+            </div>
+            <div className={classes.poemBottom}>
+              <p>Mama</p>
+              <p>Aku telah menemukan jodohku</p>
+              <p>Janganlah engkau cemburu</p>
+              <p>Hendaklah hatimu yang baik itu mengerti</p>
+              <p>Pada waktunya</p>
+              <p>Aku mesti kau lepas pergi</p>
+            </div>
+          </ScrollAnimation>
+          <ScrollAnimation
+            animateIn='fadeInUp'
+            duration={2}
+            animateOnce={true}
+          >
+            <p className={classes.author}>W.S. Rendra</p>
+          </ScrollAnimation>
           </div>
         </div>
       </div>

@@ -833,12 +833,19 @@
             border: none;
           }
           .imgWrapper {
+            // border: 1px solid red;
+            @include apply-at-sm-md-size {
+              width: 100%;
+            }
             .image {
               @include directionX;
               @include content-center;
               max-width: 570px;
+              border: 1px solid $color-gold;
+              border-radius: 9px;
               @include apply-at-sm-md-size {
-                height: 213px;
+                border-top: 1px solid $color-gold;
+                border-bottom: 1px solid $color-gold;
                 width: 100%;
                 border-radius: 0px;
               }
