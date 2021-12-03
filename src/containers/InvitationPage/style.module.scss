@@ -192,9 +192,12 @@
         min-height: 100vh;
         object-fit: cover;
         background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
         background-size: cover;
         @include apply-at-sm-md-size {
-          background-position: center;
+          background-position: center center;
         }
       }
     }
@@ -203,12 +206,15 @@
       @include parallax;
       background-image: url("../../static/images/mainimage.png");
       background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
       background-size: cover;
       object-fit: cover;
       border-top: 1px solid $color-gold;
       border-bottom: 1px solid $color-gold;
       @include apply-at-sm-md-size {
-        background-position: center;
+        background-position: center center;
       }
       .bg {
         background-color: $color-black;
