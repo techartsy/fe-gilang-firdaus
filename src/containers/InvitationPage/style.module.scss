@@ -12,7 +12,7 @@
       top: 0;
       border: none;
       object-fit: cover;
-      background-repeat: no-repeat;
+      background-repeat: no-repeatsummarySection;
       background-size: cover;
       margin-bottom: 22px;
       border-bottom: 1px solid $color-gold;
@@ -25,39 +25,44 @@
         height: 320px;
         justify-content: space-between;
       }
-      .headerTitle {
-        float: right;
-        width: 38%;
-        font-size: 90px;
-        margin-right: 10%;
-        margin-bottom: 3%;
-        align-self: flex-end;
-        .titleTop {
-          max-height: 20px;
-          text-align: left;
+      .headerAnimation {
+        @include apply-at-sm-size {
+          @include directionX;
         }
-        .titleMid {
-          max-height: 40px;
-          color: $color-white;
-          text-align: center;
-          @include apply-at-sm-md-size {
-            margin-left: 10%;
+        .headerTitle {
+          float: right;
+          width: 38%;
+          font-size: 90px;
+          margin-right: 10%;
+          margin-bottom: 3%;
+          align-self: flex-end;
+          .titleTop {
             max-height: 20px;
+            text-align: left;
           }
-        }
-        .titleBottom {
-          max-height: 40px;
-          text-align: right;
-          margin-right: 13%;
+          .titleMid {
+            max-height: 40px;
+            color: $color-white;
+            text-align: center;
+            @include apply-at-sm-md-size {
+              margin-left: 10%;
+              max-height: 20px;
+            }
+          }
+          .titleBottom {
+            max-height: 40px;
+            text-align: right;
+            margin-right: 13%;
+            @include apply-at-sm-md-size {
+              height: 100%;
+              margin-top: -8%;
+            }
+          }
           @include apply-at-sm-md-size {
-            height: 100%;
-            margin-top: -8%;
+            font-size: 30px;
+            width: 75%;
+            margin: 0 auto;
           }
-        }
-        @include apply-at-sm-md-size {
-          font-size: 30px;
-          width: 75%;
-          margin: 0 auto;
         }
       }
       .countdown {
@@ -229,12 +234,16 @@
               height: 100%;
             }
           }
-          .summarySection {
+          .summaryAnimation {
             text-align: center;
-            font-size: 28px;
-            @include apply-at-sm-md-size {
-              font-size: 14px;
-              width: 90%;
+            .summarySection {
+              @include content-center;
+              text-align: center;
+              font-size: 28px;
+              @include apply-at-sm-md-size {
+                font-size: 14px;
+                width: 90%;
+              }
             }
           }
           img {
