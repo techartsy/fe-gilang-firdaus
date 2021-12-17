@@ -3,6 +3,7 @@ import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { isIOS } from 'react-device-detect';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
@@ -45,6 +46,8 @@ import dropdown from '../../static/icons/dropdown.png';
 import dropup from '../../static/icons/dropup.png';
 import Mail from '../../static/icons/mail.png';
 import whatsapp from '../../static/icons/whatsapp.png';
+import Story from '../../static/images/story.png';
+import ThirdImageSM from '../../static/images/thirdimage-sm.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
@@ -156,8 +159,22 @@ const InvitationPage = () => {
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    const nextYear = year + 1;
-    const difference = +new Date(`01/09/${nextYear}/09:00`) - +new Date();
+    let nextYear;
+    let difference;
+    if (isIOS) {
+      nextYear = year + 1;
+      let fullDate = "2022-01-09 09:00:00";
+      let date = new Date(fullDate);
+      // In case its IOS, parse the fulldate parts and re-create the date object.
+      if(Number.isNaN(date.getMonth())) {
+        let arr = fullDate.split(/[- :]/);
+        date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+      }
+      difference = +date - +new Date();
+    } else {
+      nextYear = year + 1;
+      difference = +new Date(`01/09/${nextYear}/09:00`) - +new Date();
+    }
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
@@ -314,10 +331,10 @@ const InvitationPage = () => {
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} right duration={3000}>
-              <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
+              <p>Karena hati tidak perlu memilih, ia selalu tahu ke mana harus berlabuh,</p>
             </Fade>
             <Fade when={!showPopupProkes} right duration={3000}>
-              <p className={classes.quoteAuthor}>~ Azmi ~</p>
+              <p className={classes.quoteAuthor}>~ Dee Lestari ~</p>
             </Fade>
           </div>
         </div>
@@ -330,6 +347,14 @@ const InvitationPage = () => {
       <div className={classes.paralaxx}>
         <div className={classes.paralaxxWraper}>
         </div>
+      </div>
+    );
+  };
+
+  const iosSecondImageSection = () => {
+    return (
+      <div className={classes.iosSecondImageSection}>
+        <img src={Story} className={classes.secondImageIOS} alt="secondary" />
       </div>
     );
   };
@@ -350,7 +375,7 @@ const InvitationPage = () => {
                   Kali pertama berjumpa<br />
                   Adalah saat senyum lebih bisa dipahami daripada kalimat manusia, <br />
                   Sementara secangkir kopi hitam engkau hidangkan di meja, <br />
-                  Ku ikuti ayunan kakimu yang menari <br />
+                  Ku ikuti ayunan langkahmu yang menari <br />
                   Diiringi derit bunyi lantai kayu malam itu.<br /><br />
                   Dibalik celah sesekali kau curi pandang kepadaku,<br />
                   Sementara kusiapkan taktik untuk merebut hatimu.<br />
@@ -478,6 +503,16 @@ const InvitationPage = () => {
     );
   };
 
+  const iosThirdImageSeparator = () => {
+    return (
+      <div>
+        <div className={classes.iosThirdImageSeparator}>
+          <img src={ThirdImageSM} alt="" className={classes.thirdImage} />
+        </div>
+      </div>
+    );
+  };
+
   const generatePoemSection = () => {
     return (
       <div className={classes.poemSectionContainer}>
@@ -486,32 +521,32 @@ const InvitationPage = () => {
             <img src={Frame} alt="frame" />
           </div>
           <div className={classes.poemWrapper}>
-          <Fade duration={4000}>
+            <Fade duration={4000}>
 
-            <div className={classes.poemTop}>
-              <p>Mama yang tercinta</p>
-              <p>Akhirnya kutemukan juga jodohku</p>
-              <p>Seseorang bagai kau</p>
-              <p>Sederhana dalam tingkah dan bicara</p>
-              <p>Serta sangat menyayangiku</p>
-            </div>
-            <div className={classes.poemMid}>
-              <p>Mama</p>
-              <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
-              <p>Kini terbang dan menemui jodohnya</p>
-            </div>
-            <div className={classes.poemBottom}>
-              <p>Mama</p>
-              <p>Aku telah menemukan jodohku</p>
-              <p>Janganlah engkau cemburu</p>
-              <p>Hendaklah hatimu yang baik itu mengerti</p>
-              <p>Pada waktunya</p>
-              <p>Aku mesti kau lepas pergi</p>
-            </div>
-          </Fade>
-          <Fade bottom duration={3000}>
-            <p className={classes.author}>W.S. Rendra</p>
-          </Fade>
+              <div className={classes.poemTop}>
+                <p>Mama yang tercinta</p>
+                <p>Akhirnya kutemukan juga jodohku</p>
+                <p>Seseorang bagai kau</p>
+                <p>Sederhana dalam tingkah dan bicara</p>
+                <p>Serta sangat menyayangiku</p>
+              </div>
+              <div className={classes.poemMid}>
+                <p>Mama</p>
+                <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
+                <p>Kini terbang dan menemui jodohnya</p>
+              </div>
+              <div className={classes.poemBottom}>
+                <p>Mama</p>
+                <p>Aku telah menemukan jodohku</p>
+                <p>Janganlah engkau cemburu</p>
+                <p>Hendaklah hatimu yang baik itu mengerti</p>
+                <p>Pada waktunya</p>
+                <p>Aku mesti kau lepas pergi</p>
+              </div>
+            </Fade>
+            <Fade bottom duration={3000}>
+              <p className={classes.author}>W.S. Rendra</p>
+            </Fade>
           </div>
         </div>
       </div>
@@ -698,11 +733,11 @@ const InvitationPage = () => {
         {generateHeader()}
         {generateStory()}
         {generateSecondStory()}
-        {secondImageSection()}
+        {!isIOS ? secondImageSection() : iosSecondImageSection()}
         {summarySection()}
         {generateBridesProfile()}
         {eventDetail()}
-        {thirdImageSeparator()}
+        {!isIOS ? thirdImageSeparator() : iosThirdImageSeparator()}
         {generatePoemSection()}
         {attendingSection()}
         {generateMessageSection()}
