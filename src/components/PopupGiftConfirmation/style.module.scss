@@ -103,13 +103,13 @@
         }
         select:focus {
           outline: none !important;
-          border-color: $color-red;
-          box-shadow: 0 0 8px $color-red;
+          border-color: $color-blue;
+          box-shadow: 0 0 8px $color-blue;
         }
         input:focus {
           outline: none !important;
-          border-color: $color-red;
-          box-shadow: 0 0 8px $color-red;
+          border-color: $color-blue;
+          box-shadow: 0 0 8px $color-blue;
         }
       }
     }
@@ -163,13 +163,13 @@
     }
     input:focus {
       outline: none !important;
-      border-color: $color-red;
-      box-shadow: 0 0 8px $color-red;
+      border-color: $color-blue;
+      box-shadow: 0 0 8px $color-blue;
     }
     textarea:focus {
       outline: none !important;
-      border-color: $color-red;
-      box-shadow: 0 0 8px $color-red;
+      border-color: $color-blue;
+      box-shadow: 0 0 8px $color-blue;
     }
     .infoWrapper {
       @include directionX;

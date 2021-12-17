@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import Song from '../../static/music/contoh.mpeg';
+import Song from '../../static/music/naif.mp4';
 import Play from '../../static/icons/play.png';
 import Pause from '../../static/icons/pause.png';
 import classes from './style.module.scss';

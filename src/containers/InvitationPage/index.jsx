@@ -291,7 +291,10 @@ const InvitationPage = () => {
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} left duration={3000}>
-              <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
+              <p>Hidup memberimu banyak pilihan, kau harus memilih yang terbaik, pilihan yang tidak membuatmu menyesalinya,</p>
+            </Fade>
+            <Fade when={!showPopupProkes} left duration={3000}>
+              <p className={classes.quoteAuthor}>- Yashvardan Raichand -</p>
             </Fade>
           </div>
         </div>
@@ -311,7 +314,10 @@ const InvitationPage = () => {
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} right duration={3000}>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
+              <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
+            </Fade>
+            <Fade when={!showPopupProkes} right duration={3000}>
+              <p className={classes.quoteAuthor}>~ Azmi ~</p>
             </Fade>
           </div>
         </div>
