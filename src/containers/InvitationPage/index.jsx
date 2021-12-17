@@ -350,7 +350,7 @@ const InvitationPage = () => {
                   Kali pertama berjumpa<br />
                   Adalah saat senyum lebih bisa dipahami daripada kalimat manusia, <br />
                   Sementara secangkir kopi hitam engkau hidangkan di meja, <br />
-                  Ku ikuti ayunan kakimu yang menari <br />
+                  Ku ikuti ayunan langkahmu yang menari <br />
                   Diiringi derit bunyi lantai kayu malam itu.<br /><br />
                   Dibalik celah sesekali kau curi pandang kepadaku,<br />
                   Sementara kusiapkan taktik untuk merebut hatimu.<br />
