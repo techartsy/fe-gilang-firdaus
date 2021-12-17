@@ -314,10 +314,10 @@ const InvitationPage = () => {
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} right duration={3000}>
-              <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
+              <p>Karena hati tidak perlu memilih, ia selalu tahu ke mana harus berlabuh,</p>
             </Fade>
             <Fade when={!showPopupProkes} right duration={3000}>
-              <p className={classes.quoteAuthor}>~ Azmi ~</p>
+              <p className={classes.quoteAuthor}>~ Dee Lestari ~</p>
             </Fade>
           </div>
         </div>
@@ -486,32 +486,32 @@ const InvitationPage = () => {
             <img src={Frame} alt="frame" />
           </div>
           <div className={classes.poemWrapper}>
-          <Fade duration={4000}>
+            <Fade duration={4000}>
 
-            <div className={classes.poemTop}>
-              <p>Mama yang tercinta</p>
-              <p>Akhirnya kutemukan juga jodohku</p>
-              <p>Seseorang bagai kau</p>
-              <p>Sederhana dalam tingkah dan bicara</p>
-              <p>Serta sangat menyayangiku</p>
-            </div>
-            <div className={classes.poemMid}>
-              <p>Mama</p>
-              <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
-              <p>Kini terbang dan menemui jodohnya</p>
-            </div>
-            <div className={classes.poemBottom}>
-              <p>Mama</p>
-              <p>Aku telah menemukan jodohku</p>
-              <p>Janganlah engkau cemburu</p>
-              <p>Hendaklah hatimu yang baik itu mengerti</p>
-              <p>Pada waktunya</p>
-              <p>Aku mesti kau lepas pergi</p>
-            </div>
-          </Fade>
-          <Fade bottom duration={3000}>
-            <p className={classes.author}>W.S. Rendra</p>
-          </Fade>
+              <div className={classes.poemTop}>
+                <p>Mama yang tercinta</p>
+                <p>Akhirnya kutemukan juga jodohku</p>
+                <p>Seseorang bagai kau</p>
+                <p>Sederhana dalam tingkah dan bicara</p>
+                <p>Serta sangat menyayangiku</p>
+              </div>
+              <div className={classes.poemMid}>
+                <p>Mama</p>
+                <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
+                <p>Kini terbang dan menemui jodohnya</p>
+              </div>
+              <div className={classes.poemBottom}>
+                <p>Mama</p>
+                <p>Aku telah menemukan jodohku</p>
+                <p>Janganlah engkau cemburu</p>
+                <p>Hendaklah hatimu yang baik itu mengerti</p>
+                <p>Pada waktunya</p>
+                <p>Aku mesti kau lepas pergi</p>
+              </div>
+            </Fade>
+            <Fade bottom duration={3000}>
+              <p className={classes.author}>W.S. Rendra</p>
+            </Fade>
           </div>
         </div>
       </div>
