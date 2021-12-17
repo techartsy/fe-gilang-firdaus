@@ -512,7 +512,6 @@
           align-items: center;
           justify-content: center;
           width: 255px;
-          height: 60px;
           padding: 0px 10px;
           margin-bottom: 10%;
           font-size: 25px;
@@ -520,23 +519,28 @@
           border-radius: 20px;
           cursor: pointer;
           @include apply-at-sm-md-size {
-            width: 95px;
-            font-size: 10px;
+            max-width: 145px;
+            font-size: 12px;
             height: 30px;
             border-radius: 10px;
             margin-top: 10%;
           }
-          img {
-            @include apply-at-sm-md-size {
-              width: 20px;
+          .imageWrapper {
+            width: 20%;
+            @include directionX;
+            align-items: center;
+            justify-content: center;
+            img {
+              @include apply-at-sm-md-size {
+                width: 20px;
+              }
             }
           }
           p {
-            margin-right: 4%;
             color: $color-gold;
             text-decoration: none;
             @include apply-at-sm-md-size {
-              width: 100%;
+              width: 80%;
               text-align: center;
             }
           }
@@ -588,7 +592,7 @@
           opacity: 0.82;
           padding: 2% 0;
           @include apply-at-sm-md-size {
-            height: 572px;
+            min-height: 680px;
             padding: 0;
           }
           img {
@@ -600,7 +604,7 @@
             background-color: $color-black;
             position: relative;
             @include apply-at-sm-md-size {
-              min-height: 572px;
+              min-height: 680px;
               width: 100%;
             }
           }
@@ -625,11 +629,16 @@
             margin-left: 9%;
             margin-top: 10%;
             margin-bottom: 10%;
+            @include apply-at-sm-md-size {
+              margin-bottom: 10px;
+              margin-top: 10px;
+            }
           }
           .author {
             margin-top: 4%;
             text-align: right;
             width: 75%;
+            margin-bottom: 5%;
           }
         }
       }
@@ -650,9 +659,10 @@
           @include content-center;
           font-size: 16px;
           text-align: center;
-          border-bottom: 1px solid $color-gold;
+          text-decoration-line: underline;
+          text-underline-offset: 12px;
           margin-bottom: 5%;
-          width: 40%;
+          width: 90%;
         }
       }
       .attendingWraper {
@@ -788,14 +798,14 @@
                 align-self: flex-end;
                 font-weight: bold;
                 cursor: pointer;
-                width: 130px;
+                padding: 2%;
                 height: 40px;
                 border-radius: 10px;
                 color: $color-gold;
                 background-color: $color-black;
                 border: 1px solid $color-gold;
                 @include apply-at-sm-md-size {
-                  width: 94px;
+                  padding: 0 3%;
                   height: 32px;
                   font-size: 12px;
                   border-radius: 6px;
@@ -1004,6 +1014,9 @@
       @include section-spacing;
       .giftWraper {
         width: 60%;
+        @include apply-at-sm-md-size {
+          width: 100%;
+        }
         @include content-center;
         .tittleRibbon {
           .titleGift {
@@ -1094,7 +1107,9 @@
             padding-bottom: 40px;
             text-align: center;
             @include apply-at-sm-md-size {
+              @include content-center;
               padding-bottom: 35px;
+              width: 90%;
             }
             .infoTitle {
               font-size: 30px;
@@ -1182,17 +1197,16 @@
             @include content-center;
             justify-content: center;
             align-items: center;
-            width: 116px;
-            height: 37px;
+            padding: 0 5%;
+            min-height: 37px;
             border-radius: 10px;
             border: 1px solid $color-gold;
             font-size: 18px;
             margin-bottom: 1%;
             cursor: pointer;
             @include apply-at-sm-md-size {
-              width: 70px;
               font-size: 12px;
-              height: 25px;
+              min-height: 25px;
             }
           }
         }

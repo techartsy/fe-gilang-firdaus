@@ -485,7 +485,9 @@ const InvitationPage = () => {
             </div>
             <div onClick={goToMaps} className={classes.btnmap}>
               <p>Menuju Lokasi</p>
-              <img src={plane} alt='gotomap' />
+              <div className={classes.imageWrapper}>
+                <img src={plane} alt='gotomap' />
+              </div>
             </div>
           </div>
         </Fade>
@@ -522,7 +524,6 @@ const InvitationPage = () => {
           </div>
           <div className={classes.poemWrapper}>
             <Fade duration={4000}>
-
               <div className={classes.poemTop}>
                 <p>Mama yang tercinta</p>
                 <p>Akhirnya kutemukan juga jodohku</p>
@@ -679,7 +680,7 @@ const InvitationPage = () => {
               <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
               <p className={classes.infoDetail}>
                 Nama : Ridwan Krisdiansyah <br />
-                Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394
+                Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber,<br />Kab. Lebak, Banten. 42394
               </p>
               <div className={classes.copyWraper}>
                 <img className={classes.copy} src={numbercopy} onClick={copyAddress} alt="copy-text" />
@@ -687,7 +688,7 @@ const InvitationPage = () => {
               </div>
             </div>
             <p className={classes.closingStatement}>
-              Silahkan konfirmasi kirim hadiah spesial kamu
+              Silakan konfirmasi kirim hadiah spesial kamu
             </p>
             <div className={classes.btnConfirmation} onClick={handleConfirmation}>klik disini</div>
           </div>
