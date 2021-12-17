@@ -159,8 +159,22 @@ const InvitationPage = () => {
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
-    const nextYear = year + 1;
-    const difference = +new Date(`01/09/${nextYear}/09:00`) - +new Date();
+    let nextYear;
+    let difference;
+    if (isIOS) {
+      nextYear = year + 1;
+      let fullDate = "2022-01-09 09:00:00";
+      let date = new Date(fullDate);
+      // In case its IOS, parse the fulldate parts and re-create the date object.
+      if(Number.isNaN(date.getMonth())) {
+        let arr = fullDate.split(/[- :]/);
+        date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+      }
+      difference = +date - +new Date();
+    } else {
+      nextYear = year + 1;
+      difference = +new Date(`01/09/${nextYear}/09:00`) - +new Date();
+    }
     let timeLeft = {};
     if (difference > 0) {
       timeLeft = {
