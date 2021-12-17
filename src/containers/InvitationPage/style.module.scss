@@ -18,6 +18,7 @@
       border-bottom: 1px solid $color-gold;
       @include apply-at-lg-size {
         background-image: url("../../static/images/mainimage.png");
+        height: 100vh;
       }
       @include apply-at-sm-md-size {
         background-image: url("../../static/images/mainimage-sm.png");
@@ -30,38 +31,45 @@
           @include directionX;
         }
         .headerTitle {
-          float: right;
+          float: left;
           width: 38%;
           font-size: 90px;
-          margin-right: 10%;
-          margin-bottom: 3%;
+          margin-left: 5%;
+          margin-bottom: 5%;
           align-self: flex-end;
           .titleTop {
             max-height: 20px;
-            text-align: left;
+            text-align: center;
+            @include apply-at-sm-md-size {
+              text-align: left;
+            }
           }
           .titleMid {
             max-height: 40px;
             color: $color-white;
             text-align: center;
             @include apply-at-sm-md-size {
-              margin-left: 10%;
-              max-height: 20px;
+              margin-left: 22%;
+              max-height: 10px;
+              margin-top: -5%;
             }
           }
           .titleBottom {
             max-height: 40px;
-            text-align: right;
-            margin-right: 13%;
+            margin-top: -5%;
+            text-align: center;
             @include apply-at-sm-md-size {
+              margin-right: 12%;
+              text-align: right;
               height: 100%;
-              margin-top: -8%;
+              margin-top: -2%;
             }
           }
           @include apply-at-sm-md-size {
             font-size: 30px;
             width: 75%;
             margin: 0 auto;
+            padding-left: 5%;
           }
         }
       }
@@ -126,6 +134,14 @@
           @include apply-at-sm-md-size {
             width: 100%;
           }
+          .quoteAuthor {
+            margin-top: -4%;
+            color: $color-white;
+            @include apply-at-sm-md-size {
+              text-align: right;
+              margin-top: 2%;
+            }
+          }
         }
       }
       .imageWrapper {
@@ -167,7 +183,7 @@
         width: 50%;
         @include apply-at-sm-md-size {
           width: 90%;
-          text-align: left;
+          text-align: right;
           letter-spacing: 0.7px;
         }
         .story {
@@ -175,6 +191,14 @@
           width: 90%;
           @include apply-at-sm-md-size {
             width: 100%;
+          }
+          .quoteAuthor {
+            margin-top: -4%;
+            color: $color-white;
+            @include apply-at-sm-md-size {
+              text-align: left;
+              margin-top: 2%;
+            }
           }
         }
       }
@@ -188,27 +212,35 @@
       border-top: 1px solid $color-gold;
       .paralaxxWraper {
         @include parallax;
-        background-image: url("../../static/images/mainimage.png");
+        background-image: url("../../static/images/story.png");
         min-height: 100vh;
         object-fit: cover;
         background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
         background-size: cover;
         @include apply-at-sm-md-size {
-          background-position: center;
+          background-position: center center;
+          background-image: url("../../static/images/story-sm.png");
         }
       }
     }
     .summary {
       @include directionX;
       @include parallax;
-      background-image: url("../../static/images/mainimage.png");
+      background-image: url("../../static/images/story.png");
       background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
       background-size: cover;
       object-fit: cover;
       border-top: 1px solid $color-gold;
       border-bottom: 1px solid $color-gold;
       @include apply-at-sm-md-size {
-        background-position: center;
+        background-position: center center;
+        background-image: url("../../static/images/story-sm.png");
       }
       .bg {
         background-color: $color-black;
@@ -242,8 +274,8 @@
               text-align: center;
               font-size: 28px;
               @include apply-at-sm-md-size {
-                font-size: 14px;
-                width: 90%;
+                font-size: 12px;
+                width: 100%;
               }
             }
           }
@@ -504,10 +536,14 @@
       border-top: 1px solid $color-gold;
       .paralaxxWraper {
         background-image: url("../../static/images/thirdimage.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
         @include parallax;
         min-height: 100vh;
         @include apply-at-sm-md-size {
           background-position: center;
+          background-image: url("../../static/images/thirdimage-sm.png");
         }
       }
     }
@@ -519,15 +555,19 @@
         @include directionY;
         align-items: center;
         justify-content: center;
-        background-image: url("../../static//images/thirdimage.png");
+        background-image: url("../../static/images/thirdimage.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: cover;
         @include parallax;
         @include apply-at-sm-md-size {
           background-position: center;
+          background-image: url("../../static/images/thirdimage-sm.png");
         }
         .bg {
           width: 100%;
           background-color: $color-black;
-          opacity: 0.92;
+          opacity: 0.82;
           padding: 2% 0;
           @include apply-at-sm-md-size {
             height: 572px;
@@ -683,13 +723,13 @@
                 }
                 input:focus {
                   outline: none !important;
-                  border-color: $color-red;
-                  box-shadow: 0 0 8px $color-red;
+                  border-color: $color-blue;
+                  box-shadow: 0 0 8px $color-blue;
                 }
                 textarea:focus {
                   outline: none !important;
-                  border-color: $color-red;
-                  box-shadow: 0 0 8px $color-red;
+                  border-color: $color-blue;
+                  box-shadow: 0 0 8px $color-blue;
                 }
               }
             }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
+import Fade from 'react-reveal/Fade';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -14,8 +15,6 @@ import {
   resetConfirmationSuccess
 } from '../../store/actions';
 import useWindowDimensions from '../../utils/useWindowDimensions';
-import ScrollAnimation from 'react-animate-on-scroll';
-import "animate.css/animate.min.css";
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
 import PopupProkes from '../../components/PopupProkes';
@@ -270,12 +269,7 @@ const InvitationPage = () => {
   const generateHeader = () => {
     return (
       <div className={classes.header}>
-        <ScrollAnimation
-          animateIn='fadeIn'
-          delay={2000}
-          duration={2}
-          animateOnce={true}
-        >
+        <Fade delay={2000} duration={3000}>
           <div className={classes.headerAnimation}>
             <div className={classes.headerTitle}>
               <p className={classes.titleTop}>Krisdiansyah</p>
@@ -283,7 +277,7 @@ const InvitationPage = () => {
               <p className={classes.titleBottom}>Azmi</p>
             </div>
           </div>
-        </ScrollAnimation>
+        </Fade>
         <div className={classes.countdown}>
           {timerComponents.length && timerComponents}
         </div>
@@ -296,12 +290,12 @@ const InvitationPage = () => {
       <div className={classes.storySection}>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
-            <ScrollAnimation
-              animateIn='fadeInLeft'
-              duration={2}
-            >
-              <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
-            </ScrollAnimation>
+            <Fade when={!showPopupProkes} left duration={3000}>
+              <p>Hidup memberimu banyak pilihan, kau harus memilih yang terbaik, pilihan yang tidak membuatmu menyesalinya,</p>
+            </Fade>
+            <Fade when={!showPopupProkes} left duration={3000}>
+              <p className={classes.quoteAuthor}>- Yashvardan Raichand -</p>
+            </Fade>
           </div>
         </div>
         <div className={classes.imageWrapper}>
@@ -319,12 +313,12 @@ const InvitationPage = () => {
         </div>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
-            <ScrollAnimation
-              animateIn='fadeInRight'
-              duration={2}
-            >
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget malesuada quam placerat sed tellus nulla pellentesque. Integer non, pharetra mattis amet, amet.</p>
-            </ScrollAnimation>
+            <Fade when={!showPopupProkes} right duration={3000}>
+              <p>Riak malam yang damai, tawa ceria di siang hari akan menjadi kebahagiaan yang tiada tara tatkala semua ada dalam pernikahan.</p>
+            </Fade>
+            <Fade when={!showPopupProkes} right duration={3000}>
+              <p className={classes.quoteAuthor}>~ Azmi ~</p>
+            </Fade>
           </div>
         </div>
       </div>
@@ -345,11 +339,7 @@ const InvitationPage = () => {
       <div className={classes.summary}>
         <div className={classes.bg}>
           <div className={classes.summaryWraper}>
-            <ScrollAnimation
-              animateIn='fadeIn'
-              duration={2}
-              animateOnce={true}
-            >
+            <Fade duration={4000}>
               <div className={classes.title}>
                 <p>
                   Cerita Kita
@@ -357,16 +347,23 @@ const InvitationPage = () => {
               </div>
               <div className={classes.summaryAnimation}>
                 <p className={classes.summarySection}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet {width === 'lg' && <br />}
-                  volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, {width === 'lg' && <br />}
-                  nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque{width === 'lg' && <br />}
-                  dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare{width === 'lg' && <br />}
-                  sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,{width === 'lg' && <br />}
-                  elit morbi mattis vulputate faucibus amet.
+                  Kali pertama berjumpa<br />
+                  Adalah saat senyum lebih bisa dipahami daripada kalimat manusia, <br />
+                  Sementara secangkir kopi hitam engkau hidangkan di meja, <br />
+                  Ku ikuti ayunan kakimu yang menari <br />
+                  Diiringi derit bunyi lantai kayu malam itu.<br /><br />
+                  Dibalik celah sesekali kau curi pandang kepadaku,<br />
+                  Sementara kusiapkan taktik untuk merebut hatimu.<br />
+                  Tak butuh waktu lama, rasa kita ternyata sama<br />
+                  Sama-sama saling mencinta, sama-sama bosan pacaran<br />
+                  Pun dengan berbagai drama yang itu-itu saja<br /><br />
+                  Ku adukan kepada orangtua, aku ingin engkau saja<br />
+                  Awal bulan depan, di tahun yang masih belia<br />
+                  Kupinang engkau dengan maskawin alakadarnya.
                 </p>
               </div>
               <img src={wingg} alt='wingBottom' />
-            </ScrollAnimation>
+            </Fade>
           </div>
         </div>
       </div>
@@ -380,11 +377,7 @@ const InvitationPage = () => {
           <img className={classes.image} src={WingTop} alt="wing" />
         </div>
         <div className={classes.profileWrapper}>
-          <ScrollAnimation
-            animateIn='fadeInLeft'
-            duration={2}
-            animateOnce={true}
-          >
+          <Fade left duration={3000}>
             <div className={classes.card}>
               <img className={classes.bridesImage} src={Female} alt="brides" />
               <div className={classes.profileInfo}>
@@ -392,12 +385,8 @@ const InvitationPage = () => {
                 <p className={classes.parents}>Putri Bungsu dari{width === 'lg' && <br />} Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
               </div>
             </div>
-          </ScrollAnimation>
-          <ScrollAnimation
-            animateIn='fadeInRight'
-            duration={2}
-            animateOnce={true}
-          >
+          </Fade>
+          <Fade right duration={3000}>
             <div className={classes.card}>
               <img className={classes.bridesImage} src={Male} alt="brides" />
               <div className={classes.profileInfo}>
@@ -405,7 +394,7 @@ const InvitationPage = () => {
                 <p className={classes.parents}>Putra Ketiga dari{width === 'lg' && <br />} Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
               </div>
             </div>
-          </ScrollAnimation>
+          </Fade>
         </div>
         <div className={classes.wingWrapper}>
           <img className={classes.image} src={WingBottom} alt="wing" />
@@ -417,12 +406,7 @@ const InvitationPage = () => {
   const eventDetail = () => {
     return (
       <div className={classes.event}>
-        <ScrollAnimation
-          animateIn='fadeIn'
-          duration={3}
-          delay={1000}
-          animateOnce={true}
-        >
+        <Fade delay={1000} duration={4000}>
           <img className={classes.topEvent} src={topevent} alt='top' />
           <div className={classes.greeting}>
             <p>
@@ -479,7 +463,7 @@ const InvitationPage = () => {
               <img src={plane} alt='gotomap' />
             </div>
           </div>
-        </ScrollAnimation>
+        </Fade>
       </div>
     );
   };
@@ -502,11 +486,8 @@ const InvitationPage = () => {
             <img src={Frame} alt="frame" />
           </div>
           <div className={classes.poemWrapper}>
-          <ScrollAnimation
-            animateIn='fadeIn'
-            duration={3}
-            animateOnce={true}
-          >
+          <Fade duration={4000}>
+
             <div className={classes.poemTop}>
               <p>Mama yang tercinta</p>
               <p>Akhirnya kutemukan juga jodohku</p>
@@ -527,14 +508,10 @@ const InvitationPage = () => {
               <p>Pada waktunya</p>
               <p>Aku mesti kau lepas pergi</p>
             </div>
-          </ScrollAnimation>
-          <ScrollAnimation
-            animateIn='fadeInUp'
-            duration={2}
-            animateOnce={true}
-          >
+          </Fade>
+          <Fade bottom duration={3000}>
             <p className={classes.author}>W.S. Rendra</p>
-          </ScrollAnimation>
+          </Fade>
           </div>
         </div>
       </div>
@@ -579,11 +556,7 @@ const InvitationPage = () => {
               </div>
             </form>
           </div>
-          <ScrollAnimation
-            animateIn='fadeIn'
-            duration={2}
-            animateOnce={true}
-          >
+          <Fade duration={3000}>
             <div className={classes.expressionSection}>
               <img src={gunungan} alt="gunungan" />
               <p className={classes.expression}>
@@ -591,7 +564,7 @@ const InvitationPage = () => {
                 Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
               </p>
             </div>
-          </ScrollAnimation>
+          </Fade>
         </div>
       </div >
     );
@@ -604,16 +577,12 @@ const InvitationPage = () => {
           <p>Ucapan & Doa kamu</p>
         </div>
         <div className={classes.mainContent}>
-          <ScrollAnimation
-            animateIn='fadeIn'
-            duration={2}
-            animateOnce={true}
-          >
+          <Fade duration={3000}>
             <div className={classes.leftSection}>
               <img src={gunungan} alt="gunungan" />
               <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
             </div>
-          </ScrollAnimation>
+          </Fade>
           <div className={classes.rightSection}>
             <div className={classes.imgWrapper}>
               <img className={classes.image} src={MessageImg} alt="message" />
@@ -695,18 +664,14 @@ const InvitationPage = () => {
   const closingSection = () => {
     return (
       <div className={classes.closingSectionContainer}>
-        <ScrollAnimation
-          animateIn='fadeIn'
-          duration={2}
-          animateOnce={true}
-        >
+        <Fade duration={3000}>
           <div className={classes.closingSentenceWrapper}>
             <p>
               Bagi Kami Kehadiran & doa Anda<br /> merupakan keberkahan, kehormatan serta kebahagiaan.<br />
               Dari hati yang terdalam, kami ucapkan terima kasih
             </p>
           </div>
-        </ScrollAnimation>
+        </Fade>
         <img src={ClosingWing} alt="wing" className={classes.image} />
       </div>
     );
