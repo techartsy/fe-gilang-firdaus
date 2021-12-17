@@ -347,12 +347,19 @@ const InvitationPage = () => {
               </div>
               <div className={classes.summaryAnimation}>
                 <p className={classes.summarySection}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi mattis sagittis aliquet {width === 'lg' && <br />}
-                  volutpat arcu lorem amet. Nibh pellentesque feugiat est, sed augue sit et. Diam mi, {width === 'lg' && <br />}
-                  nisi, neque senectus et. Mauris, imperdiet sodales magna nibh odio scelerisque{width === 'lg' && <br />}
-                  dapibus purus tellus. Velit mi pellentesque diam cursus nam varius. Ornare{width === 'lg' && <br />}
-                  sagittis, amet, non ultricies. Aliquam non amet mauris mattis nisi. Lacus metus,{width === 'lg' && <br />}
-                  elit morbi mattis vulputate faucibus amet.
+                  Kali pertama berjumpa<br />
+                  Adalah saat senyum lebih bisa dipahami daripada kalimat manusia, <br />
+                  Sementara secangkir kopi hitam engkau hidangkan di meja, <br />
+                  Ku ikuti ayunan kakimu yang menari <br />
+                  Diiringi derit bunyi lantai kayu malam itu.<br /><br />
+                  Dibalik celah sesekali kau curi pandang kepadaku,<br />
+                  Sementara kusiapkan taktik untuk merebut hatimu.<br />
+                  Tak butuh waktu lama, rasa kita ternyata sama<br />
+                  Sama-sama saling mencinta, sama-sama bosan pacaran<br />
+                  Pun dengan berbagai drama yang itu-itu saja<br /><br />
+                  Ku adukan kepada orangtua, aku ingin engkau saja<br />
+                  Awal bulan depan, di tahun yang masih belia<br />
+                  Kupinang engkau dengan maskawin alakadarnya.
                 </p>
               </div>
               <img src={wingg} alt='wingBottom' />
