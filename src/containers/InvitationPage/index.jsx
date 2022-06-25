@@ -20,8 +20,9 @@ import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
 import PopupProkes from '../../components/PopupProkes';
 import PopupGiftConfirmation from '../../components/PopupGiftConfirmation';
-import Azmi from '../../static/images/azmi.png';
-import Ridwan from '../../static/images/ridwan.png';
+import ksection2 from '../../static/images/ksection2.png';
+import ksection3 from '../../static/images/ksection3.png';
+import ksection31 from '../../static/images/ksection31.png';
 import Male from '../../static/images/male.png';
 import Female from '../../static/images/female.png';
 import WingTop from '../../static/images/wing-top.png';
@@ -308,15 +309,20 @@ const InvitationPage = () => {
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} left duration={3000}>
-              <p>Hidup memberimu banyak pilihan, kau harus memilih yang terbaik, pilihan yang tidak membuatmu menyesalinya,</p>
+              <p>Sebab kurasa ini sangat spiritual <br/>
+              Ku tak bisa tulis yang indah<br/>
+              Dan berbunga-bunga<br/>
+              Yang kuingin langsung saja menikam di hati<br/>
+              Ku tak rela kau menangis.
+              </p>
             </Fade>
             <Fade when={!showPopupProkes} left duration={3000}>
-              <p className={classes.quoteAuthor}>- Yashvardan Raichand -</p>
+              <p className={classes.quoteAuthor}>~ Jason Ranti</p>
             </Fade>
           </div>
         </div>
         <div className={classes.imageWrapper}>
-          <img src={Ridwan} alt='Brides' />
+          <img src={ksection2} alt='Brides' />
         </div>
       </div>
     );
@@ -326,15 +332,29 @@ const InvitationPage = () => {
     return (
       <div className={classes.secondStoryContainer}>
         <div className={classes.imageWrapper}>
-          <img src={Azmi} alt="Brides" />
+          <img src={ksection3} alt="Brides" />
         </div>
         <div className={classes.storyWrapper}>
           <div className={classes.story}>
             <Fade when={!showPopupProkes} right duration={3000}>
-              <p>Karena hati tidak perlu memilih, ia selalu tahu ke mana harus berlabuh,</p>
+              <p>
+                Saat tak tahu arah kau disana<br/>
+                Menjadi gagah saat ku tak bisa<br/>
+                Sedikit ku jelaskan tentangku dan kamu<br/>
+                Agar seisi dunia tahu<br/>
+                Keras kepalaku sama denganmu<br/>
+                Caraku marah, caraku tersenyum<br/>
+                Seperti detak jantung yang bertaut<br/>
+                Nyawaku nyala karena denganmu<br/>
+                Aku masih ada sampai di sini<br/>
+                Melihatmu kuat setengah mati<br/>
+                Seperti detak jantung yang bertaut<br/>
+                Nyawaku nyala karena denganmu
+              </p>
             </Fade>
             <Fade when={!showPopupProkes} right duration={3000}>
-              <p className={classes.quoteAuthor}>~ Dee Lestari ~</p>
+              {/* <p className={classes.quoteAuthor}>~ Dee Lestari ~</p> */}
+              <img src={ksection31} className={classes.quoteAuthor} />
             </Fade>
           </div>
         </div>

@@ -17,11 +17,11 @@
       margin-bottom: 22px;
       border-bottom: 1px solid $color-gold;
       @include apply-at-lg-size {
-        background-image: url("../../static/images/mainimage.png");
+        background-image: url("../../static/images/ksection1.png");
         height: 100vh;
       }
       @include apply-at-sm-md-size {
-        background-image: url("../../static/images/mainimage-sm.png");
+        background-image: url("../../static/images/ksection1.png");
         background-size: contain;
         height: 320px;
         justify-content: space-between;
@@ -132,6 +132,7 @@
           @include content-center;
           width: 90%;
           @include apply-at-sm-md-size {
+            text-align: center;
             width: 100%;
           }
           .quoteAuthor {
@@ -190,14 +191,19 @@
           @include content-center;
           width: 90%;
           @include apply-at-sm-md-size {
+            text-align: left;
             width: 100%;
           }
           .quoteAuthor {
             margin-top: -4%;
-            color: $color-white;
+            // color: $color-white;
             @include apply-at-sm-md-size {
-              text-align: left;
+              // text-align: right;
+              // display: flex;
+              float: right;
+              // justify-content: flex-end;
               margin-top: 2%;
+              margin-bottom: 4%;
             }
           }
         }

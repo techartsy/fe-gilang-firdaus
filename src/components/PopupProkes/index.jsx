@@ -6,6 +6,7 @@ import Mask from "../../static/icons/mask.png";
 import Distancing from "../../static/icons/distancing.png";
 import Hand from "../../static/icons/hand.png";
 import Temp from "../../static/icons/temperature.png";
+import kpopupBg from '../../static/images/kpopupBg.png';
 import classes from "./style.module.scss";
 
 const styles = (theme) => ({
@@ -37,6 +38,10 @@ const PopupProkes = withStyles(styles)((props) => {
         style={{
           overflowY: "hidden",
           backgroundColor: "#000000",
+          backgroundImage: `url(${kpopupBg})`,
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'inherit',
         }}
       >
         <div className={classes.popupWrapper}>
