@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isIOS } from 'react-device-detect';
@@ -15,11 +16,16 @@ import {
   resetConfirmationError,
   resetConfirmationSuccess
 } from '../../store/actions';
+
+import { ImMic } from "react-icons/im";
+
 import useWindowDimensions from '../../utils/useWindowDimensions';
 import StartedComponent from '../../components/Started';
 import AudioComponent from '../../components/AudioPlayer';
 import PopupProkes from '../../components/PopupProkes';
 import PopupGiftConfirmation from '../../components/PopupGiftConfirmation';
+import PopupVoiceRecognition from '../../components/PopupVoiceRecog';
+
 import ksection2 from '../../static/images/ksection2.png';
 import ksection3 from '../../static/images/ksection3.png';
 import ksection31 from '../../static/images/ksection31.png';
@@ -60,11 +66,13 @@ const InvitationPage = () => {
   const [guestName, setGuestName] = useState('');
   const [address, setAddress] = useState('');
   const [attend, setAttend] = useState('');
-  const [note, setNote] = useState('');
   const [showPopupProkes, setShowPopupProkes] = useState(false);
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [notif, setNotif] = useState('');
   const [gifNotif, setGiftNotif] = useState('');
+  const [openPopupVoiceRecog, setOpenPopupVoiceRecog] = useState(false);
+  let [popupCounter, setPopupCounter] = useState(0);
+
   const wording = '1570005756763';
   const giftAddress = 'Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394';
   const dispatch = useDispatch();
@@ -72,11 +80,42 @@ const InvitationPage = () => {
   let name = location?.search?.split('=')[1];
   name = name?.split('+').join(' ');
   const { width } = useWindowDimensions();
+  
+  var gapi = window.gapi;
+  var CLIENT_ID = '545719587697-3b26seil317l47iehsuqb1l1a7i8r93k.apps.googleusercontent.com';
+  var API_KEY = 'AIzaSyAspcebNucyZ-lYgmuHOwyu3CNaqfk9CiY';
+  var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+  var SCOPES = "https://www.googleapis.com/auth/calendar.events";
+
 
   const messages = useSelector(state => state.invitationReducer.messages);
   const isError = useSelector(state => state.invitationReducer.isError);
   const confirmationErrorMessage = useSelector(state => state.invitationReducer.confirmationErrorMessage);
   const confirmationSuccess = useSelector(state => state.invitationReducer.confirmationSuccess);
+  
+  const {
+    transcript,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
+  const [note, setNote] = useState('' || transcript);
+
+  const onStartRecognition = () => {
+    console.log('masuk')
+    SpeechRecognition.startListening({
+      continuous: true,
+      language: 'id'
+    })
+  }
+
+  const onChangeNote = (text) => {
+    setNote(text);
+    if (note.length === 0) {
+      resetTranscript();
+    }
+  }
+
   const copyText = () => {
     navigator.clipboard.writeText(wording)
     setNotif('Copied')
@@ -91,6 +130,55 @@ const InvitationPage = () => {
     setTimeout(() => {
       setGiftNotif('');
     }, 3000);
+  };
+
+  const addEvent = () => {
+    console.log(window, '<< window')
+    gapi.load('client:auth2', () => {
+      gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES,
+      })
+
+      gapi.client.load('calendar', 'v3', () => console.log('opened'));
+      gapi.auth2.getAuthInstance().signIn()
+      .then(() => {
+        var event = {
+          'summary': 'Putra & Dina Wedding Day',
+          'location': 'Jalan Pondok Cabe 1 RT 04, RW 04, No. 4 Kel. Pondok Cabe Ilir, Kec. Pamulang, Tangerang Selatan',
+          'description': 'Wedding Invitation',
+          'start': {
+            'dateTime': '2022-07-02T10:00:00',
+            'timeZone': 'Asia/Jakarta',
+          },
+          'end': {
+            'dateTime': '2022-07-02T23:00:00',
+            'timeZone': 'Asia/Jakarta',
+          },
+          'recurrence': [
+            'RRULE:FREQ=DAILY;COUNT=1'
+          ],
+          'reminders': {
+            'useDefault': false,
+            'overrides': [
+              {'method': 'email', 'minutes': 24 * 60},
+              {'method': 'popup', 'minutes': 10},
+            ],
+          },
+        };
+
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': event,
+        })
+        request.execute(response => {
+          console.log(response, '<< response')
+          window.open(response.htmlLink)
+        })
+      })
+    })
   };
 
   const Toast = Swal.mixin({
@@ -163,8 +251,8 @@ const InvitationPage = () => {
     let nextYear;
     let difference;
     if (isIOS) {
-      nextYear = year + 1;
-      let fullDate = "2022-01-09 09:00:00";
+      nextYear = year;
+      let fullDate = "2022-07-17 09:00:00";
       let date = new Date(fullDate);
       // In case its IOS, parse the fulldate parts and re-create the date object.
       if(Number.isNaN(date.getMonth())) {
@@ -173,8 +261,7 @@ const InvitationPage = () => {
       }
       difference = +date - +new Date();
     } else {
-      nextYear = year + 1;
-      difference = +new Date(`01/09/${nextYear}/09:00`) - +new Date();
+      difference = +new Date(`07/17/${year}/09:00`) - +new Date();
     }
     let timeLeft = {};
     if (difference > 0) {
@@ -237,6 +324,12 @@ const InvitationPage = () => {
   };
 
   const showFormAttending = () => {
+    if (browserSupportsSpeechRecognition) {
+      if (!isShow && popupCounter === 0) {
+        setPopupCounter(popupCounter += 1)
+        setOpenPopupVoiceRecog(!openPopupVoiceRecog);
+      }
+    }
     setIsShow(!isShow)
   };
 
@@ -497,6 +590,11 @@ const InvitationPage = () => {
                 </>
               )}
             </div>
+            <div className={classes.btnCalendarContainer}>
+              <div className={classes.btnCalendarWrapper} onClick={addEvent}>
+                <p>Tambahkan ke Kalender</p>
+              </div>
+            </div>
             <div className={classes.locationWraper}>
               <img src={Location} alt='location' />
               <p>
@@ -591,7 +689,19 @@ const InvitationPage = () => {
                 <div className={classes.inputs}>
                   <input type='text' value={guestName} placeholder='Nama' required onChange={(e) => setGuestName(e.target.value)} />
                   <input type='text' placeholder='Alamat' value={address} required onChange={(e) => setAddress(e.target.value)} />
-                  <textarea type='text' placeholder='Kirim Ucapan & Doa' value={note} onChange={(e) => setNote(e.target.value)} />
+                  <textarea type='text' placeholder='Kirim Ucapan & Doa' value={note || transcript} onChange={(e) => onChangeNote(e.target.value)} />
+                  {browserSupportsSpeechRecognition &&
+                    <div className={classes.iconContainer}>
+                      <div
+                        onTouchStart={onStartRecognition}
+                        onMouseDown={onStartRecognition}
+                        onTouchEnd={SpeechRecognition.stopListening}
+                        onMouseUp={SpeechRecognition.stopListening}
+                        className={classes.micWrapper}
+                      >
+                        <ImMic className={classes.mic} />
+                      </div>
+                    </div>}
                 </div>
               </div>
               <div onChange={radioAttend} className={classes.radiosInput}>
@@ -772,6 +882,10 @@ const InvitationPage = () => {
           handleClose={handleConfirmation}
           submitGiftConfirmation={submitGiftConfirmation}
           confirmationSuccess={confirmationSuccess}
+        />
+        <PopupVoiceRecognition
+          open={openPopupVoiceRecog}
+          handleClose={() => setOpenPopupVoiceRecog(!openPopupVoiceRecog)}
         />
       </div>
     );
