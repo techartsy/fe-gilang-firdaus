@@ -70,16 +70,10 @@ const InvitationPage = () => {
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const [notif, setNotif] = useState('');
   const [gifNotif, setGiftNotif] = useState('');
-<<<<<<< Updated upstream
   const [openPopupVoiceRecog, setOpenPopupVoiceRecog] = useState(false);
   let [popupCounter, setPopupCounter] = useState(0);
-
-  const wording = '1570005756763';
-  const giftAddress = 'Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394';
-=======
   const wording = '1260010034469';
   const giftAddress = 'Jl. Sambiroto VII RT.10 RW.02, Tembalang, Semarang';
->>>>>>> Stashed changes
   const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
@@ -266,10 +260,6 @@ const InvitationPage = () => {
       difference = +date - +new Date();
     } else {
       difference = +new Date(`07/17/${year}/09:00`) - +new Date();
-<<<<<<< Updated upstream
-=======
-      console.log(difference,' difference')
->>>>>>> Stashed changes
     }
     let timeLeft = {};
     if (difference > 0) {
