@@ -551,6 +551,28 @@
             }
           }
         }
+        .btnCalendarContainer {
+          .btnCalendarWrapper {
+            @include content-center;
+            @include directionX;
+            align-items: center;
+            justify-content: center;
+            width: 255px;
+            padding: 0px 10px;
+            margin-bottom: 10%;
+            font-size: 25px;
+            border: 1px solid $color-gold;
+            border-radius: 20px;
+            cursor: pointer;
+            @include apply-at-sm-md-size {
+              max-width: 145px;
+              font-size: 12px;
+              height: 30px;
+              border-radius: 10px;
+              margin-top: 10%;
+            }
+          }
+        }
       }
     }
     .thirdImageSection {
@@ -764,6 +786,27 @@
                   outline: none !important;
                   border-color: $color-blue;
                   box-shadow: 0 0 8px $color-blue;
+                }
+                .iconContainer {
+                  display: flex;
+                  justify-content: flex-end;
+                  .micWrapper {
+                    @include directionX;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: -10%;
+                    margin-right: 10px;
+                    width: 30px;
+                    height: 30px;
+                    .mic {
+                      color: $color-gold; 
+                      position: relative;
+                      width: 18px;
+                      height: 18px;
+                      position: absolute;
+                      z-index: 1000;
+                    }
+                  }
                 }
               }
             }
