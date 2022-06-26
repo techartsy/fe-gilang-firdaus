@@ -36,8 +36,8 @@ import WingBottom from '../../static/images/wing-bottom.png';
 import Frame from '../../static/images/frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
-import gunungan from '../../static/images/gunungan.png';
-import MessageImg from '../../static/images/message-img.png';
+import kattendingmeessage from '../../static/images/kattendingmeessage.png';
+import MessageImg from '../../static/images/kgreetingsection.png';
 import ClosingWing from '../../static/images/closing-wing.png';
 import wingribbon from '../../static/images/wingribbon.png';
 import rosegift from '../../static/images/rosegift.png';
@@ -72,9 +72,8 @@ const InvitationPage = () => {
   const [gifNotif, setGiftNotif] = useState('');
   const [openPopupVoiceRecog, setOpenPopupVoiceRecog] = useState(false);
   let [popupCounter, setPopupCounter] = useState(0);
-
-  const wording = '1570005756763';
-  const giftAddress = 'Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber, Kab. Lebak, Banten. 42394';
+  const wording = '1260010034469';
+  const giftAddress = 'Jl. Sambiroto VII RT.10 RW.02, Tembalang, Semarang';
   const dispatch = useDispatch();
   const location = useLocation();
   let name = location?.search?.split('=')[1];
@@ -122,7 +121,7 @@ const InvitationPage = () => {
     setTimeout(() => {
       setNotif('')
     }, 3000)
-  }
+  };
 
   const copyAddress = () => {
     navigator.clipboard.writeText(giftAddress);
@@ -242,9 +241,8 @@ const InvitationPage = () => {
         dispatch(resetConfirmationSuccess())
       }, 2000);
       setOpenConfirmation(!openConfirmation);
-    }
-
-  }, [confirmationSuccess])
+    };
+  }, [confirmationSuccess]);
 
   const calculateTimeLeft = () => {
     let year = new Date().getFullYear();
@@ -355,7 +353,6 @@ const InvitationPage = () => {
 
   const onSubmitRadios = (e) => {
     e.preventDefault();
-
     const payload = {
       name: guestName,
       address,
@@ -383,9 +380,9 @@ const InvitationPage = () => {
         <Fade delay={2000} duration={3000}>
           <div className={classes.headerAnimation}>
             <div className={classes.headerTitle}>
-              <p className={classes.titleTop}>Krisdiansyah</p>
+              <p className={classes.titleTop}>Gilang</p>
               <p className={classes.titleMid}>&</p>
-              <p className={classes.titleBottom}>Azmi</p>
+              <p className={classes.titleBottom}>Vina</p>
             </div>
           </div>
         </Fade>
@@ -519,8 +516,8 @@ const InvitationPage = () => {
             <div className={classes.card}>
               <img className={classes.bridesImage} src={Female} alt="brides" />
               <div className={classes.profileInfo}>
-                <p className={classes.bridess}>Silmiati Azmi</p>
-                <p className={classes.parents}>Putri Bungsu dari{width === 'lg' && <br />} Bapak Muhammad Syarif (Alm) & Ibu Tetty Herawati</p>
+                <p className={classes.bridess}>Fina Fajarwati</p>
+                <p className={classes.parents}>Putri ke - 9 dari{width === 'lg' && <br />} Bapak Sudirjan (Alm) & Ibu Jariyah</p>
               </div>
             </div>
           </Fade>
@@ -528,8 +525,8 @@ const InvitationPage = () => {
             <div className={classes.card}>
               <img className={classes.bridesImage} src={Male} alt="brides" />
               <div className={classes.profileInfo}>
-                <p className={classes.bridess}>Ridwan Krisdiansyah</p>
-                <p className={classes.parents}>Putra Ketiga dari{width === 'lg' && <br />} Bapak H. Padma Sujatma (Alm) & Ibu Hj. Ihat Suprihatin</p>
+                <p className={classes.bridess}>Gilang Firdaus</p>
+                <p className={classes.parents}>Putra Pertama dari{width === 'lg' && <br />} Bapak Dani Hidayat & Ibu Fera</p>
               </div>
             </div>
           </Fade>
@@ -724,7 +721,7 @@ const InvitationPage = () => {
           </div>
           <Fade duration={3000}>
             <div className={classes.expressionSection}>
-              <img src={gunungan} alt="gunungan" />
+              <img src={kattendingmeessage} alt="attending" />
               <p className={classes.expression}>
                 Ungkapan terima kasih yang tulus dari kami apabila<br />
                 Bapak/Ibu/Teman-teman berkenan hadir dan memberikan do'a restu
@@ -745,7 +742,7 @@ const InvitationPage = () => {
         <div className={classes.mainContent}>
           <Fade duration={3000}>
             <div className={classes.leftSection}>
-              <img src={gunungan} alt="gunungan" />
+              {/* <img src={gunungan} alt="gunungan" /> */}
               <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
             </div>
           </Fade>
@@ -809,8 +806,8 @@ const InvitationPage = () => {
             <div className={classes.infoWrapper}>
               <p className={classes.infoTitle}><strong>Alamat Pengiriman Hadiah Fisik</strong></p>
               <p className={classes.infoDetail}>
-                Nama : Ridwan Krisdiansyah <br />
-                Alamat : Kp. Babakan RT.001/002 Ds. Cisungsang Kec. Cibeber,<br />Kab. Lebak, Banten. 42394
+                Nama : Gilang Firdaus <br />
+                Alamat : Jl. Sambiroto VII RT.10 RW.02,<br />Tembalang, Semarang
               </p>
               <div className={classes.copyWraper}>
                 <img className={classes.copy} src={numbercopy} onClick={copyAddress} alt="copy-text" />
