@@ -37,6 +37,7 @@ import Frame from '../../static/images/frame.png';
 import wingg from '../../static/images/wingg.png';
 import topevent from '../../static/images/topevent.png';
 import kattendingmeessage from '../../static/images/kattendingmeessage.png';
+import gunungan from '../../static/images/gunungan.png';
 import MessageImg from '../../static/images/kgreetingsection.png';
 import ClosingWing from '../../static/images/closing-wing.png';
 import wingribbon from '../../static/images/wingribbon.png';
@@ -559,7 +560,7 @@ const InvitationPage = () => {
             <div className={classes.calender}>
               <img src={calender} alt='calender' />
               <p>
-                MINGGU, 09 JANUARI 2022
+                MINGGU, 17 JULI 2022
               </p>
             </div>
             <div className={classes.timesWraper}>
@@ -595,7 +596,7 @@ const InvitationPage = () => {
             <div className={classes.locationWraper}>
               <img src={Location} alt='location' />
               <p>
-                KP. MULYASARI, RT. 01 RW. 02 DS. CIKADU KEC. CIBEBER KAB. LEBAK. BANTEN.
+                JL. SAMBIROTO VII RT.10 RW.02 KEC.TEMBALANG KOTA SEMARANG
               </p>
             </div>
             <div onClick={goToMaps} className={classes.btnmap}>
@@ -630,44 +631,44 @@ const InvitationPage = () => {
     );
   };
 
-  const generatePoemSection = () => {
-    return (
-      <div className={classes.poemSectionContainer}>
-        <div className={classes.poemContainer}>
-          <div className={classes.bg}>
-            <img src={Frame} alt="frame" />
-          </div>
-          <div className={classes.poemWrapper}>
-            <Fade duration={4000}>
-              <div className={classes.poemTop}>
-                <p>Mama yang tercinta</p>
-                <p>Akhirnya kutemukan juga jodohku</p>
-                <p>Seseorang bagai kau</p>
-                <p>Sederhana dalam tingkah dan bicara</p>
-                <p>Serta sangat menyayangiku</p>
-              </div>
-              <div className={classes.poemMid}>
-                <p>Mama</p>
-                <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
-                <p>Kini terbang dan menemui jodohnya</p>
-              </div>
-              <div className={classes.poemBottom}>
-                <p>Mama</p>
-                <p>Aku telah menemukan jodohku</p>
-                <p>Janganlah engkau cemburu</p>
-                <p>Hendaklah hatimu yang baik itu mengerti</p>
-                <p>Pada waktunya</p>
-                <p>Aku mesti kau lepas pergi</p>
-              </div>
-            </Fade>
-            <Fade bottom duration={3000}>
-              <p className={classes.author}>W.S. Rendra</p>
-            </Fade>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  // const generatePoemSection = () => {
+  //   return (
+  //     <div className={classes.poemSectionContainer}>
+  //       <div className={classes.poemContainer}>
+  //         <div className={classes.bg}>
+  //           <img src={Frame} alt="frame" />
+  //         </div>
+  //         <div className={classes.poemWrapper}>
+  //           <Fade duration={4000}>
+  //             <div className={classes.poemTop}>
+  //               <p>Mama yang tercinta</p>
+  //               <p>Akhirnya kutemukan juga jodohku</p>
+  //               <p>Seseorang bagai kau</p>
+  //               <p>Sederhana dalam tingkah dan bicara</p>
+  //               <p>Serta sangat menyayangiku</p>
+  //             </div>
+  //             <div className={classes.poemMid}>
+  //               <p>Mama</p>
+  //               <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
+  //               <p>Kini terbang dan menemui jodohnya</p>
+  //             </div>
+  //             <div className={classes.poemBottom}>
+  //               <p>Mama</p>
+  //               <p>Aku telah menemukan jodohku</p>
+  //               <p>Janganlah engkau cemburu</p>
+  //               <p>Hendaklah hatimu yang baik itu mengerti</p>
+  //               <p>Pada waktunya</p>
+  //               <p>Aku mesti kau lepas pergi</p>
+  //             </div>
+  //           </Fade>
+  //           <Fade bottom duration={3000}>
+  //             <p className={classes.author}>W.S. Rendra</p>
+  //           </Fade>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   const attendingSection = () => {
     return (
@@ -742,7 +743,7 @@ const InvitationPage = () => {
         <div className={classes.mainContent}>
           <Fade duration={3000}>
             <div className={classes.leftSection}>
-              {/* <img src={gunungan} alt="gunungan" /> */}
+              <img src={gunungan} alt="gunungan" />
               <p>“ Seutas Doa & Ucapan Untuk Kedua Mempelai ”</p>
             </div>
           </Fade>
@@ -866,7 +867,7 @@ const InvitationPage = () => {
         {generateBridesProfile()}
         {eventDetail()}
         {!isIOS ? thirdImageSeparator() : iosThirdImageSeparator()}
-        {generatePoemSection()}
+        {/* {generatePoemSection()} */}
         {attendingSection()}
         {generateMessageSection()}
         {giftSection()}
