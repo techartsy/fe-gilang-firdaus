@@ -95,7 +95,7 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
                 <select name="destination" onChange={selectDestination}>
                   <option value="" disabled>-- Pilih Tujuan --</option>
                   <option value="Hadiah Fisik">Alamat Rumah</option>
-                  <option value="Rekening">Mandiri / 1570005756763 / Ridwan Krisdiansah</option>
+                  <option value="Rekening">Mandiri / 1260010034469 / Gilang Firdaus</option>
                 </select>
               </div>
             </div>
@@ -106,7 +106,7 @@ const PopupGiftConfirmation = withStyles(styles)((props) => {
             <div className={classes.infoWrapper}>
               <a
                 rel="noreferrer"
-                href="https://wa.me/6285863589565?text=Hallo%20saya%20mau%20konfirmasi%20pengiriman"
+                href="https://wa.me/6281779809537?text=Hallo%20saya%20mau%20konfirmasi%20pengiriman"
                 target="_blank">
                 <img src={whatsapp} alt="whatsapp" className={classes.whatsapp} />
               </a>
