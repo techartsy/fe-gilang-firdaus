@@ -189,6 +189,7 @@
         }
         .story {
           @include content-center;
+          @include directionX;
           width: 90%;
           @include apply-at-sm-md-size {
             text-align: left;
@@ -196,13 +197,11 @@
           }
           .quoteAuthor {
             margin-top: -4%;
-            // color: $color-white;
             @include apply-at-sm-md-size {
-              // text-align: right;
-              // display: flex;
+              width: 104px;
+              height: 100%;
               float: right;
-              // justify-content: flex-end;
-              margin-top: 2%;
+              margin-top: 68%;
               margin-bottom: 4%;
             }
           }
@@ -674,10 +673,9 @@
     .attendingContainer {
       @include section-spacing;
       @include parallax;
-      background-image: url("../../static/images/message-bg.png");
+      // background-image: url("../../static/images/message-bg.png");
       background-repeat: no-repeat;
       background-size: cover;
-
       .title {
         @include body;
         margin-top: 5%;
@@ -961,7 +959,7 @@
               @include directionX;
               @include content-center;
               max-width: 570px;
-              border: 1px solid $color-gold;
+              // border: 1px solid $color-gold;
               border-radius: 9px;
               @include apply-at-sm-md-size {
                 width: 90%;
