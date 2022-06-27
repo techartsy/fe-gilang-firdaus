@@ -407,9 +407,9 @@ const InvitationPage = () => {
               Ku tak rela kau menangis.
               </p>
             </Fade>
-            <Fade when={!showPopupProkes} left duration={3000}>
+            {/* <Fade when={!showPopupProkes} left duration={3000}>
               <p className={classes.quoteAuthor}>~ Jason Ranti</p>
-            </Fade>
+            </Fade> */}
           </div>
         </div>
         <div className={classes.imageWrapper}>
@@ -517,7 +517,7 @@ const InvitationPage = () => {
             <div className={classes.card}>
               <img className={classes.bridesImage} src={Female} alt="brides" />
               <div className={classes.profileInfo}>
-                <p className={classes.bridess}>Fina Fajarwati</p>
+                <p className={classes.bridess}>Vina Fajarwati</p>
                 <p className={classes.parents}>Putri ke - 9 dari{width === 'lg' && <br />} Bapak Sudirjan (Alm) & Ibu Jariyah</p>
               </div>
             </div>
