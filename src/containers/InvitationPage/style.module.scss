@@ -195,14 +195,21 @@
             text-align: left;
             width: 100%;
           }
-          .quoteAuthor {
-            margin-top: -4%;
-            @include apply-at-sm-md-size {
-              width: 104px;
-              height: 100%;
-              float: right;
-              margin-top: 68%;
-              margin-bottom: 4%;
+          .logoContainer {
+            @include directionY;
+            justify-content: flex-end;
+            align-items: center;
+            width: 30%;
+            .quoteAuthor {
+              margin-top: -4%;
+              margin-bottom: 10%;
+              width: 100%;
+              @include apply-at-sm-md-size {
+                width: 104px;
+                float: right;
+                margin-top: 68%;
+                margin-bottom: 4%;
+              }
             }
           }
         }

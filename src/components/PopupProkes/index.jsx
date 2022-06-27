@@ -39,9 +39,10 @@ const PopupProkes = withStyles(styles)((props) => {
           overflowY: "hidden",
           backgroundColor: "#000000",
           backgroundImage: `url(${kpopupBg})`,
-          backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'inherit',
+          width: '360px',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
         }}
       >
         <div className={classes.popupWrapper}>
