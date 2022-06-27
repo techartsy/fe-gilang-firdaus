@@ -56,6 +56,7 @@ import Mail from '../../static/icons/mail.png';
 import whatsapp from '../../static/icons/whatsapp.png';
 import Story from '../../static/images/story.png';
 import ThirdImageSM from '../../static/images/thirdimage-sm.png';
+import ArRum from '../../static/images/Ar-rum.png';
 import classes from './style.module.scss';
 
 const InvitationPage = () => {
@@ -447,7 +448,6 @@ const InvitationPage = () => {
               <div className={classes.logoContainer}>
                 <img src={ksection31} className={classes.quoteAuthor} alt="logo" />
               </div>
-              {/* <p className={classes.quoteAuthor}>~ Dee Lestari ~</p> */}
             </Fade>
           </div>
         </div>
@@ -480,24 +480,18 @@ const InvitationPage = () => {
             <Fade duration={4000}>
               <div className={classes.title}>
                 <p>
-                  Cerita Kita
+                  QS. Ar-Rum ayat 21
                 </p>
               </div>
               <div className={classes.summaryAnimation}>
+                <img src={ArRum} alt="Ar-Rum" className={classes.verse} />
+                <div className={classes.separator} />
                 <p className={classes.summarySection}>
-                  Kali pertama berjumpa<br />
-                  Adalah saat senyum lebih bisa dipahami daripada kalimat manusia, <br />
-                  Sementara secangkir kopi hitam engkau hidangkan di meja, <br />
-                  Ku ikuti ayunan langkahmu yang menari <br />
-                  Diiringi derit bunyi lantai kayu malam itu.<br /><br />
-                  Dibalik celah sesekali kau curi pandang kepadaku,<br />
-                  Sementara kusiapkan taktik untuk merebut hatimu.<br />
-                  Tak butuh waktu lama, rasa kita ternyata sama<br />
-                  Sama-sama saling mencinta, sama-sama bosan pacaran<br />
-                  Pun dengan berbagai drama yang itu-itu saja<br /><br />
-                  Ku adukan kepada orangtua, aku ingin engkau saja<br />
-                  Awal bulan depan, di tahun yang masih belia<br />
-                  Kupinang engkau dengan maskawin alakadarnya.
+                  “Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia<br />
+                  menciptakan pasangan-pasangan untukmu dari jenismu sendiri, <br />
+                  agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan <br />
+                  di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu <br />
+                  benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.”<br /><br />
                 </p>
               </div>
               <img src={wingg} alt='wingBottom' />

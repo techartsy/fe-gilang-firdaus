@@ -282,23 +282,30 @@
           @include content-center;
           .title {
             @include content-center;
-            width: 180px;
             height: 80px;
             display: flex;
             justify-content: center;
             font-size: 30px;
-            border-bottom: 1px solid $color-gold;
             @include apply-at-sm-md-size {
               border: none;
-              text-decoration-line: underline;
-              text-underline-offset: 12px;
               font-size: 16px;
               height: 100%;
             }
           }
           .summaryAnimation {
+            .verse {
+              margin-top: 5%;
+            }
+            .separator {
+              @include directionX;
+              @include content-center;
+              height: 1px;
+              background-color: $color-gold;
+              width: 50%;
+            }
             .summarySection {
               @include content-center;
+              margin-top: 10%;
               text-align: center;
               font-size: 28px;
               @include apply-at-sm-md-size {
@@ -592,11 +599,12 @@
         background-image: url("../../static/images/thirdimage.png");
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center top;
         object-fit: cover;
         @include parallax;
         min-height: 100vh;
         @include apply-at-sm-md-size {
-          background-position: center;
+          background-position: 27% center;
           background-image: url("../../static/images/thirdimage-sm.png");
         }
       }
@@ -685,7 +693,6 @@
     .attendingContainer {
       @include section-spacing;
       @include parallax;
-      // background-image: url("../../static/images/message-bg.png");
       background-repeat: no-repeat;
       background-size: cover;
       .title {
