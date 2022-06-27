@@ -2,7 +2,8 @@
 
 .container {
   @include body;
-  background-color: $color-black;
+  @include directionY;
+  background-color: #222222;
   height: 100vh;
   overflow-y: hidden;
   @include apply-at-sm-md-size {
@@ -10,7 +11,14 @@
   .wraper {
     @include directionY;
     align-items: center;
-    img {
+    .pigura {
+      width: 100%;
+    }
+    .top {
+      width: 100%;
+      margin-top: 3%;
+    }
+    @include apply-at-sm-size {
       width: 100%;
     }
   }
@@ -30,6 +38,7 @@
   }
   .btn {
     width: 180px;
+    margin-top: 5%;
     height: 40px;
     font-size: 18px;
     @include content-center;
@@ -43,7 +52,12 @@
     @include apply-at-sm-md-size {
       font-size: 14px;
       min-width: 110px;
-      margin-top: 2%;
+      margin-top: 4%;
     }
+  }
+  .bottom {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
   }
 }

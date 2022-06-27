@@ -8,6 +8,9 @@
   font-family: "Charm", cursive;
   color: $color-gold;
 }
+@mixin useDancing {
+  font-family: 'Dancing Script', cursive;
+}
 @mixin directionX {
   display: flex;
   flex-direction: row;

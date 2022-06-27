@@ -14,32 +14,36 @@
       object-fit: cover;
       background-repeat: no-repeat;
       background-size: cover;
+      padding: 8% 0;
       margin-bottom: 22px;
-      border-bottom: 1px solid $color-gold;
       @include apply-at-lg-size {
         background-image: url("../../static/images/ksection1.png");
+        background-position: center 25%;
         height: 100vh;
       }
       @include apply-at-sm-md-size {
         background-image: url("../../static/images/ksection1.png");
+        background-position: center 5%;
         background-size: contain;
         height: 320px;
         justify-content: space-between;
       }
       .headerAnimation {
+        margin-top: 70px;
         @include apply-at-sm-size {
           @include directionX;
         }
         .headerTitle {
+          @include useDancing;
           float: left;
           width: 38%;
           font-size: 90px;
           margin-left: 5%;
-          margin-bottom: 5%;
           align-self: flex-end;
           .titleTop {
             max-height: 20px;
             text-align: center;
+            color: $color-gold;
             @include apply-at-sm-md-size {
               text-align: left;
             }
@@ -49,12 +53,12 @@
             color: $color-white;
             text-align: center;
             @include apply-at-sm-md-size {
-              margin-left: 22%;
+              margin-left: -20%;
               max-height: 10px;
-              margin-top: -5%;
             }
           }
           .titleBottom {
+            color: $color-gold;
             max-height: 40px;
             margin-top: -5%;
             text-align: center;
@@ -62,7 +66,8 @@
               margin-right: 12%;
               text-align: right;
               height: 100%;
-              margin-top: -2%;
+              margin-top: 5%;
+              margin-bottom: 6%;
             }
           }
           @include apply-at-sm-md-size {
@@ -76,11 +81,11 @@
       .countdown {
         @include directionX;
         @include content-center;
-        border-top: 1px solid $color-white;
-        border-bottom: 1px solid $color-white;
+        border-top: 1px solid $color-gold;
+        border-bottom: 1px solid $color-gold;
         width: 30%;
         padding-top: 2px;
-        padding-bottom: 5px;
+        padding-bottom: 5px !important;
         justify-content: space-around;
         color: $color-white;
         margin-bottom: 3%;
@@ -95,7 +100,7 @@
           @include apply-at-sm-md-size {
             font-size: 9px;
             width: 42px;
-            heigth: 40px;
+            height: 40px;
           }
           .countdownTime {
             font-size: 35px;
@@ -115,7 +120,7 @@
       }
     }
     .storySection {
-      @include section-spacing;
+      // @include section-spacing;
       @include directionX;
       font-size: 32px;
       text-align: center;
