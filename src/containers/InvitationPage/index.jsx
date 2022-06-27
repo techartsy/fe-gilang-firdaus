@@ -444,8 +444,10 @@ const InvitationPage = () => {
               </p>
             </Fade>
             <Fade when={!showPopupProkes} right duration={3000}>
+              <div className={classes.logoContainer}>
+                <img src={ksection31} className={classes.quoteAuthor} alt="logo" />
+              </div>
               {/* <p className={classes.quoteAuthor}>~ Dee Lestari ~</p> */}
-              <img src={ksection31} className={classes.quoteAuthor} />
             </Fade>
           </div>
         </div>
@@ -518,7 +520,7 @@ const InvitationPage = () => {
               <img className={classes.bridesImage} src={Female} alt="brides" />
               <div className={classes.profileInfo}>
                 <p className={classes.bridess}>Vina Fajarwati</p>
-                <p className={classes.parents}>Putri ke - 9 dari{width === 'lg' && <br />} Bapak Sudirjan (Alm) & Ibu Jariyah</p>
+                <p className={classes.parents}>Putri Terakhir dari{width === 'lg' && <br />} Bapak Sudirjan (Alm) & Ibu Jariyah</p>
               </div>
             </div>
           </Fade>
