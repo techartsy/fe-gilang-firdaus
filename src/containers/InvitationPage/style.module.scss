@@ -29,9 +29,10 @@
         justify-content: space-between;
       }
       .headerAnimation {
-        margin-top: 70px;
+        margin-top: -5%;
         @include apply-at-sm-size {
           @include directionX;
+          margin-top: 70px;
         }
         .headerTitle {
           @include useDancing;
