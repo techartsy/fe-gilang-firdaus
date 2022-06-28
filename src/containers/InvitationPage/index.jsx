@@ -346,7 +346,7 @@ const InvitationPage = () => {
   };
 
   const goToMaps = () => {
-    window.open('https://goo.gl/maps/gLzmCKcPg8m8AQdM8', '_blank');
+    window.open('https://goo.gl/maps/pEnqtibtp7e8coPs8', '_blank');
   };
 
   const radioAttend = (e) => {
@@ -408,9 +408,6 @@ const InvitationPage = () => {
               Ku tak rela kau menangis.
               </p>
             </Fade>
-            {/* <Fade when={!showPopupProkes} left duration={3000}>
-              <p className={classes.quoteAuthor}>~ Jason Ranti</p>
-            </Fade> */}
           </div>
         </div>
         <div className={classes.imageWrapper}>
@@ -626,45 +623,6 @@ const InvitationPage = () => {
       </div>
     );
   };
-
-  // const generatePoemSection = () => {
-  //   return (
-  //     <div className={classes.poemSectionContainer}>
-  //       <div className={classes.poemContainer}>
-  //         <div className={classes.bg}>
-  //           <img src={Frame} alt="frame" />
-  //         </div>
-  //         <div className={classes.poemWrapper}>
-  //           <Fade duration={4000}>
-  //             <div className={classes.poemTop}>
-  //               <p>Mama yang tercinta</p>
-  //               <p>Akhirnya kutemukan juga jodohku</p>
-  //               <p>Seseorang bagai kau</p>
-  //               <p>Sederhana dalam tingkah dan bicara</p>
-  //               <p>Serta sangat menyayangiku</p>
-  //             </div>
-  //             <div className={classes.poemMid}>
-  //               <p>Mama</p>
-  //               <p>Burung dara jantan nakal yang sejak dulu kau pelihara</p>
-  //               <p>Kini terbang dan menemui jodohnya</p>
-  //             </div>
-  //             <div className={classes.poemBottom}>
-  //               <p>Mama</p>
-  //               <p>Aku telah menemukan jodohku</p>
-  //               <p>Janganlah engkau cemburu</p>
-  //               <p>Hendaklah hatimu yang baik itu mengerti</p>
-  //               <p>Pada waktunya</p>
-  //               <p>Aku mesti kau lepas pergi</p>
-  //             </div>
-  //           </Fade>
-  //           <Fade bottom duration={3000}>
-  //             <p className={classes.author}>W.S. Rendra</p>
-  //           </Fade>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // };
 
   const attendingSection = () => {
     return (
