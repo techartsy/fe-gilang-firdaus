@@ -16,14 +16,17 @@
     align-items: center;
     justify-content: space-between;
     @include apply-at-lg-size {
-    max-width: 360px;
-    height: 100%;
+      max-width: 360px;
+      height: 100%;
+    }
+    @include apply-at-sm-size {
+      overflow-y: hidden;
     }
     .pigura {
       width: 100%;
     }
     .top {
-      width: 100%;
+      width: 50%;
       margin-top: 3%;
       @include apply-at-lg-size {
         width: 60%;
@@ -37,11 +40,11 @@
       font-size: 20px;
       @include directionY;
       align-items: center;
-      // margin-top: -74px;
       justify-content: center;
       @include apply-at-sm-md-size {
-        margin-top: -7%;
         font-size: 16px;
+        position: relative;
+        z-index: 2;
       }
       .to {
         margin: -14px 0;
@@ -65,19 +68,20 @@
         min-width: 110px;
         margin-top: 4%;
         margin-bottom: 5%;
+        position: relative;
+        z-index: 1;
       }
     }
     .bottom {
-      // position: fixed;
-      // bottom: 0px;
       @include apply-at-lg-size {
-        // width: 100%;
         width: 360px;
-        // height: 20%;
+      }
+      @include apply-at-sm-md-size {
+        position: fixed;
+        bottom: 0px;
+        z-index: 0;
       }
       width: 100%;
-      // height: 5%;
-      // border: 1px solid yellow;
     }
   }
   

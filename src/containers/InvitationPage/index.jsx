@@ -863,7 +863,6 @@ const InvitationPage = () => {
         {generateBridesProfile()}
         {eventDetail()}
         {!isIOS ? thirdImageSeparator() : iosThirdImageSeparator()}
-        {/* {generatePoemSection()} */}
         {attendingSection()}
         {generateMessageSection()}
         {giftSection()}

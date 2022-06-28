@@ -1,5 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
+import { isMobile } from "react-device-detect";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import Mask from "../../static/icons/mask.png";
@@ -40,7 +41,7 @@ const PopupProkes = withStyles(styles)((props) => {
           backgroundColor: "#000000",
           backgroundImage: `url(${kpopupBg})`,
           backgroundRepeat: 'no-repeat',
-          width: '360px',
+          width: !isMobile && '360px',
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
         }}
