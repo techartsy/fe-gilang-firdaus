@@ -103,7 +103,6 @@ const InvitationPage = () => {
   const [note, setNote] = useState('' || transcript);
 
   const onStartRecognition = () => {
-    console.log('masuk')
     SpeechRecognition.startListening({
       continuous: true,
       language: 'id'
@@ -175,7 +174,6 @@ const InvitationPage = () => {
           'resource': event,
         })
         request.execute(response => {
-          console.log(response, '<< response')
           window.open(response.htmlLink)
         })
       })
@@ -346,7 +344,7 @@ const InvitationPage = () => {
   };
 
   const goToMaps = () => {
-    window.open('https://goo.gl/maps/pEnqtibtp7e8coPs8', '_blank');
+    window.open('https://goo.gl/maps/gaDpvXEs8nD6u3AQ7', '_blank');
   };
 
   const radioAttend = (e) => {
